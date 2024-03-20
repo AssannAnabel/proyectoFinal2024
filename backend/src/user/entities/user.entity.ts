@@ -5,10 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
-    private id: number
-
-    @Column({ type: 'varchar', length: 45, nullable: false, unique: true })
-    private username: string
+    private idUser: number
 
     @Column({ type: 'varchar', length: 45, nullable: false })
     private name: string
@@ -38,8 +35,7 @@ export class User {
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     private createdAt: Date
 
-    constructor(username: string, name: string, lastname: string, email: string, password: string, rol: Rol, active: boolean, phone: string, birthDate: Date, createdAt: Date) {
-        this.username = username;
+    constructor(name: string, lastname: string, email: string, password: string, rol: Rol, active: boolean, phone: string, birthDate: Date, createdAt: Date) {
         this.name = name;
         this.lastname = lastname;
         this.email = email;
@@ -51,8 +47,7 @@ export class User {
         this.createdAt = createdAt
     }
 
-    public getIdUser(): number { return this.id }
-    public getUsername(): string { return this.username }
+    public getIdUser(): number { return this.idUser }
     public getName(): string { return this.name }
     public getLastname(): string { return this.lastname }
     public getEmail(): string { return this.email }
@@ -63,9 +58,8 @@ export class User {
     public getBirthDate(): Date { return this.birthDate }
     public getCreatedAt(): Date { return this.createdAt }
 
-    public setIdUser(id: number): number { return this.id = id }
+    public setIdUser(idUser: number): number { return this.idUser = idUser }
     public setName(name: string): string { return this.name = name }
-    public setUsername(username: string): string { return this.username = username }
     public setLastname(lastname: string): string { return this.lastname = lastname }
     public setEmail(email: string): string { return this.email = email }
     public setPassword(password: string): string { return this.password = password }

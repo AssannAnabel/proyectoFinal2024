@@ -10,9 +10,9 @@ export class UserService {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<CreateUserDto>) { }
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserDto> {
-    const query = await this.userRepository.findOne({ where: { username: createUserDto.username, email: createUserDto.email } })
+    const query = await this.userRepository.findOne({ where: { email: createUserDto.email } })
     if (query) throw new HttpException({
-      status: HttpStatus.CONFLICT, error: `el nombre de usuario o email ya esta en uso`
+      status: HttpStatus.CONFLICT, error: `el email ${createUserDto.email} ya esta en uso`
     }, HttpStatus.CONFLICT)
     const newUser = this.userRepository.create(createUserDto);
     return this.userRepository.save(newUser)
@@ -23,7 +23,7 @@ export class UserService {
   }
 
   async findOneUser(id: number): Promise<CreateUserDto> {
-    const query: FindOneOptions = { where: { id: id } }
+    const query: FindOneOptions = { where: { idUser: id } }
     const userFound = await this.userRepository.findOne(query)
     if (!userFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
@@ -32,22 +32,26 @@ export class UserService {
   }
 
   async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<CreateUserDto> {
-    const queryFound: FindOneOptions = { where: { id: id } }
+    const queryFound: FindOneOptions = { where: { idUser: id } }
     const userFound = await this.userRepository.findOne(queryFound)
     if (!userFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
     }, HttpStatus.NOT_FOUND)
-    //falta hacer validacion para que, en caso de repetir username o email, salte un error
+    const queryEmailFound = await this.userRepository.findOne({ where: { email: updateUserDto.email } })
+    if (queryEmailFound) throw new HttpException({
+      status: HttpStatus.CONFLICT, error: `el email ${updateUserDto.email} ya esta en uso`
+    }, HttpStatus.CONFLICT)
     const updateUser = Object.assign(userFound, updateUserDto)
     return this.userRepository.save(updateUser)
   }
 
   async removeUser(id: number): Promise<CreateUserDto> {
-    const query: FindOneOptions = { where: { id: id } }
+    const query: FindOneOptions = { where: { idUser: id } }
     const userFound = await this.userRepository.findOne(query)
     if (!userFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
     }, HttpStatus.NOT_FOUND)
+
     //falta ver como hacer para no eliminar el usuario, sino cambiar la 
     //propiedad active a false
     const removeUser = this.userRepository.remove(userFound)

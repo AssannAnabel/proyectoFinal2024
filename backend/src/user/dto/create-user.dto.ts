@@ -5,11 +5,6 @@ import { Rol } from "src/common/enums-type.enum"
 
 export class CreateUserDto {
     @IsString()
-    @Expose()
-    @IsNotEmpty()
-    readonly username: string
-
-    @IsString()
     @IsNotEmpty()
     @Expose()
     readonly name: string
@@ -29,14 +24,8 @@ export class CreateUserDto {
     @Expose()
     readonly password: string
 
-    @IsNotEmpty()
-    @IsEnum(Rol)
-    @Expose()
     readonly rol: Rol
 
-    @IsNotEmpty()
-    @IsBoolean()
-    @Expose()
     readonly active: boolean
 
     @IsString()
@@ -47,7 +36,5 @@ export class CreateUserDto {
     @Expose()
     readonly birthDate: Date
 
-    @IsDateString()
-    @Expose()
     readonly createdAt: Date
 }

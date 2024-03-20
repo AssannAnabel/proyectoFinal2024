@@ -6,49 +6,41 @@ import { Rol } from 'src/common/enums-type.enum';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsString()
-    @Expose()
     @IsNotEmpty()
-    username?: string
+    @Expose()
+    readonly name?: string
 
     @IsString()
     @IsNotEmpty()
     @Expose()
-    name?: string
-
-    @IsString()
-    @IsNotEmpty()
-    @Expose()
-    lastname?: string
+    readonly lastname?: string
 
     @IsEmail()
     @IsNotEmpty()
     @Expose()
-    email?: string
+    readonly email?: string
 
     @IsString()
     @IsNotEmpty()
     @Expose()
-    password?: string
+    readonly password?: string
 
     @IsNotEmpty()
     @IsEnum(Rol)
     @Expose()
-    rol?: Rol
+    readonly rol?: Rol
 
     @IsNotEmpty()
     @IsBoolean()
-    @Expose()
-    active?: boolean
+    readonly active?: boolean
 
     @IsString()
     @Expose()
-    phone?: string
+    readonly phone?: string
 
     @IsDateString()
     @Expose()
-    birthDate?: Date
+    readonly birthDate?: Date
 
-    @IsDateString()
-    @Expose()
-    createdAt?: Date
+    readonly createdAt?: Date
 }
