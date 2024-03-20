@@ -3,6 +3,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ProductModule } from './product/product.module';
+import { InvoiceModule } from './invoice/invoice.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -16,7 +17,7 @@ import { ProductModule } from './product/product.module';
       join(__dirname, '/**/*.entity{.js,.ts}')
     ],
     synchronize: true
-  }), UserModule, ProductModule],
+  }), UserModule, ProductModule, InvoiceModule],
   controllers: [],
   providers: [],
 })
