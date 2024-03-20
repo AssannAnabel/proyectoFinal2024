@@ -57,7 +57,7 @@ export class ProductService {
 
     //falta ver como hacer para no eliminar el usuario, sino cambiar la 
     //propiedad active a false
-    const removeUser = this.productRepository.remove(userFound)
+    const removeUser = await this.productRepository.remove(userFound)
     return removeUser
   }
 }
