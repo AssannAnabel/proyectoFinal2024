@@ -25,6 +25,7 @@ export class InvoiceController {
   }
 
   @Patch(':id')
+  @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateInvoiceDto: UpdateInvoiceDto): Promise<CreateInvoiceDto> {
     return await this.invoiceService.updateInvoice(id, updateInvoiceDto);
   }
