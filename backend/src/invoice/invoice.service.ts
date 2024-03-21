@@ -20,7 +20,7 @@ export class InvoiceService {
 
   async findOneInvoice(id: number): Promise<CreateInvoiceDto> {
     const query: FindOneOptions = { where: { idInvoice: id } }
-    const invoiceFound = this.invoiceRepository.findOne(query)
+    const invoiceFound = await this.invoiceRepository.findOne(query)
     if (!invoiceFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `no existe una factura con el id ${id} `
     }, HttpStatus.NOT_FOUND)
@@ -29,15 +29,15 @@ export class InvoiceService {
 
   async updateInvoice(id: number, updateInvoiceDto: UpdateInvoiceDto): Promise<CreateInvoiceDto> {
     const query: FindOneOptions = { where: { idInvoice: id } }
-    const invoiceFound = this.invoiceRepository.findOne(query)
+    const invoiceFound = await this.invoiceRepository.findOne(query)
     if (!invoiceFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `no existe una factura con el id ${id} `
     }, HttpStatus.NOT_FOUND)
-    const updateUser = await Object.assign(invoiceFound, updateInvoiceDto)
+    const updateUser = Object.assign(invoiceFound, updateInvoiceDto)
     return await this.invoiceRepository.save(updateUser)
   }
 
-  async removeInvoice(id: number):Promise<CreateInvoiceDto> {
+  async removeInvoice(id: number): Promise<CreateInvoiceDto> {
     const query: FindOneOptions = { where: { idInvoice: id } }
     const invoiceFound = await this.invoiceRepository.findOne(query)
     if (!invoiceFound) throw new HttpException({

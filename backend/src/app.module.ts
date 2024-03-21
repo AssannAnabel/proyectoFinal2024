@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ProductModule } from './product/product.module';
 import { InvoiceModule } from './invoice/invoice.module';
+import { InvoicesDetailsModule } from './invoices_details/invoices_details.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -17,7 +18,7 @@ import { InvoiceModule } from './invoice/invoice.module';
       join(__dirname, '/**/*.entity{.js,.ts}')
     ],
     synchronize: true
-  }), UserModule, ProductModule, InvoiceModule],
+  }), UserModule, ProductModule, InvoiceModule, InvoicesDetailsModule],
   controllers: [],
   providers: [],
 })

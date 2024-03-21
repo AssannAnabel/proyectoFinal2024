@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Invoice {
@@ -14,11 +14,17 @@ export class Invoice {
     @Column({ type: 'int' })
     private total_with_iva: number
 
-    constructor(idInvoice: number, invoiceDate: Date, total_without_iva: number, total_with_iva: number) {
+    @BeforeInsert()
+    @BeforeUpdate()
+    private calculateTotalWithIva() {
+        this.total_with_iva = this.total_without_iva * 1.21
+    }
+
+    constructor(idInvoice: number, invoiceDate: Date, total_without_iva: number) {
         this.idInvoice = idInvoice;
         this.invoiceDate = invoiceDate;
         this.total_without_iva = total_without_iva;
-        this.total_with_iva = total_with_iva
+        this.calculateTotalWithIva()
     }
 
     public getIdInvoice(): number { return this.idInvoice }
