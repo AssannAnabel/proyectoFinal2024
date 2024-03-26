@@ -1,5 +1,5 @@
 import Nav from "../components/Nav"
-import './styles.css' // Importa el archivo CSS con los estilos
+import '../styles/Register.css' // Importa el archivo CSS con los estilos
 
 function Register() {
     return (
