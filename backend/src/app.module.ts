@@ -1,10 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { UserModule } from './user/user.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { join } from 'path';
+import { ProductModule } from './product/product.module';
+import { InvoiceModule } from './invoice/invoice.module';
+import { InvoicesDetailsModule } from './invoices_details/invoices_details.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [TypeOrmModule.forRoot({
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'root',
+    password: 'root',
+    database: 'agrotech',
+    entities: [
+      join(__dirname, '/**/*.entity{.js,.ts}')
+    ],
+    synchronize: true
+  }), UserModule, ProductModule, InvoiceModule, InvoicesDetailsModule],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule { }

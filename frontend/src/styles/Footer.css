@@ -1,0 +1,28 @@
+
+footer {
+background-color: #2a8b4a;  /* Color de fondo del pie de página */
+    color: white; /* Color del texto */
+    padding: 20px; /* Espaciado interno */
+    display: flex; /* Alinear los elementos en una fila */
+    justify-content: space-between; /* Distribuir los elementos a lo largo del eje principal (horizontalmente) */
+    align-items: center; /* Alinear los elementos verticalmente */
+  }
+  
+  /* Estilos para los iconos y la información de contacto */
+  .social-icons,
+  .contact-info {
+    display: flex; /* Alinear los elementos en una fila */
+    align-items: center; /* Alinear los elementos verticalmente */
+  }
+  
+  /* Espaciado entre los iconos y el texto */
+  .contact-info p {
+    margin-left: 10px; /* Espacio a la izquierda del texto */
+  }
+  
+  /* Estilos para los iconos */
+  svg {
+    width: 30px; /* Tamaño de los iconos */
+    height: 30px;
+    color: #fff; /* Color de los iconos */
+  }
