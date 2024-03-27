@@ -1,0 +1,35 @@
+.container-nav {
+    background-color: #2a8b4a; 
+    padding: 10px 20px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+  }
+  
+  .container-list {
+    display: flex; 
+    align-items: center; 
+  }
+  .navUl {
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+  }
+  .navUl li {
+    margin-right: 20px;
+  }
+  
+  .navUl li:last-child {
+    margin-right: 0;
+  }
+  
+  .navUl li a {
+    text-decoration: none; 
+    color: white; 
+  }
+  
+  .navUl li a:hover {
+    text-decoration: underline; 
+  }
+  

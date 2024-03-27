@@ -1,0 +1,34 @@
+.container-header-home{
+    display: flex;
+    background-color:#2a8b4a ;
+}
+.container-body-home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.container-carrusel{
+    display: flex;
+    width: 600px;
+    height: 430ox;
+    justify-content: center;
+}
+
+.container-carrusel img{
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+
+}
+
+.container-carrusel img:hover {
+    cursor:crosshair;
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+
+}
