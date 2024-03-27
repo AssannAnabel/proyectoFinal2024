@@ -1,4 +1,6 @@
-import { BeforeInsert, BeforeUpdate, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { InvoicesDetail } from "src/invoices_details/entities/invoices_detail.entity";
+import { User } from "src/user/entities/user.entity";
+import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Invoice {
@@ -14,14 +16,19 @@ export class Invoice {
     @Column({ type: 'int' })
     private total_with_iva: number
 
+    @ManyToOne(() => User, user => user.invoice)
+    public id_user: User
+
+    @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_invoice)
+    public invoiceDetails: InvoicesDetail[]
+
     @BeforeInsert()
     @BeforeUpdate()
     private calculateTotalWithIva() {
         this.total_with_iva = this.total_without_iva * 1.21
     }
 
-    constructor(idInvoice: number, invoiceDate: Date, total_without_iva: number) {
-        this.idInvoice = idInvoice;
+    constructor(invoiceDate: Date, total_without_iva: number) {
         this.invoiceDate = invoiceDate;
         this.total_without_iva = total_without_iva;
         this.calculateTotalWithIva()
@@ -32,7 +39,6 @@ export class Invoice {
     public getTotalWithoutIva(): number { return this.total_without_iva }
     public getTotalWithIva(): number { return this.total_with_iva }
 
-    public setIdInvoice(idInvoice: number): number { return this.idInvoice = idInvoice }
     public setInvoiceDate(invoiceDate: Date): Date { return this.invoiceDate = invoiceDate }
     public setTotalWithoutIva(total_without_iva: number): number { return this.total_without_iva = total_without_iva }
     public setTotalWithIva(total_with_iva: number): number { return this.total_with_iva = total_with_iva }
