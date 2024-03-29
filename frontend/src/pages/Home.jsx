@@ -17,7 +17,7 @@ function Home() {
 
         <div className="container-header-home">
           <Nav />
-          <Link to={"/login"}><FaUser /></Link>
+          <Link className="login" to={"/login"}><FaUser /></Link>
     
         </div>
 

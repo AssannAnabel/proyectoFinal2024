@@ -1,35 +1,65 @@
 .container-nav {
-    background-color: #2a8b4a; 
-    padding: 10px 20px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-  }
-  
-  .container-list {
-    display: flex; 
-    align-items: center; 
-  }
-  .navUl {
-    list-style-type: none; 
-    margin: 0; 
-    padding: 0; 
-    display: flex; 
-  }
-  .navUl li {
-    margin-right: 20px;
-  }
-  
-  .navUl li:last-child {
-    margin-right: 0;
-  }
-  
-  .navUl li a {
-    text-decoration: none; 
-    color: white; 
-  }
-  
-  .navUl li a:hover {
-    text-decoration: underline; 
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye los elementos horizontalmente */
+  align-items: center;
+  /* Centra verticalmente los elementos */
+  background-color: #2a8b4a;
+  /* Color de fondo */
+  color: #333;
+  /* Color del texto */
+  padding: 20px;
+  /* Espaciado interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra ligera */
+  width: 85%;
+}
+
+.container-list {
+  display: flex;
+  align-items: center;
+}
+
+.container-list a {
+  text-decoration: none;
+  color: #555;
+  /* Color del texto normal */
+  margin-right: 20px;
+  /* Espaciado entre elementos */
+  transition: color 0.3s ease;
+  /* Transición suave de color */
+}
+
+.container-list a:hover {
+  color: white;
+  /* Cambia el color al pasar el ratón por encima */
+}
+
+.logo img {
+  width: 100px;
+  /* Ajusta el tamaño del logo según necesites */
+}
+
+.container-barra-searcha {
+  display: flex;
+  width: 50%;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.btn-search {
+  height: 34px;
+  width: 32px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #2a8b4a;
+}
+
+.input-search {
+  color: #383737;
+  border-radius: 10 px;
+  border: solid 2px;
+  background-color: #3dac62;
+
+}

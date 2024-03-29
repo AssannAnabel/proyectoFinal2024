@@ -1,16 +1,14 @@
 import React from 'react'
 import Nav from '../components/Nav'
 import { Link } from 'react-router-dom'
-import '../styles/Login.css' 
+import '../styles/Login.css'
 function Login() {
     return (
         <>
-            <div className="container"> 
-                <Nav />
-            </div>
 
-            <div className="container">
-                <form className="form"> 
+            <Nav />
+            <div className="container-form-login">
+                <form className="form">
                     <label htmlFor="email">Email</label>
                     <input type="text" name='email' id='email' placeholder='Ingrese su Email' />
 
