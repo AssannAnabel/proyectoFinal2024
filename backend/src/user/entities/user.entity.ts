@@ -1,6 +1,7 @@
 import { Exclude } from "class-transformer";
 import { Rol } from "src/common/enums-type.enum";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Invoice } from "src/invoice/entities/invoice.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -17,7 +18,7 @@ export class User {
     private email: string
 
     @Exclude({ toPlainOnly: true })
-    @Column({ type: 'varchar', length: 45, nullable: false, select:false })
+    @Column({ type: 'varchar', length: 45, nullable: false, select: false })
     private password: string
 
     @Column({ type: 'enum', enum: Rol, default: Rol.USER })
@@ -34,6 +35,9 @@ export class User {
 
     @Column({ type: 'datetime', default: () => 'CURRENT_TIMESTAMP' })
     private createdAt: Date
+
+    @OneToMany(() => Invoice, invoice => invoice.id_user)
+    public invoice: Invoice[]
 
     constructor(name: string, lastname: string, email: string, password: string, rol: Rol, active: boolean, phone: string, birthDate: Date, createdAt: Date) {
         this.name = name;
@@ -58,7 +62,6 @@ export class User {
     public getBirthDate(): Date { return this.birthDate }
     public getCreatedAt(): Date { return this.createdAt }
 
-    public setIdUser(idUser: number): number { return this.idUser = idUser }
     public setName(name: string): string { return this.name = name }
     public setLastname(lastname: string): string { return this.lastname = lastname }
     public setEmail(email: string): string { return this.email = email }

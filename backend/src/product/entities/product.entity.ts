@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "src/common/enums-type.enum";
+import { InvoicesDetail } from "src/invoices_details/entities/invoices_detail.entity";
 
 @Entity()
 export class Product {
@@ -27,8 +28,10 @@ export class Product {
     @Column({ type: 'varchar', length: 255 })
     private images: string
 
-    constructor(idProduct: number, codeProduct: string, product: string, description: string, price: number, category: Category, stock: number, images: string) {
-        this.idProduct = idProduct;
+    @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_invoiceDetail)
+    public invoice: InvoicesDetail[]
+
+    constructor(codeProduct: string, product: string, description: string, price: number, category: Category, stock: number, images: string) {
         this.codeProduct = codeProduct;
         this.product = product;
         this.description = description;
@@ -47,7 +50,6 @@ export class Product {
     public getStock(): number { return this.stock }
     public getImages(): string { return this.images }
 
-    public setIdProduct(idProduct: number): number { return this.idProduct = idProduct }
     public setCodeProduct(codeProduct: string): string { return this.codeProduct = codeProduct }
     public setProduct(product: string): string { return this.product = product }
     public setDescription(description: string): string { return this.description = description }
