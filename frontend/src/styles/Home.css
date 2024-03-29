@@ -1,6 +1,12 @@
 .container-header-home{
     display: flex;
-    background-color:#2a8b4a ;
+    background-color: #2a8b4a;
+    justify-content: space-between;
+    align-items: center;
+}
+.login{
+    width: 100px;
+    height: 100px;
 }
 .container-body-home{
     display: flex;
