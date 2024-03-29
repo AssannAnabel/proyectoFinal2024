@@ -4,7 +4,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Footer from "../components/Footer";
 import "../styles/Home.css"
 import { Link } from "react-router-dom";
-
+import Card from '../components/Card'
 import farm from '/img/farm-gate.jpg'
 import field from '/img/open-field.jpg'
 import field2 from '/img/open-field-2.jpg'
@@ -18,7 +18,7 @@ function Home() {
         <div className="container-header-home">
           <Nav />
           <Link to={"/login"}><FaUser /></Link>
-          <FaShoppingCart />
+    
         </div>
 
         <div className="container-body-home">
@@ -44,6 +44,12 @@ function Home() {
               <li>Articulos rurales</li>
               <li></li>
             </ul>
+
+          </div>
+          <div className="container-card-home">
+            <Card/>
+            <Card/>
+            <Card/>
 
           </div>
 
