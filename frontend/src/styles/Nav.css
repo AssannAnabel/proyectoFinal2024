@@ -12,7 +12,9 @@
   /* Espaciado interno */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Sombra ligera */
-  width: 85%;
+  width: 90%;
+  border: solid rgb(203, 17, 17) 1px;
+
 }
 
 .container-list {
@@ -22,12 +24,13 @@
 
 .container-list a {
   text-decoration: none;
-  color: #555;
+  color: #060606;
   /* Color del texto normal */
   margin-right: 20px;
   /* Espaciado entre elementos */
   transition: color 0.3s ease;
   /* Transición suave de color */
+  font-size: 25px;
 }
 
 .container-list a:hover {

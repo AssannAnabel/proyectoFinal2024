@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import "../styles/Home.css"
 import { Link } from "react-router-dom";
 import Card from '../components/Card'
+import BarCategoryProducts from '../components/BarCategoryProducts'
 import farm from '/img/farm-gate.jpg'
 import field from '/img/open-field.jpg'
 import field2 from '/img/open-field-2.jpg'
@@ -13,7 +14,7 @@ function Home() {
   return (
     <>
 
-      <div className="container-home">
+     
 
         <div className="container-header-home">
           <Nav />
@@ -21,9 +22,9 @@ function Home() {
     
         </div>
 
-        <div className="container-body-home">
+   
 
-          <div className="container-carrusel">
+        {/*   <div className="container-carrusel">
 
             
             <img src={farm} alt="Farm Gates" />
@@ -32,36 +33,32 @@ function Home() {
             <img src={field} alt="" />
             <img src={field2} alt="" />
 
-          </div>
+          </div> */}
 
 
-          <div className="container-category">
+          
 
-            <ul>
-              <li>Tranqueras</li>
-              <li>Ropa de Trabajo</li>
-              <li>Herramientas manuales</li>
-              <li>Articulos rurales</li>
-              <li></li>
-            </ul>
+            <BarCategoryProducts/>
+             
 
-          </div>
+          
           <div className="container-card-home">
             <Card/>
             <Card/>
             <Card/>
+            <Card/>
 
           </div>
 
 
-        </div>
+       
 
         <h1>esta es la Home</h1>
 
         <Footer />
 
 
-      </div>
+     
 
     </>
 

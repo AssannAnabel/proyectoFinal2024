@@ -16,9 +16,9 @@ function Card() {
                 <div className="contenido-card">
                     <h2>Tranquera</h2>          
 
-                    <p>Tranquera en una sola hoja de Eucaliptus misionero, seleccionada y cepillada con doble refuerzo y par de bisagras super reforzadas (corresponde a la foto de la portada).
+                    {/* <p>Tranquera en una sola hoja de Eucaliptus misionero, seleccionada y cepillada con doble refuerzo y par de bisagras super reforzadas (corresponde a la foto de la portada).
                         (1" x 4") 1,20 mts. x 3,00 mts.</p>               
-
+ */}
                 
                     <h3>Disponible 3</h3>
                     <h2>$120.745</h2>

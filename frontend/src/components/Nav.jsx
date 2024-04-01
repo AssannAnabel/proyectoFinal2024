@@ -9,14 +9,11 @@ function Nav() {
     return (
         <>
             <div className="container-nav">
-
                 <Logo />
-
                 <div className="container-barra-searcha">
                     <input className="input-search" placeholder="Buscar producto" />
                     <button className="btn-search"><GoSearch/>             
-                    </button>
-                    
+                    </button>                    
                 </div>
                 <nav className="container-list">
                         <Link to={"/About"} > <a href="#">Nosotros</a></Link>
@@ -24,14 +21,7 @@ function Nav() {
                         <a href="#">Ofertas</a>
                         <Link to={"/Contact"}><a href="#">Contactos</a></Link>
                     </nav>
-
-
-
-
-
-
             </div>
-
         </>
 
     )
