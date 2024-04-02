@@ -18,6 +18,7 @@ function CardDescriptionProduct() {
                         <div>
                             <div className='container-precio'>
                                 <span>$ 130.000</span>
+                                <span>Cantidad disponible</span>
                             </div>
                             <div className='container-button'>
                                 <button>Añadir a carrito</button>
