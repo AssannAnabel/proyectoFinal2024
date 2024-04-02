@@ -1,0 +1,26 @@
+.container-img-price{
+    display: flex;
+}
+
+.container-img{
+    width: 70%;
+}
+.container-precio{
+    font-size: 60px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.container-button{
+    display: flex;
+    justify-content: space-around;
+}
+  
+  .container-quantity-product{
+    display: flex;
+  }
+
+  img{
+    width: 100%;
+    height: auto;
+  }
