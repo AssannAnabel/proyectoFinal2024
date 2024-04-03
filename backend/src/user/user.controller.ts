@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, Validation
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateInvoiceDto } from 'src/invoice/dto/create-invoice.dto';
 
 @Controller('user')
 export class UserController {
@@ -31,7 +32,13 @@ export class UserController {
   }
 
   @Delete(':id')
-  async removeCiudad(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number):Promise<CreateUserDto>{ 
+  async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<CreateUserDto> {
     return this.userService.removeUser(id);
   }
+
+  @Post(':id/invoices')
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async createInvoiceForUser(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceData: Partial<CreateInvoiceDto>): Promise<CreateInvoiceDto> {
+    return this.userService.createInvoiceForUser(id, createinvoiceData);
+  } 
 }

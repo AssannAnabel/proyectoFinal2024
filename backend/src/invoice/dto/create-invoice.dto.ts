@@ -10,4 +10,6 @@ export class CreateInvoiceDto {
     @IsNumber()
     @IsNotEmpty()
     readonly total_without_iva: number
+
+    readonly id_user:number
 }
