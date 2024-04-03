@@ -4,10 +4,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { Invoice } from 'src/invoice/entities/invoice.entity';
+import { CreateInvoiceDto } from 'src/invoice/dto/create-invoice.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectRepository(User) private readonly userRepository: Repository<CreateUserDto>) { }
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<CreateUserDto>,
+    @InjectRepository(Invoice) private readonly invoiceRepository: Repository<CreateInvoiceDto>) { }
 
   async createUser(createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const query = await this.userRepository.findOne({ where: { email: createUserDto.email } })
@@ -19,11 +22,11 @@ export class UserService {
   }
 
   async findAllUser(): Promise<CreateUserDto[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({ relations: ['invoice'] });
   }
 
   async findOneUser(id: number): Promise<CreateUserDto> {
-    const query: FindOneOptions = { where: { idUser: id } }
+    const query: FindOneOptions = { where: { idUser: id }, relations: ['invoice'] }
     const userFound = await this.userRepository.findOne(query)
     if (!userFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
@@ -56,5 +59,19 @@ export class UserService {
     //propiedad active a false
     const removeUser = this.userRepository.remove(userFound)
     return removeUser
+  }
+
+  async createInvoiceForUser(userId: number, invoiceData: Partial<CreateInvoiceDto>): Promise<CreateInvoiceDto> {
+    const query: FindOneOptions = { where: { idUser: userId } }
+    const userFound = await this.userRepository.findOne(query)
+    if (!userFound) throw new HttpException({
+      status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${userId}`
+    }, HttpStatus.NOT_FOUND)
+    const newInvoice = this.invoiceRepository.create({
+      ...invoiceData,
+      id_user: userId
+    })
+    await this.invoiceRepository.save(newInvoice)
+    return newInvoice
   }
 }
