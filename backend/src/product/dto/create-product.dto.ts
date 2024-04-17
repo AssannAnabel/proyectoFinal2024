@@ -34,7 +34,7 @@ export class CreateProductDto {
     @IsNumber()
     @IsNotEmpty()
     @Expose()
-    readonly amount: number
+    amount: number
 
     @IsString()
     @Expose()
