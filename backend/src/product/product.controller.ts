@@ -38,7 +38,7 @@ export class ProductController {
 
   @Post(':id/invoices-details')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async createInvoiceForProduct(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceDetailsData: Partial<CreateInvoicesDetailDto>): Promise<CreateInvoicesDetailDto> {
+  async createInvoiceForProduct(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceDetailsData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
     return this.productService.createIvoiceDetailForProduct(id, createinvoiceDetailsData);
   }
 }

@@ -43,10 +43,10 @@ export class ProductService {
     if (!productFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe un producto con el id ${id}`
     }, HttpStatus.NOT_FOUND)
-    const queryProductFound = await this.productRepository.findOne({ where: { product: updateProductDto.product } })
+    /* const queryProductFound = await this.productRepository.findOne({ where: { product: updateProductDto.product } })
     if (queryProductFound) throw new HttpException({
       status: HttpStatus.CONFLICT, error: `el producto ${updateProductDto.product} ya esta cargado en el sistema`
-    }, HttpStatus.CONFLICT)
+    }, HttpStatus.CONFLICT) */
     const updateUser = Object.assign(productFound, updateProductDto)
     return this.productRepository.save(updateUser)
   }
@@ -61,26 +61,27 @@ export class ProductService {
     return removeUser
   }
 
-  async createIvoiceDetailForProduct(productId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateInvoicesDetailDto> {
+  async createIvoiceDetailForProduct(productId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
     const query: FindOneOptions = { where: { idProduct: productId } }
     const productFound = await this.productRepository.findOne(query)
     if (!productFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el producto con el id ${productId}`
     }, HttpStatus.NOT_FOUND)
-    /* const invoiceDetail = new InvoicesDetail(invDetailData.amount_sold)
-    invoiceDetail.getAmount(invDetailData.amount_sold) =getAmount;
-    invoiceDetail.product = product;
-    await this.invoiceDetailRepository.save(invoiceDetail);
+    if (productFound.amount < invDetailData.amount_sold) throw new HttpException({
+      status: HttpStatus.BAD_REQUEST, error: `No hay suficiente stock para vender`
+    }, HttpStatus.BAD_REQUEST)    
+    
+    await this.invoicesDetailsRepository.save(invDetailData);
 
     // Actualizar el stock en Product
-    product.amount -= amountSold;
-    await this.productRepository.save(product); */
-    const newInvoicedetails = this.invoicesDetailsRepository.create({
+    productFound.amount -= invDetailData.amount_sold;
+    return await this.productRepository.save(productFound);
+    /* const newInvoicedetails = this.invoicesDetailsRepository.create({
       ...invDetailData,
       id_product: productId
     })
     await this.invoicesDetailsRepository.save(newInvoicedetails)
-    return newInvoicedetails
+    return newInvoicedetails */
   }
 
   //TODO: tratar la resta del atributo amount en la entidad Product, cada vez que se descuente un invoice_detail
