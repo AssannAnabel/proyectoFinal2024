@@ -33,7 +33,7 @@ export class CreateUserDto {
     readonly rol: Rol
 
     @IsBoolean()
-    readonly active: boolean
+    active: boolean
 
     @IsString()
     @Expose()

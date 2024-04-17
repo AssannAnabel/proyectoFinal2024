@@ -23,21 +23,21 @@ export class Product {
     private category: Category
 
     @Column({ type: 'int' })
-    private stock: number
+    private amount: number
 
     @Column({ type: 'varchar', length: 255 })
     private images: string
 
-    @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_invoiceDetail)
-    public invoice: InvoicesDetail[]
+    @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_product)
+    public invoice_detail: InvoicesDetail[]
 
-    constructor(codeProduct: string, product: string, description: string, price: number, category: Category, stock: number, images: string) {
+    constructor(codeProduct: string, product: string, description: string, price: number, category: Category, amount: number, images: string) {
         this.codeProduct = codeProduct;
         this.product = product;
         this.description = description;
         this.price = price;
         this.category = category;
-        this.stock = stock;
+        this.amount = amount;
         this.images = images
     }
 
@@ -47,7 +47,7 @@ export class Product {
     public getDescription(): string { return this.description }
     public getPrice(): number { return this.price }
     public getCategory(): Category { return this.category }
-    public getStock(): number { return this.stock }
+    public getStock(): number { return this.amount }
     public getImages(): string { return this.images }
 
     public setCodeProduct(codeProduct: string): string { return this.codeProduct = codeProduct }
@@ -55,6 +55,6 @@ export class Product {
     public setDescription(description: string): string { return this.description = description }
     public setPrice(price: number): number { return this.price = price }
     public setCategory(category: Category): Category { return this.category = category }
-    public setStock(stock: number): number { return this.stock = stock }
+    public setStock(amount: number): number { return this.amount = amount }
     public setImages(images: string): string { return this.images = images }
 }

@@ -54,10 +54,8 @@ export class UserService {
     if (!userFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
     }, HttpStatus.NOT_FOUND)
-
-    //falta ver como hacer para no eliminar el usuario, sino cambiar la 
-    //propiedad active a false
-    const removeUser = this.userRepository.remove(userFound)
+    userFound.active = false;
+    const removeUser = this.userRepository.save(userFound)
     return removeUser
   }
 

@@ -32,7 +32,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
 
     @IsNotEmpty()
     @IsBoolean()
-    readonly active?: boolean
+    active?: boolean
 
     @IsString()
     @Expose()

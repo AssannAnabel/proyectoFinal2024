@@ -10,7 +10,7 @@ export class InvoicesDetailsService {
   constructor(@InjectRepository(InvoicesDetail) private readonly invoicesDetailsRepository: Repository<CreateInvoicesDetailDto>) { }
 
   async createInv_Det(createInvoicesDetailDto: CreateInvoicesDetailDto): Promise<CreateInvoicesDetailDto> {
-    if (createInvoicesDetailDto.amount <= 0) throw new HttpException({
+    if (createInvoicesDetailDto.amount_sold <= 0) throw new HttpException({
       status: HttpStatus.NOT_ACCEPTABLE, error: `debe ingresar un valor mayor que cero.`
     }, HttpStatus.NOT_ACCEPTABLE)
     const newInv_Det = this.invoicesDetailsRepository.create(createInvoicesDetailDto)
@@ -36,7 +36,7 @@ export class InvoicesDetailsService {
     if (!detailsFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el detalle de factura n°${id}`
     }, HttpStatus.NOT_FOUND)
-    if (updateInvoicesDetailDto.amount <= 0) throw new HttpException({
+    if (updateInvoicesDetailDto.amount_sold <= 0) throw new HttpException({
       status: HttpStatus.NOT_ACCEPTABLE, error: `debe ingresar un valor mayor que cero.`
     }, HttpStatus.NOT_ACCEPTABLE)
     const updateUser = Object.assign(detailsFound, updateInvoicesDetailDto)
