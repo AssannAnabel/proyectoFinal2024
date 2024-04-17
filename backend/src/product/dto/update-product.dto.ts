@@ -33,7 +33,7 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
     @IsNumber()
     @IsNotEmpty()
     @Expose()
-    readonly stock?: number
+    readonly amount?: number
 
     @IsString()
     @Expose()

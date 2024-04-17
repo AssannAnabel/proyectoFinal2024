@@ -5,5 +5,7 @@ export class CreateInvoicesDetailDto {
     @Expose()
     @IsNumber()
     @IsNotEmpty()
-    readonly amount: number
+    readonly amount_sold: number
+
+    readonly id_product: number
 }

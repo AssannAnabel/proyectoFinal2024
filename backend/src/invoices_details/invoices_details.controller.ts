@@ -35,4 +35,5 @@ export class InvoicesDetailsController {
   remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number) {
     return this.invoicesDetailsService.removeInv_Det(id);
   }
+ 
 }

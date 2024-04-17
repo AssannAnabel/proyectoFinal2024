@@ -4,7 +4,16 @@ export enum Rol {
 }
 
 export enum Category {
-    Ferretería = 'Ferretería',
+    Ferreteria = 'Ferretería',
     Ropa_de_trabajo = 'Ropa de trabajo',
-    Tranqueras = 'Tranqueras'
+    Tranqueras = 'Tranqueras',
+    Repuestos_agricolas = 'Repuestos agricolas',
+    Equipamiento_vehiculos = 'Equipamiento vehículos',
+    Pulverizacion = 'Pulverizacíon',
+    Construccion = 'Construcción',
+    Infraestructura = 'Infraestructura',
+    Energias_renovables = 'Energias renovables',
+    Maquinaria_agricola = 'Maquinaria agrícola',
+    Forestacion_jardineria = 'Forestación y Jardinería',
+    Agricultura_de_precisicion = 'Agricultura de precision'
 }
