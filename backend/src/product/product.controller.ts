@@ -1,8 +1,9 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe, UsePipes } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe, UsePipes, Query } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
+import { Category } from 'src/common/enums-type.enum';
 
 @Controller('product')
 export class ProductController {
@@ -15,8 +16,12 @@ export class ProductController {
   }
 
   @Get()
-  async findAll(): Promise<CreateProductDto[]> {
-    return await this.productService.findAllProduct()
+  async findAll(@Query('category') category?: Category): Promise<CreateProductDto[]> {
+    if (category) {
+      return await this.productService.findByCategory(category)
+    } else {
+      return await this.productService.findAllProduct()
+    }
   }
 
   @Get(':id')
@@ -39,6 +44,6 @@ export class ProductController {
   @Post(':id/invoices-details')
   @UsePipes(new ValidationPipe({ transform: true }))
   async createInvoiceForProduct(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceDetailsData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
-    return this.productService.createIvoiceDetailForProduct(id, createinvoiceDetailsData);
+    return this.productService.addInvoiceDetail(id, createinvoiceDetailsData);
   }
 }

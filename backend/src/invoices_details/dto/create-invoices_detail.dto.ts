@@ -8,4 +8,6 @@ export class CreateInvoicesDetailDto {
     readonly amount_sold: number
 
     readonly id_product: number
+
+    readonly id_invoices: number
 }

@@ -4,10 +4,13 @@ import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Invoice } from './entities/invoice.entity';
 import { FindOneOptions, Repository } from 'typeorm';
+import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
+import { InvoicesDetail } from 'src/invoices_details/entities/invoices_detail.entity';
 
 @Injectable()
 export class InvoiceService {
-  constructor(@InjectRepository(Invoice) private readonly invoiceRepository: Repository<CreateInvoiceDto>) { }
+  constructor(@InjectRepository(Invoice) private readonly invoiceRepository: Repository<CreateInvoiceDto>,
+    @InjectRepository(InvoicesDetail) private readonly invoicesDetailsRepository: Repository<CreateInvoicesDetailDto>) { }
 
   async createInvoice(createInvoiceDto: CreateInvoiceDto): Promise<CreateInvoiceDto> {
     const newInvoice = this.invoiceRepository.create(createInvoiceDto)
@@ -19,7 +22,7 @@ export class InvoiceService {
   }
 
   async findOneInvoice(id: number): Promise<CreateInvoiceDto> {
-    const query: FindOneOptions = { where: { idInvoice: id } }
+    const query: FindOneOptions = { where: { idInvoice: id }, relations: ['invoiceDetails'] }
     const invoiceFound = await this.invoiceRepository.findOne(query)
     if (!invoiceFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `no existe una factura con el id ${id} `
@@ -45,5 +48,17 @@ export class InvoiceService {
     }, HttpStatus.NOT_FOUND)
     const removeInvoice = await this.invoiceRepository.remove(invoiceFound)
     return removeInvoice
+  }
+
+  async addDetailsToInvoice(invoiceId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateInvoiceDto> {
+    const query: FindOneOptions = { where: { idInvoice: invoiceId } }
+    const invoiceFound = await this.invoiceRepository.findOne(query)
+    if (!invoiceFound) throw new HttpException({
+      status: HttpStatus.NOT_FOUND, error: `No existe el producto con el id ${invoiceId}`
+    }, HttpStatus.NOT_FOUND)
+
+    await this.invoicesDetailsRepository.save(invDetailData);
+
+    return await this.invoiceRepository.save(invoiceFound);
   }
 }

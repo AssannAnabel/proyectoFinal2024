@@ -6,6 +6,7 @@ import { Product } from './entities/product.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
 import { InvoicesDetail } from 'src/invoices_details/entities/invoices_detail.entity';
+import { Category } from 'src/common/enums-type.enum';
 
 @Injectable()
 export class ProductService {
@@ -29,7 +30,7 @@ export class ProductService {
   }
 
   async findOneProduct(id: number): Promise<CreateProductDto> {
-    const query: FindOneOptions = { where: { idProduct: id, relations: ['invoice_detail'] } }
+    const query: FindOneOptions = { where: { idProduct: id }, relations: ['invoice_detail'] }
     const productFound = await this.productRepository.findOne(query)
     if (!productFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe un producto con el id ${id}`
@@ -61,7 +62,7 @@ export class ProductService {
     return removeUser
   }
 
-  async createIvoiceDetailForProduct(productId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
+  async addInvoiceDetail(productId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
     const query: FindOneOptions = { where: { idProduct: productId } }
     const productFound = await this.productRepository.findOne(query)
     if (!productFound) throw new HttpException({
@@ -69,20 +70,23 @@ export class ProductService {
     }, HttpStatus.NOT_FOUND)
     if (productFound.amount < invDetailData.amount_sold) throw new HttpException({
       status: HttpStatus.BAD_REQUEST, error: `No hay suficiente stock para vender`
-    }, HttpStatus.BAD_REQUEST)    
-    
+    }, HttpStatus.BAD_REQUEST)
+
     await this.invoicesDetailsRepository.save(invDetailData);
 
     // Actualizar el stock en Product
     productFound.amount -= invDetailData.amount_sold;
     return await this.productRepository.save(productFound);
-    /* const newInvoicedetails = this.invoicesDetailsRepository.create({
-      ...invDetailData,
-      id_product: productId
-    })
-    await this.invoicesDetailsRepository.save(newInvoicedetails)
-    return newInvoicedetails */
   }
 
-  //TODO: tratar la resta del atributo amount en la entidad Product, cada vez que se descuente un invoice_detail
+  async findByCategory(category: Category): Promise<CreateProductDto[]> {
+    const productFound = await this.productRepository.findBy({
+      category
+    })
+    if (!productFound.length) throw new HttpException({
+      status: HttpStatus.NOT_FOUND, error: `No hay productos de ${category}`
+    }, HttpStatus.NOT_FOUND)
+    return productFound
+  }
+
 }
