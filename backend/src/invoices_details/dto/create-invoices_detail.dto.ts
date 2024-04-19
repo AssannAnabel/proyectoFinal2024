@@ -7,7 +7,11 @@ export class CreateInvoicesDetailDto {
     @IsNotEmpty()
     readonly amount_sold: number
 
+    @Expose()
+    @IsNotEmpty()
     readonly id_product: number
 
-    readonly id_invoices: number
+    @Expose()
+    @IsNotEmpty()
+    readonly id_invoice: number
 }
