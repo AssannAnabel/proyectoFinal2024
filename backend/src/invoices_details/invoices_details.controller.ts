@@ -7,11 +7,11 @@ import { UpdateInvoicesDetailDto } from './dto/update-invoices_detail.dto';
 export class InvoicesDetailsController {
   constructor(private readonly invoicesDetailsService: InvoicesDetailsService) { }
 
-  @Post()
+  /* @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   create(@Body() createInvoicesDetailDto: CreateInvoicesDetailDto): Promise<CreateInvoicesDetailDto> {
     return this.invoicesDetailsService.createInv_Det(createInvoicesDetailDto);
-  }
+  } */
 
   @Get()
   findAll(): Promise<CreateInvoicesDetailDto[]> {
@@ -34,6 +34,12 @@ export class InvoicesDetailsController {
   @UsePipes(new ValidationPipe({ transform: true }))
   remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number) {
     return this.invoicesDetailsService.removeInv_Det(id);
+  }
+
+  @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async createInvoiceForProduct(@Body() createinvoiceDetailsData: Partial<CreateInvoicesDetailDto>): Promise<CreateInvoicesDetailDto> {
+    return this.invoicesDetailsService.addInvoiceDetail(createinvoiceDetailsData);
   }
  
 }

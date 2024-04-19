@@ -9,5 +9,11 @@ export class UpdateInvoicesDetailDto extends PartialType(CreateInvoicesDetailDto
     @IsNotEmpty()
     readonly amount_sold?: number
 
-    readonly id_invoices?: number
+    @Expose()
+    @IsNotEmpty()
+    readonly id_product?: number
+
+    @Expose()
+    @IsNotEmpty()
+    readonly id_invoice?: number
 }
