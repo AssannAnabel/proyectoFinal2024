@@ -17,8 +17,7 @@ export class User {
     @Column({ type: 'varchar', nullable: false, unique: true, length: 45 })
     private email: string
 
-    @Exclude({ toPlainOnly: true })
-    @Column({ type: 'varchar', length: 45, nullable: false, select: false })
+    @Column({ type: 'varchar', length: 45, nullable: false })
     private password: string
 
     @Column({ type: 'enum', enum: Rol, default: Rol.USER })
