@@ -39,21 +39,14 @@ function handleChange(e) {
     e.preventDefault();
     
     setUserLogin(prev => ({ ...prev, [e.target.name]: e.target.value }))
-   / console.log("login", userLogin);
-    return userLogin
+     return userLogin
 }
   
 
     const handleSubmit= (e)=>{
     e.preventDefault()
-   // alert(`${user.email}, ${user.password}`)
-console.log("usuarios", users);
-console.log("fin",userLogin);
     const userFound= users.find((u)=> u.email===userLogin.email && u.password===userLogin.password )
-
-    console.log("user",userFound);
-   
-   
+     
     if (userFound && userFound.password === userLogin.password) {
         handleLogin(userFound);
         navigate('/');
@@ -63,20 +56,15 @@ console.log("fin",userLogin);
        else {
         notificacionRef.current.style.color = 'red';
         notificacionRef.current.innerHTML = 'Usuario o contraseña incorrectos';
-      }
-  
-      e.target.reset(); // para limpiar
+      }  
+      e.target.reset();
  
     }
 
-
-
-
-    return (
+   return (
         <>
-
             <Nav />
-            
+           
             <div className="container-form-login">
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>

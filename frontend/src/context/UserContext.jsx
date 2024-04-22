@@ -1,8 +1,11 @@
 import React, {createContext, useState, useEffect, Children} from "react";
 import { user } from "../service/user";
+
+
 export const UserContext = createContext(user);
 
  export const UserProvider = ({children})=> {
+ 
   
   const [user,setUser]= useState("null");
   
@@ -21,6 +24,8 @@ export const UserContext = createContext(user);
    const handleLogout =() =>{
     setUser(null);   
     localStorage.removeItem('user');
+  
+
    };
 
    return(
