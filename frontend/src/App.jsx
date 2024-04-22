@@ -8,18 +8,12 @@ import  Login  from "./pages/Login"
 import  Register  from "./pages/Register"
 import CardDescriptionProduct from './pages/CardDescriuptionProduct'
 
-
-
-
-
 function App() {
   
   return (
     <>
 
-       <Routes>
-     
-
+       <Routes>  
 
         <Route path="/" element={ <Home/> } />         
         <Route path="card" element={   <CardDescriptionProduct/>} />         
