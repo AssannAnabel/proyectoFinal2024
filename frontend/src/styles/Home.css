@@ -1,21 +1,4 @@
-.container-header-home{
-    display: flex;
-    background-color: #2a8b4a;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    padding-top: 15px;
-    margin-bottom: 15px;
-    border: solid black 1px;
-    width: 100%;
-}
-.login{
-    width: 10%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    
-}
+
 .container-body-home{
     display: flex;
     flex-direction: column;

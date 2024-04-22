@@ -1,12 +1,14 @@
 import tranquera from '/img/tranquera.webp'
 import '../styles/CardDescriptionProduct.css'
-
+import Nav from '../components/Nav'
 
 
 function CardDescriptionProduct() {
 
     return (
         <>
+        <Nav/>
+        
             <div className="container-card-description-product">
                 <h2>Nombre del Producto</h2>
 
