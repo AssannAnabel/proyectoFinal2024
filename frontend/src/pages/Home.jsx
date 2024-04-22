@@ -12,16 +12,8 @@ import field2 from '/img/open-field-2.jpg'
 
 function Home() {
   return (
-    <>
-
-     
-
-        <div className="container-header-home">
-          <Nav />
-          <Link className="login" to={"/login"}><FaUser /></Link>
-    
-        </div>
-
+    <>  
+    <Nav />       
    
 
         {/*   <div className="container-carrusel">

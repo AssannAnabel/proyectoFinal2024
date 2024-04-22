@@ -1,10 +1,12 @@
 .container-barra-category-products {
-  padding-top: 20px;
+  margin-top: 10px;
+  padding-top: 10px;
   border-color: #691ad9 solid 1px;
   padding-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  
 }
 
 .container-barra-category-products a {

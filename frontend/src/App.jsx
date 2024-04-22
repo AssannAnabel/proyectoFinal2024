@@ -6,18 +6,17 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import  Login  from "./pages/Login"
 import  Register  from "./pages/Register"
-import CardDescriptionProduct from "./components/CardDescriuptionProduct"
-
-
+import CardDescriptionProduct from './pages/CardDescriuptionProduct'
 
 function App() {
   
   return (
     <>
-        <CardDescriptionProduct/>
 
-       <Routes>
+       <Routes>  
+
         <Route path="/" element={ <Home/> } />         
+        <Route path="card" element={   <CardDescriptionProduct/>} />         
         
         <Route path="about" element={ <About/> } />
         <Route path="contact" element={ <Contact/> } />
