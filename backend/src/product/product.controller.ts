@@ -2,7 +2,6 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseInt
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
 import { Category } from 'src/common/enums-type.enum';
 
 @Controller('product')
@@ -39,11 +38,5 @@ export class ProductController {
   @Delete(':id')
   async removeProduct(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<CreateProductDto> {
     return this.productService.removeProduct(id);
-  }
-
-  @Post(':id/invoices-details')
-  @UsePipes(new ValidationPipe({ transform: true }))
-  async createInvoiceForProduct(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceDetailsData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
-    return this.productService.addInvoiceDetail(id, createinvoiceDetailsData);
   }
 }

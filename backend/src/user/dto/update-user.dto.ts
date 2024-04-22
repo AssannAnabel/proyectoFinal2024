@@ -5,6 +5,8 @@ import { Expose } from 'class-transformer';
 import { Rol } from 'src/common/enums-type.enum';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
+
+    idUser:number
     @IsString()
     @IsNotEmpty()
     @Expose()

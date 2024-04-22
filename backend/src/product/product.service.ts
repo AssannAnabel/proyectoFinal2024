@@ -62,23 +62,6 @@ export class ProductService {
     return removeUser
   }
 
-  async addInvoiceDetail(productId: number, invDetailData: Partial<CreateInvoicesDetailDto>): Promise<CreateProductDto> {
-    const query: FindOneOptions = { where: { idProduct: productId } }
-    const productFound = await this.productRepository.findOne(query)
-    if (!productFound) throw new HttpException({
-      status: HttpStatus.NOT_FOUND, error: `No existe el producto con el id ${productId}`
-    }, HttpStatus.NOT_FOUND)
-    if (productFound.amount < invDetailData.amount_sold) throw new HttpException({
-      status: HttpStatus.BAD_REQUEST, error: `No hay suficiente stock para vender`
-    }, HttpStatus.BAD_REQUEST)
-
-    await this.invoicesDetailsRepository.save(invDetailData);
-
-    // Actualizar el stock en Product
-    productFound.amount -= invDetailData.amount_sold;
-    return await this.productRepository.save(productFound);
-  }
-
   async findByCategory(category: Category): Promise<CreateProductDto[]> {
     const productFound = await this.productRepository.findBy({
       category

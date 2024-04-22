@@ -17,8 +17,7 @@ export class User {
     @Column({ type: 'varchar', nullable: false, unique: true, length: 45 })
     private email: string
 
-    @Exclude({ toPlainOnly: true })
-    @Column({ type: 'varchar', length: 45, nullable: false, select: false })
+    @Column({ type: 'varchar', length: 60, nullable: false })
     private password: string
 
     @Column({ type: 'enum', enum: Rol, default: Rol.USER })
@@ -62,6 +61,7 @@ export class User {
     public getBirthDate(): Date { return this.birthDate }
     public getCreatedAt(): Date { return this.createdAt }
 
+    public setIdUser(idUser: number): number { return this.idUser = idUser }
     public setName(name: string): string { return this.name = name }
     public setLastname(lastname: string): string { return this.lastname = lastname }
     public setEmail(email: string): string { return this.email = email }
