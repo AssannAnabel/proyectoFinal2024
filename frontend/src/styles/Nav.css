@@ -12,17 +12,16 @@
   /* Espaciado interno */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Sombra ligera */
-  width: 90%;
+  width: 100%;
   border: solid rgb(203, 17, 17) 1px;
+  justify-content: center;
+  height: 70px;
 
 }
 
-.container-list {
+.container-list li{
   display: flex;
   align-items: center;
-}
-
-.container-list a {
   text-decoration: none;
   color: #060606;
   /* Color del texto normal */
@@ -30,10 +29,17 @@
   /* Espaciado entre elementos */
   transition: color 0.3s ease;
   /* Transición suave de color */
-  font-size: 25px;
+  font-size: 20px;
+
 }
 
-.container-list a:hover {
+ul{
+  display: flex;
+}
+
+  
+
+.container-list li:hover {
   color: white;
   /* Cambia el color al pasar el ratón por encima */
 }
@@ -45,7 +51,7 @@
 
 .container-barra-searcha {
   display: flex;
-  width: 50%;
+  width: 40%;
   padding-left: 10px;
   padding-right: 20px;
 }
