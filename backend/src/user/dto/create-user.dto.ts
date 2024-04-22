@@ -1,9 +1,11 @@
-import { IsString, IsEmail, IsEnum, IsBoolean, IsDate, IsNotEmpty, IsDateString, MaxLength, MinLength } from "class-validator"
+import { IsString, IsEmail, IsEnum, IsBoolean, IsNotEmpty, IsDateString, MaxLength, MinLength } from "class-validator"
 import { Expose } from "class-transformer"
 import { Rol } from "src/common/enums-type.enum"
 
 
 export class CreateUserDto {
+
+    idUser:number
     @IsString()
     @IsNotEmpty()
     @Expose()
@@ -25,7 +27,7 @@ export class CreateUserDto {
     @IsString()
     @IsNotEmpty()
     @Expose()
-    @MaxLength(45)
+    @MaxLength(60)
     @MinLength(6)
     readonly password: string
 
