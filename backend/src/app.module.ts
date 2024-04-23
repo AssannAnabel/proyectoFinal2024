@@ -5,6 +5,7 @@ import { join } from 'path';
 import { ProductModule } from './product/product.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { InvoicesDetailsModule } from './invoices_details/invoices_details.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -18,7 +19,7 @@ import { InvoicesDetailsModule } from './invoices_details/invoices_details.modul
       join(__dirname, '/**/*.entity{.js,.ts}')
     ],
     synchronize: true
-  }), UserModule, ProductModule, InvoiceModule, InvoicesDetailsModule],
+  }), UserModule, ProductModule, InvoiceModule, InvoicesDetailsModule, AuthModule],
   controllers: [],
   providers: [],
 })

@@ -1,6 +1,6 @@
 import { Rol } from "src/common/enums-type.enum"
 
-export interface Iuser {
+export interface IUser {
     name: string,
     lastname: string,
     email: string,
