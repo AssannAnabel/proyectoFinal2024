@@ -1,14 +1,7 @@
 
-.container-body-home{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: solid black 1px;
-
-}
 
 
-.container-carrusel{
+/* .container-carrusel{
     display: flex;
     width: 900px;
     height: 730ox;
@@ -30,10 +23,22 @@
     opacity: 1;
     filter: contrast(120%);
 
-}
+} */
 
-.container-card-home{
-    border: solid black 1px;
-
+  
+  .title-category {
+    display: inline-block;
+    margin-bottom: 20px; /* Espacio entre el título y las tarjetas */
+  }
+  
+.container-card-category {
     display: flex;
-}
+    flex-wrap: wrap;
+    justify-content: center; 
+  }
+  
+  .container-card-category .card {
+    width: calc(25% - 10px); /* Ancho del 25% del contenedor con un espacio de 10px entre cada tarjeta */
+    margin-bottom: 20px; /* Espacio entre las filas de tarjetas */
+  }
+  

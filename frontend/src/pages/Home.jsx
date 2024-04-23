@@ -6,51 +6,51 @@ import "../styles/Home.css"
 import { Link } from "react-router-dom";
 import Card from '../components/Card'
 import BarCategoryProducts from '../components/BarCategoryProducts'
-import farm from '/img/farm-gate.jpg'
-import field from '/img/open-field.jpg'
-import field2 from '/img/open-field-2.jpg'
+import { UserContext } from '../context/UserContext.jsx'
+import React, { useContext, useEffect, useState } from 'react';
 
 function Home() {
+  const { products } = useContext(UserContext);
+  const productsFerreteria = products.filter(cat => cat.category === "Ferretería").slice(0, 8);
+  const productsTranqueras = products.filter(cat => cat.category === "Tranqueras").slice(0, 8);
+  const productsRopaDeTrabajo = products.filter(cat => cat.category === "Ropa de trabajo").slice(0, 8);
+
+
   return (
-    <>  
-    <Nav />       
-   
+    <>
+      <Nav />
 
-        {/*   <div className="container-carrusel">
-
-            
-            <img src={farm} alt="Farm Gates" />
-            <img src={field} alt="" />
-            <img src={field2} alt="" />
-            <img src={field} alt="" />
-            <img src={field2} alt="" />
-
-          </div> */}
+      <BarCategoryProducts />
 
 
-          
+      <div className="container-card-home">
 
-            <BarCategoryProducts/>
-             
+        <div className="container-card-category">
 
-          
-          <div className="container-card-home">
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
+         
+          {productsFerreteria.map(product => <Card key={product.idProduct} product={product} />)}
 
-          </div>
+        </div>
+        <div className="container-card-category">
+
+          {productsTranqueras.map(product => <Card key={product.idProduct} product={product} />)}
+
+        </div>
+        <div className="container-card-category">
+
+          {productsRopaDeTrabajo.map(product => <Card key={product.idProduct} product={product} />)}
+
+        </div>
+
+      </div>
 
 
-       
+      <h1>esta es la Home</h1>
 
-        <h1>esta es la Home</h1>
-
-        <Footer />
+      <Footer />
 
 
-     
+
 
     </>
 

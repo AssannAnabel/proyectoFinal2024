@@ -5,9 +5,6 @@ import '../styles/Register.css'
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from '../service/userService';
 
-
-
-
 function Register() {
  
     const [userRegister, setUserRegister]= useState({})
@@ -16,9 +13,7 @@ function Register() {
     async function handleSubmit(e) {
         e.preventDefault();
         let newUser={...userRegister,rol:"user", active:true}
-
-        console.log("esto es un usuario nuevo", newUser);
-        
+             
         await addUser(newUser);
         navigate('/')
     }
