@@ -30,3 +30,8 @@
     font-weight: 400;
     margin-bottom: 15px;
 }
+
+.container-card {
+    width: calc(20% - 10px); /* Ancho máximo para cada tarjeta */
+    margin-bottom: 10px; /* Espacio entre filas */
+}
