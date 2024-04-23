@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateInvoiceDto } from 'src/invoice/dto/create-invoice.dto';
-import { Iuser } from './interface/user.interface';
+import { IUser } from './interface/user.interface';
 
 @Controller('user')
 export class UserController {
@@ -11,29 +11,29 @@ export class UserController {
 
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
-  async create(@Body() createUserDto: CreateUserDto): Promise<Iuser> {    
+  async create(@Body() createUserDto: CreateUserDto): Promise<IUser> {    
     return this.userService.createUser(createUserDto);
   }
 
   @Get()
-  async findAll(): Promise<Iuser[]> {
+  async findAll(): Promise<IUser[]> {
     return await this.userService.findAllUser()
   }
 
   @Get(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async findOne(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<Iuser> {
+  async findOne(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<IUser> {
     return await this.userService.findOneUser(id);
   }
 
   @Patch(':id')
   @UsePipes(new ValidationPipe({ transform: true }))
-  async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateUserDto: UpdateUserDto): Promise<Iuser> {
+  async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateUserDto: UpdateUserDto): Promise<IUser> {
     return await this.userService.updateUser(id, updateUserDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<CreateUserDto> {
+  async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<IUser> {
     return this.userService.removeUser(id);
   }
 

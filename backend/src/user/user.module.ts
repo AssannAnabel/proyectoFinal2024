@@ -9,6 +9,8 @@ import { Invoice } from 'src/invoice/entities/invoice.entity';
   imports: [TypeOrmModule.forFeature([User, Invoice])],
   controllers: [UserController],
   providers: [UserService],
+  //Export hace que sea visible userService a los demas modulos,
+  //especialmente al modulo auth donde autenticaremos
   exports: [UserService]
 })
 export class UserModule { }
