@@ -9,6 +9,6 @@ export class AuthController {
 
     @Post('login')
     async login(@Body() userLogin: LoginDto): Promise<IUser> {
-        return this.authService.login(userLogin)
+        return this.authService.login(userLogin)        
     }
 }

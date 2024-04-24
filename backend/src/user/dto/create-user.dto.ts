@@ -29,7 +29,7 @@ export class CreateUserDto {
     @Expose()
     @MaxLength(60)
     @MinLength(6)
-    readonly password: string
+    password: string
 
     @IsEnum(Rol)
     readonly rol: Rol
