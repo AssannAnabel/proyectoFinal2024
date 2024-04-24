@@ -6,23 +6,28 @@ import { FindOneOptions, Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { Invoice } from 'src/invoice/entities/invoice.entity';
 import { CreateInvoiceDto } from 'src/invoice/dto/create-invoice.dto';
-import { IUser } from './interface/user.interface';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<CreateUserDto>,
     @InjectRepository(Invoice) private readonly invoiceRepository: Repository<CreateInvoiceDto>) { }
 
+  private async hashPassword(password: string): Promise<string> {
+    const saltRounds = 10; // Número de rondas de hashing
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    return hashedPassword;
+  }
 
-  async createUser(createUserDto: CreateUserDto): Promise<IUser> {
+  async createUser(createUserDto: CreateUserDto): Promise<CreateUserDto> {
     const userFound = await this.userRepository.findOne({ where: { email: createUserDto.email } });
 
     // Si el usuario ya existe y está marcado como inactivo, actualizar su estado a activo
     if (userFound && userFound.active === false) {
       userFound.active = true;
+      createUserDto.password = await this.hashPassword(createUserDto.password)
       await this.userRepository.save(userFound);
-      const { password, ...rest } = userFound
-      return rest; // Devolver el usuario existente actualizado
+      return userFound; // Devolver el usuario existente actualizado
     }
 
     // Si el usuario ya existe y está activo, lanzar una excepción de conflicto
@@ -34,33 +39,28 @@ export class UserService {
     }
 
     // Si no existe un usuario con ese correo electrónico, crear uno nuevo
+    createUserDto.password = await this.hashPassword(createUserDto.password)
     const newUser = this.userRepository.create(createUserDto);
     //Quitamos el atributo password del user
     await this.userRepository.save(newUser)
-    const { password, ...rest } = newUser
-    return rest
+    return newUser
   }
 
-  async findAllUser(): Promise<any[]> {
+  async findAllUser(): Promise<CreateUserDto[]> {
     const allUsers = await this.userRepository.find({ relations: ['invoice'] });
     const filterUsers = allUsers.filter((users) => {
       return users.active === true;
     })
-    const aux = filterUsers.map((users) => {
-      const { password, ...rest } = users
-      return rest;
-    })
-    return aux;
+    return filterUsers;
   }
 
-  async findOneUser(id: number): Promise<IUser> {
+  async findOneUser(id: number): Promise<CreateUserDto> {
     const query: FindOneOptions = { where: { idUser: id }, relations: ['invoice'] }
     const userFound = await this.userRepository.findOne(query)
     if (!userFound || userFound.active === false) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${id}`
     }, HttpStatus.NOT_FOUND)
-    const { password, ...rest } = userFound
-    return rest
+    return userFound
   }
 
   async findUserByEmail(email: string): Promise<CreateUserDto> {
@@ -71,7 +71,7 @@ export class UserService {
     return userFound
   }
 
-  async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<IUser> {
+  async updateUser(id: number, updateUserDto: UpdateUserDto): Promise<CreateUserDto> {
     const queryFound: FindOneOptions = { where: { idUser: id } }
     const userFound = await this.userRepository.findOne(queryFound)
     if (!userFound) throw new HttpException({
@@ -86,14 +86,14 @@ export class UserService {
       }, HttpStatus.CONFLICT);
     }
     // Actualizar el usuario con los datos proporcionados
+    updateUserDto.password = await this.hashPassword(updateUserDto.password)
     const updatedUser = Object.assign(userFound, updateUserDto);
     // Guardar los cambios en la base de datos
     const savedUser = await this.userRepository.save(updatedUser);
-    const { password, ...rest } = savedUser
-    return rest
+    return savedUser
   }
 
-  async removeUser(id: number): Promise<IUser> {
+  async removeUser(id: number): Promise<CreateUserDto> {
     const query: FindOneOptions = { where: { idUser: id } }
     const userFound = await this.userRepository.findOne(query)
     if (!userFound || userFound.active === false) throw new HttpException({
@@ -101,8 +101,7 @@ export class UserService {
     }, HttpStatus.NOT_FOUND)
     userFound.active = false;
     const removeUser = await this.userRepository.save(userFound)
-    const { password, ...rest } = removeUser
-    return rest
+    return removeUser
   }
 
   async createInvoiceForUser(userId: number, invoiceData: Partial<CreateInvoiceDto>): Promise<CreateInvoiceDto> {

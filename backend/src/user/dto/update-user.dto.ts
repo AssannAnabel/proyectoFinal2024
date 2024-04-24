@@ -25,7 +25,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsString()
     @IsNotEmpty()
     @Expose()
-    readonly password?: string
+    password?: string
 
     @IsNotEmpty()
     @IsEnum(Rol)
