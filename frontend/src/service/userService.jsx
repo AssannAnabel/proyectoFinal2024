@@ -1,4 +1,4 @@
-export const url_users = 'http://localhost:3001/user'
+export const url_users = 'http://localhost:3000/user'
 
 const controller = new AbortController();
 

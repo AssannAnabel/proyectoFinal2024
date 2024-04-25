@@ -1,9 +1,13 @@
+/* Estilo para la contenedor de la barra de categoría de productos */
 .container-barra-category-products {
-  background-color:#69a67d; 
+  background-color: #69a67d;
   padding: 15px;
- 
+  margin: 0 auto; /* Centra el contenedor en la página */
+  width: 1100px; /* Establece un ancho fijo para acomodar 6 elementos por fila */
 }
+  
 
+/* Estilo para la lista no ordenada */
 .ul-bar-category {
   list-style-type: none;
   padding: 0;
@@ -11,22 +15,36 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color:#69a67d; 
+  background-color: #69a67d;
 }
 
+
+/* Estilo para los elementos de la lista */
 .ul-bar-category li {
-  color: #000000; /* Negro */
-  font-size: 16px;
-  margin-bottom: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 8px 15px;
-  background-color: #d3efd4; /* Verde */
-  border-radius: 10px;
-
+    color: #000000; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin: 10px; /* Espacio entre elementos */
+    padding: 8px 15px;
+    border-radius: 10px;
+    display: flex; /* Usa flexbox para alinear el ícono y el texto */
+    flex-direction: column; /* Coloca el ícono y el texto en columna */
+    align-items: center; /* Centra el ícono y el texto */
+    justify-content: center; /* Centra verticalmente los elementos */
+    text-align: center; /* Centra el texto horizontalmente */
+    width:120px;
 }
 
+
+
+/* Estilo para los íconos */
+.ul-bar-category li svg {
+  color: #000000; /* Color negro para los íconos */
+  font-size: 24px; /* Tamaño más grande para los íconos */
+  margin-bottom: 5px; /* Espacio entre el ícono y el texto */
+ 
+}
+
+/* Estilo para el hover en los elementos de la lista */
 .ul-bar-category li:hover {
-  background-color: #388e3c; /* Verde oscuro al pasar el ratón */
-  cursor: pointer;
+ cursor: pointer;
 }

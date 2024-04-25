@@ -13,7 +13,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* Sombra ligera */
   width: 100%;
-  border: solid rgb(203, 17, 17) 1px;
+  border: solid rgb(8, 8, 8) 1px;
   justify-content: center;
   height: 70px;
 
@@ -32,6 +32,9 @@
   font-size: 20px;
 
 }
+.container-barra-searcha svg {
+  color: #000000; /* Color negro */
+}
 
 ul{
   display: flex;
@@ -40,7 +43,7 @@ ul{
   
 
 .container-list li:hover {
-  color: white;
+  color:rgb(33, 104, 33);
   /* Cambia el color al pasar el ratón por encima */
 }
 
