@@ -18,45 +18,34 @@ function Home() {
 
   return (
     <>
-      <Nav />
+      <div>
+        <Nav />
+      </div>
 
-      <BarCategoryProducts />
-
+      <div>
+        <BarCategoryProducts />
+      </div>
 
       <div className="container-card-home">
 
         <div className="container-card-category">
-
-         
-                           
-          {productsFerreteria.map(product => <Card key={product.idProduct} product={product}  />)}
-
+          {productsFerreteria.map(product => <Card key={product.idProduct} product={product} />)}
         </div>
         <div className="container-card-category">
-
           {productsTranqueras.map(product => <Card key={product.idProduct} product={product} />)}
-
         </div>
         <div className="container-card-category">
-
           {productsRopaDeTrabajo.map(product => <Card key={product.idProduct} product={product} />)}
-
         </div>
 
       </div>
 
 
       <h1>esta es la Home</h1>
-
-      <Footer />
-
-
-
-
+      <div>
+        <Footer />
+      </div>
     </>
-
-
-
   );
 }
 

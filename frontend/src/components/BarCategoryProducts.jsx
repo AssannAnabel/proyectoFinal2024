@@ -6,7 +6,7 @@ function BarCategoryProducts() {
             <div className='container-barra-category-products'>
                 <ul className='ul-bar-category'>
 
-                    <li> Ferretería </li>
+                    <li>Ferretería </li>
                     <li>Ropa de trabajo</li>
                     <li>Tranqueras</li>
                     <li>Repuestos agricolas</li>
