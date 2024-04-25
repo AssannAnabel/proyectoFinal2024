@@ -16,7 +16,7 @@ function Login() {
 
     const navigate = useNavigate()
 
-    const urlUsers = 'http://localhost:3001/user'
+    const urlUsers = 'http://localhost:3000/user'
 
 
     const fetchUsers = async (urlUsers) => {
