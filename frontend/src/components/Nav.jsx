@@ -14,8 +14,8 @@ function Nav() {
                 <Logo />
                 <div className="container-barra-searcha">
                     <input className="input-search" placeholder="Buscar producto" />
-                    <button className="btn-search"><GoSearch />
-                    </button>
+                   <GoSearch />
+                    
                 </div>
                 <nav className="container-list">
 

@@ -1,57 +1,32 @@
 .container-barra-category-products {
-  margin-top: 10px;
-  padding-top: 10px;
-  border-color: #691ad9 solid 1px;
-  padding-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  
-}
-
-.container-barra-category-products{
-  display: flex;
-  flex-wrap: wrap;
-}
-
-
-.ul-bar-category li {
-  text-decoration: none;
-  color: #060606;
-  /* Color del texto normal */
-  margin-right: 20px;
-  /* Espaciado entre elementos */
-  transition: color 0.3s ease;
-  /* Transición suave de color */
-
-  font-size: 20px;
-  background-color: #3bc368;
-  border-radius: 10px;
-  padding: 3px 3px;
-  margin-bottom: 15px
-}
-
-.container-barra-category-products li:hover {
-  color: white;
-}
-
-.container-barra-category-products {
-  display: flex;
-  flex-wrap: wrap;
+  background-color:#69a67d; 
+  padding: 15px;
+ 
 }
 
 .ul-bar-category {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color:#69a67d; 
 }
 
 .ul-bar-category li {
-  flex: 0 0 20%; /* Establece cada elemento para que ocupe el 50% del contenedor */
-  max-width: 13%; /* Limita el ancho máximo de cada elemento al 50% */
-  box-sizing: border-box; /* Incluye el borde y el relleno en el ancho y alto del elemento */
- justify-content: space-between;
- 
+  color: #000000; /* Negro */
+  font-size: 16px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 8px 15px;
+  background-color: #d3efd4; /* Verde */
+  border-radius: 10px;
+
+}
+
+.ul-bar-category li:hover {
+  background-color: #388e3c; /* Verde oscuro al pasar el ratón */
+  cursor: pointer;
 }

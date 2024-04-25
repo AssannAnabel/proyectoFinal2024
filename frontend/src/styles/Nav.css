@@ -4,7 +4,7 @@
   /* Distribuye los elementos horizontalmente */
   align-items: center;
   /* Centra verticalmente los elementos */
-  background-color: #2a8b4a;
+
   /* Color de fondo */
   color: #333;
   /* Color del texto */
@@ -62,13 +62,13 @@ ul{
   text-align: center;
   align-items: center;
   justify-content: center;
-  background-color: #2a8b4a;
+
 }
 
 .input-search {
   color: #383737;
   border-radius: 10 px;
   border: solid 2px;
-  background-color: #3dac62;
+  background-color: #f4f7f5;
 
 }
