@@ -9,7 +9,13 @@
   
 }
 
-.container-barra-category-products a {
+.container-barra-category-products{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.ul-bar-category li {
   text-decoration: none;
   color: #060606;
   /* Color del texto normal */
@@ -25,6 +31,27 @@
   margin-bottom: 15px
 }
 
-.container-barra-category-products a:hover {
+.container-barra-category-products li:hover {
   color: white;
+}
+
+.container-barra-category-products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.ul-bar-category {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ul-bar-category li {
+  flex: 0 0 20%; /* Establece cada elemento para que ocupe el 50% del contenedor */
+  max-width: 13%; /* Limita el ancho máximo de cada elemento al 50% */
+  box-sizing: border-box; /* Incluye el borde y el relleno en el ancho y alto del elemento */
+ justify-content: space-between;
+ 
 }
