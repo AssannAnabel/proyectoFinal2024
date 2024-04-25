@@ -1,19 +1,30 @@
 import '../styles/BarCategoryProducts.css'
-function BarCategoryProducts(){
+function BarCategoryProducts() {
 
-    return(
+    return (
         <>
-        <div className='container-barra-category-products'>
-        <a href="">Tranqueras</a>
-        <a href="">Ropa de trabajo</a>
-        <a href="">Herramientas de mano</a>
-        <a href="">Herramientas electricas/explocion</a>
-        <a href="">Articulos rurales</a>
-        </div>
-       
+            <div className='container-barra-category-products'>
+                <ul className='ul-bar-category'>
+
+                    <li> Ferretería </li>
+                    <li>Ropa de trabajo</li>
+                    <li>Tranqueras</li>
+                    <li>Repuestos agricolas</li>
+                    <li>Equipamiento vehiculos</li>
+                    <li>Pulverizacíon</li>
+                    <li>Construcción</li>
+                    <li>Infraestrctura</li>
+                    <li>Energias renovables</li>
+                    <li>Maquinarias Agricolas</li>
+                    <li>Forestacion y Jardinería</li>
+                    <li>Agricultura de precision</li>
+
+                </ul>
+            </div>
+
         </>
 
-       
+
     )
 }
 

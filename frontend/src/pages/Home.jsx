@@ -28,7 +28,8 @@ function Home() {
         <div className="container-card-category">
 
          
-          {productsFerreteria.map(product => <Card key={product.idProduct} product={product} />)}
+                           
+          {productsFerreteria.map(product => <Card key={product.idProduct} product={product}  />)}
 
         </div>
         <div className="container-card-category">
