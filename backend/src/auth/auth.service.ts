@@ -23,7 +23,6 @@ export class AuthService {
             const payload = { sub: userFound.idUser, name: userFound.name, email: userFound.email };
             return {
                 access_token: await this.jwtService.signAsync(payload)
-             
             }
         }
         if (userFound.password !== userAuth.password || userFound.active === false) {
