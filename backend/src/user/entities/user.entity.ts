@@ -1,4 +1,3 @@
-import { Exclude } from "class-transformer";
 import { Rol } from "src/common/enums-type.enum";
 import { Invoice } from "src/invoice/entities/invoice.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";

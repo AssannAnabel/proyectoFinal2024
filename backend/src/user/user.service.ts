@@ -34,9 +34,9 @@ export class UserService {
     // Si el usuario ya existe y está activo, lanzar una excepción de conflicto
     if (userFound && userFound.active === true) {
       throw new HttpException({
-        status: HttpStatus.CONFLICT,
-        error: `El email ${createUserDto.email} ya está en uso`
-      }, HttpStatus.CONFLICT);
+        status: HttpStatus.BAD_REQUEST,
+        error: `NOT VALID`
+      }, HttpStatus.BAD_REQUEST);
     }
 
     // Si no existe un usuario con ese correo electrónico, crear uno nuevo
@@ -88,9 +88,9 @@ export class UserService {
     const existingUserWithEmail = await this.userRepository.findOne({ where: { email: updateUserDto.email } })
     if (existingUserWithEmail && existingUserWithEmail.idUser !== userFound.idUser) {
       throw new HttpException({
-        status: HttpStatus.CONFLICT,
-        error: `El email ${updateUserDto.email} ya está en uso`
-      }, HttpStatus.CONFLICT);
+        status: HttpStatus.BAD_REQUEST,
+        error: `NOT VALID`
+      }, HttpStatus.BAD_REQUEST);
     }
     // Actualizar el usuario con los datos proporcionados
     updateUserDto.password = await this.hashPassword(updateUserDto.password)
