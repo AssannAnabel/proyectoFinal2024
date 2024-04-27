@@ -8,6 +8,9 @@ import React, { useContext, useEffect, useState } from 'react';
 
 function Nav() {
     const { user, handleLogout } = useContext(UserContext);
+    console.log("nav",user)
+
+    console.log("usuario", user);
     return (
         <>
             <div className="container-nav">
@@ -18,15 +21,14 @@ function Nav() {
                     
                 </div>
                 <nav className="container-list">
-
                     {user ? (
                         <ul className='navList'>
                             <Link to={"/About"}><li>Nosotros</li></Link>
                             <Link to={"/Contact"}><li>Contactos</li></Link>
                             <Link to={""}><li>{user.name}</li></Link>
                             <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesion</li></Link>
-
                         </ul>
+                          
 
                     ) : (
                         

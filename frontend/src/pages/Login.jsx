@@ -7,61 +7,45 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const { user, handleLogin, handleLogout } = useContext(UserContext);
-    const [users, setUsers] = useState([]);
-    const [userLogin, setUserLogin] = useState({})
-
+    const { handleLogin } = useContext(UserContext);
+    const [userLogin, setUserLogin] = useState({ email: '', password: '' });
     const notificacionRef = useRef(null);
-    const [error, setError] = useState('')
+    const navigate = useNavigate();
 
-    const navigate = useNavigate()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const urlUsers = 'http://localhost:3000/user'
-
-
-    const fetchUsers = async (urlUsers) => {
         try {
-            const response = await fetch(urlUsers);
+            const response = await fetch('http://localhost:3001/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userLogin),
+            });
+
+            if (!response.ok) {
+                throw new Error('Usuario o contraseña incorrectos');
+            }
+
             const data = await response.json();
-            setUsers(data);
-            console.log("listado user", users);
+            handleLogin(data); 
+            console.log("que es", data);// Suponiendo que el backend devuelve el usuario con el token JWT
+            navigate('/');
         } catch (error) {
-            console.log(error);
+            notificacionRef.current.style.color = 'red';
+            notificacionRef.current.innerHTML = error.message;
         }
     };
 
-    useEffect(() => {
-        fetchUsers(urlUsers);
-    }, []);
-    
-    function handleChange(e) {
-        e.preventDefault();
-
-        setUserLogin(prev => ({ ...prev, [e.target.name]: e.target.value }))
-        console.log("form", userLogin);
-        return userLogin
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const userFound = users.find((u) => u.email === userLogin.email && u.password === userLogin.password)
-console.log(userFound);
-        if (userFound && userFound.password === userLogin.password) {
-            handleLogin(userFound);
-            navigate('/');
-        }
-
-        else {
-            notificacionRef.current.style.color = 'red';
-            notificacionRef.current.innerHTML = 'Usuario o contraseña incorrectos';
-        }
-        e.target.reset();
-    }
+    const handleChange = (e) => {
+        setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
+       
+    };
 
     return (
         <>
             <Nav />
-
             <div className="container-form-login">
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
@@ -74,9 +58,9 @@ console.log(userFound);
 
                     <button type='submit'>Iniciar sesión</button>
                 </form>
-
             </div>
         </>
     )
 }
-export default Login
+
+export default Login;
