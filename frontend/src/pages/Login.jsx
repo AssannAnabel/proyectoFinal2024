@@ -45,7 +45,7 @@ function Login() {
     const handleSubmit = (e) => {
         e.preventDefault()
         const userFound = users.find((u) => u.email === userLogin.email && u.password === userLogin.password)
-console.log(userFound);
+            console.log(userFound);
         if (userFound && userFound.password === userLogin.password) {
             handleLogin(userFound);
             navigate('/');
