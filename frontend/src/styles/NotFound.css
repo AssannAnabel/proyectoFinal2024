@@ -1,0 +1,41 @@
+/* Estilo para el contenedor principal */
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Altura de la ventana completa */
+    background-color: #f0f0f0;
+    position: relative; /* Necesario para posicionar el título en la imagen */
+}
+
+/* Estilo para la imagen */
+.not-found-image {
+    width: 100%; /* Imagen ocupa todo el ancho de la pantalla */
+    height: 100%; /* Imagen ocupa todo el alto de la pantalla */
+    object-fit: cover; /* La imagen se ajusta para cubrir el contenedor */
+    position: absolute; /* Permite posicionar el título sobre la imagen */
+    top: 0;
+    left: 0;
+}
+
+/* Estilo para el título */
+.not-found-title {
+    position: absolute; /* Permite posicionar el título sobre la imagen */
+    top: 5%; /* Centra el título verticalmente */
+    left: 60%; /* Centra el título horizontalmente */
+    transform: translate(-80%, -20%); /* Ajusta la posición para centrarlo */
+    font-size: 3rem;
+    color: rgb(207, 37, 37); /* Color blanco para contraste */
+    background-color: rgba(218, 228, 222, 0.5); /* Fondo semitransparente para resaltar el título */
+    padding: 10px 20px; /* Espacio alrededor del título */
+    border-radius: 5px; /* Esquinas redondeadas */
+    z-index: 2;
+}
+
+/* Estilo para el footer */
+footer {
+    width: 100%; /* Footer ocupa todo el ancho de la pantalla */
+    position: absolute; /* Posiciona el footer al final de la pantalla */
+    bottom: 0;
+    left: 0;
+    z-index: 1; /* Para que el footer esté por encima de la imagen */
+}
