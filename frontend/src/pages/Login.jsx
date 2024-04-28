@@ -7,10 +7,8 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-    const { user, handleLogin, handleLogout } = useContext(UserContext);
-    const [users, setUsers] = useState([]);
-    const [userLogin, setUserLogin] = useState({})
-
+    const { handleLogin } = useContext(UserContext);
+    const [userLogin, setUserLogin] = useState({ email: '', password: '' });
     const notificacionRef = useRef(null);
     const [error, setError] = useState('')
 
@@ -23,8 +21,9 @@ function Login() {
         try {
             const response = await fetch(urlUsers);
             const data = await response.json();
-            setUsers(data);
-            console.log("listado user", users);
+            handleLogin(data); 
+            console.log("que es", data);// Suponiendo que el backend devuelve el usuario con el token JWT
+            navigate('/');
         } catch (error) {
             console.log(error);
         }
@@ -61,7 +60,6 @@ function Login() {
     return (
         <>
             <Nav />
-
             <div className="container-form-login">
                 <form className="form" onSubmit={handleSubmit}>
                     <label htmlFor="email">Email</label>
@@ -74,9 +72,9 @@ function Login() {
 
                     <button type='submit'>Iniciar sesión</button>
                 </form>
-
             </div>
         </>
     )
 }
-export default Login
+
+export default Login;

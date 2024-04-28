@@ -1,9 +1,9 @@
 /* Estilo para la contenedor de la barra de categoría de productos */
 .container-barra-category-products {
   background-color: #69a67d;
-  padding: 15px;
+  padding: 5px;
   margin: 0 auto; /* Centra el contenedor en la página */
-  width: 1100px; /* Establece un ancho fijo para acomodar 6 elementos por fila */
+  width: 100%; /* Establece un ancho fijo para acomodar 6 elementos por fila */
 }
   
 
@@ -31,17 +31,18 @@
     align-items: center; /* Centra el ícono y el texto */
     justify-content: center; /* Centra verticalmente los elementos */
     text-align: center; /* Centra el texto horizontalmente */
-    width:120px;
+    width:10%;
 }
 
 
 
-/* Estilo para los íconos */
-.ul-bar-category li svg {
-  color: #000000; /* Color negro para los íconos */
-  font-size: 24px; /* Tamaño más grande para los íconos */
-  margin-bottom: 5px; /* Espacio entre el ícono y el texto */
- 
+.ul-bar-category li:hover{
+  box-shadow: 5px 5px 20px rgba(0,0, 0,4);
+  transform: translateY(-3%);
+}
+
+.ul-bar-category li svg{
+  color: #000000;
 }
 
 /* Estilo para el hover en los elementos de la lista */
