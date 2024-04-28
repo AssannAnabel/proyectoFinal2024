@@ -10,6 +10,6 @@ async function bootstrap() {
     //para que el objeto enviado al controlador como body solo tenga las propiedades que se han definido en el DTO.
     forbidNonWhitelisted: true,
   }));
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();
