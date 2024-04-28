@@ -8,9 +8,8 @@ import React, { useContext, useEffect, useState } from 'react';
 
 function Nav() {
     const { user, handleLogout } = useContext(UserContext);
-    console.log("nav",user)
+   
 
-    console.log("usuario", user);
     return (
         <>
             <div className="container-nav">
