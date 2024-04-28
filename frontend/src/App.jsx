@@ -7,6 +7,7 @@ import Contact from "./pages/Contact"
 import  Login  from "./pages/Login"
 import  Register  from "./pages/Register"
 import CardDescriptionProduct from './pages/CardDescriptionProduct'
+import NotFound from "./components/NotFound"
 
 function App() {
   
@@ -19,6 +20,7 @@ function App() {
         <Route path="contact" element={ <Contact/> } />
         <Route path="login" element={ <Login/> } />
         <Route path="register" element={ <Register/> } />
+        <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
   )
