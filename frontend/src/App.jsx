@@ -7,8 +7,12 @@ import Contact from "./pages/Contact"
 import  Login  from "./pages/Login"
 import  Register  from "./pages/Register"
 import CardDescriptionProduct from './pages/CardDescriptionProduct'
+<<<<<<< HEAD
 import Perfil from "./pages/Perfil"
 import Category from "./pages/Category"
+=======
+import NotFound from "./components/NotFound"
+>>>>>>> e5ff8a96075909651e937d710a7771842c2619b3
 
 function App() {
   
@@ -23,6 +27,7 @@ function App() {
         <Route path="contact" element={ <Contact/> } />
         <Route path="login" element={ <Login/> } />
         <Route path="register" element={ <Register/> } />
+        <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
   )

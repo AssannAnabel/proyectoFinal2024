@@ -11,11 +11,10 @@ function Login() {
     const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
     const notificacionRef = useRef(null);
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3001/auth/login', {
+            const response = await fetch('http://localhost:3000/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -43,7 +42,6 @@ function Login() {
             notificacionRef.current.innerHTML = error.message;
         }
     };
-
     const handleChange = (e) => {
         setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
     };
