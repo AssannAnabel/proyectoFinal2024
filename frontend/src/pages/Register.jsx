@@ -15,7 +15,7 @@ function Register() {
         let newUser={...userRegister,rol:"user", active:true}
              
         await addUser(newUser);
-        navigate('/')
+        navigate('/login')
     }
     function handleChange(e) {
         e.preventDefault();

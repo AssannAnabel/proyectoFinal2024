@@ -1,9 +1,13 @@
 import React, { createContext, useState, useEffect, Children } from "react";
 import { user } from "../service/user";
 
+
+
 export const UserContext = createContext(user);
 
 export const UserProvider = ({ children }) => {
+ 
+
 
   const urlProducts = 'http://localhost:3000/product'
 
@@ -27,6 +31,8 @@ export const UserProvider = ({ children }) => {
   const handleLogout = () => {
     setUser(null);
     localStorage.removeItem('user');
+   
+    
   };
 
   const fetchProducts = async (urlProducts) => {
