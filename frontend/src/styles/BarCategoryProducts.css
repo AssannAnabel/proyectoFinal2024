@@ -1,0 +1,51 @@
+/* Estilo para la contenedor de la barra de categoría de productos */
+.container-barra-category-products {
+  background-color: #69a67d;
+  padding: 5px;
+  margin: 0 auto; /* Centra el contenedor en la página */
+  width: 100%; /* Establece un ancho fijo para acomodar 6 elementos por fila */
+}
+  
+
+/* Estilo para la lista no ordenada */
+.ul-bar-category {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #69a67d;
+}
+
+
+/* Estilo para los elementos de la lista */
+.ul-bar-category li {
+    color: #000000; /* Color del texto */
+    font-size: 16px; /* Tamaño de la fuente */
+    margin: 10px; /* Espacio entre elementos */
+    padding: 8px 15px;
+    border-radius: 10px;
+    display: flex; /* Usa flexbox para alinear el ícono y el texto */
+    flex-direction: column; /* Coloca el ícono y el texto en columna */
+    align-items: center; /* Centra el ícono y el texto */
+    justify-content: center; /* Centra verticalmente los elementos */
+    text-align: center; /* Centra el texto horizontalmente */
+    width:10%;
+}
+
+
+
+.ul-bar-category li:hover{
+  box-shadow: 5px 5px 20px rgba(0,0, 0,4);
+  transform: translateY(-3%);
+}
+
+.ul-bar-category li svg{
+  color: #000000;
+}
+
+/* Estilo para el hover en los elementos de la lista */
+.ul-bar-category li:hover {
+ cursor: pointer;
+}

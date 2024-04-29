@@ -1,0 +1,13 @@
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.about-container p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+   
+}
+

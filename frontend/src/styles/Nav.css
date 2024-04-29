@@ -1,0 +1,77 @@
+.container-nav {
+  display: flex;
+  justify-content: space-between;
+  /* Distribuye los elementos horizontalmente */
+  align-items: center;
+  /* Centra verticalmente los elementos */
+
+  /* Color de fondo */
+  color: #333;
+  /* Color del texto */
+  padding: 20px;
+  /* Espaciado interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Sombra ligera */
+  width: 100%;
+  border: solid rgb(8, 8, 8) 1px;
+  justify-content: center;
+  height: 70px;
+
+}
+
+.container-list li{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #060606;
+  /* Color del texto normal */
+  margin-right: 20px;
+  /* Espaciado entre elementos */
+  transition: color 0.3s ease;
+  /* Transición suave de color */
+  font-size: 20px;
+
+}
+.container-barra-searcha svg {
+  color: #000000; /* Color negro */
+}
+
+ul{
+  display: flex;
+}
+
+  
+
+.container-list li:hover {
+  color:rgb(33, 104, 33);
+  /* Cambia el color al pasar el ratón por encima */
+}
+
+.logo img {
+  width: 100px;
+  /* Ajusta el tamaño del logo según necesites */
+}
+
+.container-barra-searcha {
+  display: flex;
+  width: 40%;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.btn-search {
+  height: 34px;
+  width: 32px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.input-search {
+  color: #383737;
+  border-radius: 10 px;
+  border: solid 2px;
+  background-color: #f4f7f5;
+
+}
