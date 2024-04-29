@@ -4,10 +4,18 @@ import "../styles/Nav.css"
 import { Link } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext.jsx'
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext} from 'react';
+import { useNavigate } from "react-router-dom";
+
 
 function Nav() {
     const { user, handleLogout } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    function idUpdate(e) {
+        e.preventDefault()
+        navigate(`/user-update/${user.id}`)
+    }
    
 
     return (
@@ -24,7 +32,7 @@ function Nav() {
                         <ul className='navList'>
                             <Link to={"/About"}><li>Nosotros</li></Link>
                             <Link to={"/Contact"}><li>Contactos</li></Link>
-                            <Link to={""}><li>{user.name}</li></Link>
+                            <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>
                             <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesion</li></Link>
                         </ul>
                           
