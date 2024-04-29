@@ -10,6 +10,9 @@ import CardDescriptionProduct from './pages/CardDescriptionProduct'
 import Perfil from "./pages/Perfil"
 import Category from "./pages/Category"
 
+import NotFound from "./components/NotFound"
+
+
 function App() {
   
   return (
@@ -23,6 +26,7 @@ function App() {
         <Route path="contact" element={ <Contact/> } />
         <Route path="login" element={ <Login/> } />
         <Route path="register" element={ <Register/> } />
+        <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
   )
