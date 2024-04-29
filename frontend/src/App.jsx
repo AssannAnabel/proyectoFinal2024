@@ -8,11 +8,19 @@ import  Login  from "./pages/Login"
 import  Register  from "./pages/Register"
 import CardDescriptionProduct from './pages/CardDescriptionProduct'
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Perfil from "./pages/Perfil"
 import Category from "./pages/Category"
 =======
 import NotFound from "./components/NotFound"
 >>>>>>> e5ff8a96075909651e937d710a7771842c2619b3
+=======
+import Perfil from "./pages/Perfil"
+import Category from "./pages/Category"
+
+import NotFound from "./components/NotFound"
+
+>>>>>>> 311e7f9a8d7a2c91feff45abbe5abe58c76bb653
 
 function App() {
   
