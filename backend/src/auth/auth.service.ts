@@ -19,15 +19,19 @@ export class AuthService {
 
     async login(userAuth: LoginDto): Promise<IAccess_token> {
         const userFound = await this.userService.findUserByEmail(userAuth.email)
-        if (userFound && await this.comparePasswords(userAuth.password, userFound.password)) {
+
+
+        if (userFound && await this.comparePasswords(userAuth.password, userFound.password) && userFound.active === true) {
             const payload = { sub: userFound.idUser, name: userFound.name, email: userFound.email };
             return {
                 access_token: await this.jwtService.signAsync(payload),
-                email:userFound.email,
-                name:userFound.name,
-                rol:userFound.rol
+                email: userFound.email,
+                name: userFound.name,
+                rol: userFound.rol,
+                id: userFound.idUser
             }
         }
+
         if (userFound.password !== userAuth.password || userFound.active === false) {
             throw new HttpException({
                 status: HttpStatus.UNAUTHORIZED, error: `Contraseña o email incorrecto`
