@@ -1,3 +1,5 @@
+
+
 export const url_users = 'http://localhost:3001/user'
 
 const controller = new AbortController();
@@ -51,14 +53,16 @@ export const addUser = async (user) => {
 
 export const deleteUser = async (user) => {
     try {
-        const res = await fetch(`${url_users}${user.id}`, {
+        const res = await fetch(`${url_users}/${user.id}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' }
+             headers: {'Authorization': `Bearer ${user.access_token}`,
+              'Content-Type': 'application/json' }
         });
         if (!res.ok) throw new Error(`Response not OK`)
         const parsed = await res.json();
         window.location.reload();
-        return parsed
+           
+    return parsed
     } catch (err) {
         throw new Error(err);
     }
@@ -66,8 +70,8 @@ export const deleteUser = async (user) => {
 
 export const updateUserById = async (id, updatedUser) => {
     try {
-        const res = await fetch(`${url_users}${id}`, {
-            method: 'PUT',
+        const res = await fetch(`${url_users}/${id}`, {
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
