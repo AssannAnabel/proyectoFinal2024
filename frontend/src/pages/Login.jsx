@@ -7,7 +7,9 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 function Login() {
    
+   
     const { handleLogin } = useContext(UserContext);
+    const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
     const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
     const notificacionRef = useRef(null);
     const navigate = useNavigate();
@@ -22,15 +24,6 @@ function Login() {
                 body: JSON.stringify(userLogin),
 
             });
-<<<<<<<<< Temporary merge branch 1
-            if (!response.ok) {
-                throw new Error('Usuario o contraseña incorrectos');
-            }
-            const data = await response.json();
-            handleLogin(data);
-            console.log("que es", data);// Suponiendo que el backend devuelve el usuario con el token JWT
-            navigate('/');
-=========
             console.log("hola", userLogin);
             const data = await response.json();
             console.log("q es data", data);
@@ -46,7 +39,6 @@ function Login() {
             } else {
                 throw new Error('Credenciales inválidas');
             }
->>>>>>>>> Temporary merge branch 2
         } catch (error) {
             notificacionRef.current.style.color = 'red';
             notificacionRef.current.innerHTML = error.message;
@@ -55,25 +47,6 @@ function Login() {
     const handleChange = (e) => {
         setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
     };
-<<<<<<<<< Temporary merge branch 1
-    return (
-        <>
-            <Nav />
-            <div className="container-form-login">
-                <form className="form" onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email</label>
-                    <input type="text" name='email' id='email' placeholder='Ingrese su Email' onChange={handleChange} />
-                    <label htmlFor="password">Contraseña</label>
-                    <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' onChange={handleChange} />
-                    <p id="notificacion" ref={notificacionRef}></p>
-                    <button type='submit'>Iniciar sesión</button>
-                </form>
-            </div>
-        </>
-    )
-}
-export default Login;
-=========
         return (
             <>
                 <Nav />
@@ -91,4 +64,3 @@ export default Login;
         )
     }
     export default Login;
->>>>>>>>> Temporary merge branch 2

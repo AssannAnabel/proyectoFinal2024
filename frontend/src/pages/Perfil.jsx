@@ -40,7 +40,6 @@ function Perfil() {
   const handleDeleteProfile = () => {
     deleteUser(user);
     handleLogout(); // Eliminar sesión del usuario
-   
     navigate('/register');
 };
 
