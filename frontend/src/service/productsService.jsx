@@ -1,5 +1,4 @@
 import { UserContext } from '../context/UserContext.jsx'
-import React, { useContext} from 'react';
 const { products } = useContext(UserContext);
 
 export const categoryProducts = ['Tranquera', 'ropa trabajo', 'Ferretería'];
