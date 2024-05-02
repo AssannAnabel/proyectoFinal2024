@@ -5,18 +5,19 @@ import { Link } from 'react-router-dom'
 import '../styles/Login.css'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import Footer from '../components/Footer.jsx';
+
 function Login() {
-   
-   
+
     const { handleLogin } = useContext(UserContext);
-    const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
-    const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
+
+    const [userLogin, setUserLogin] = useState({ email: '', password: '' });
     const notificacionRef = useRef(null);
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch('http://localhost:3001/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,7 +31,7 @@ function Login() {
 
 
             if (response.ok) {
-                if (data.active === true) {
+                if (data) {
                     handleLogin(data);
                     navigate('/');
                 } else {
@@ -47,20 +48,23 @@ function Login() {
     const handleChange = (e) => {
         setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
     };
-        return (
-            <>
-                <Nav />
-                <div className="container-form-login">
-                    <form className="form" onSubmit={handleSubmit}>
-                        <label htmlFor="email">Email</label>
-                        <input type="text" name='email' id='email' placeholder='Ingrese su Email' onChange={handleChange} />
-                        <label htmlFor="password">Contraseña</label>
-                        <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' onChange={handleChange} />
-                        <p id="notificacion" ref={notificacionRef}></p>
-                        <button type='submit'>Iniciar sesión</button>
-                    </form>
-                </div>
-            </>
-        )
-    }
-    export default Login;
+    return (
+        <>
+            <Nav />
+            <div className="container-form-login">
+                <form className="form" onSubmit={handleSubmit}>
+                    <label htmlFor="email">Email</label>
+                    <input type="text" name='email' id='email' placeholder='Ingrese su Email' onChange={handleChange} />
+                    <label htmlFor="password">Contraseña</label>
+                    <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' onChange={handleChange} />
+                    <p id="notificacion" ref={notificacionRef}></p>
+                    <button type='submit'>Iniciar sesión</button>
+                </form>
+            </div>
+            <div>
+                <Footer />
+            </div>
+        </>
+    )
+}
+export default Login;

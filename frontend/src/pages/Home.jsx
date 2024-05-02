@@ -78,21 +78,9 @@ function Home() {
         <div className="container-card-category">
           {productsAgriculturaDePrecision.map(product => <Card key={product.idProduct} product={product} />)}
         </div>
-
-
-
-
-
-
-
-
-
-
-
       </div>
 
-
-      <h1>esta es la Home</h1>
+     
       <div>
         <Footer />
       </div>

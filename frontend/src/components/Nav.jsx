@@ -4,7 +4,7 @@ import "../styles/Nav.css"
 import { Link } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext.jsx'
-import React, { useContext} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 
 
@@ -16,7 +16,6 @@ function Nav() {
         e.preventDefault()
         navigate(`/user-update/${user.id}`)
     }
-   
 
     return (
         <>
@@ -24,35 +23,31 @@ function Nav() {
                 <Logo />
                 <div className="container-barra-searcha">
                     <input className="input-search" placeholder="Buscar producto" />
-                   <GoSearch />
-                    
+                    <GoSearch />
+
                 </div>
                 <nav className="container-list">
-                    {user ? (
-                        <ul className='navList'>
-                            <Link to={"/About"}><li>Nosotros</li></Link>
-                            <Link to={"/Contact"}><li>Contactos</li></Link>
-                            <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>
-                            <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesion</li></Link>
-                        </ul>
-                          
-
-                    ) : (
-                        
-                            <ul className='navList'>
-                                <Link to={"/About"}><li>Nosotros</li></Link>
-                                <Link to={"/Contact"}><li>Contactos</li></Link>
-                                <Link to={"/login"}><li>Iniciar sesión</li></Link>
-                                <Link to={"/Register"}><li>Registrarme</li></Link>
-                            </ul>
-
-
-                    )}
-
+                    <ul className='navList'>
+                        <Link to={"/About"}><li>Nosotros</li></Link>
+                        <Link to={"/Contact"}><li>Contactos</li></Link>
+                        <>
+                            {user.name ? (
+                                <>
+                                    <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>
+                                    <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesion</li></Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Link to={"/login"}><li>Iniciar sesión</li></Link>
+                                    <Link to={"/Register"}><li>Registrarme</li></Link>
+                                </>
+                            )
+                            }
+                        </>
+                    </ul>
                 </nav>
             </div>
         </>
-
     )
 }
 export default Nav
