@@ -4,22 +4,23 @@ import Nav from "../components/Nav"
 import '../styles/Register.css'
 import { Link, useNavigate } from "react-router-dom";
 import { addUser } from '../service/userService';
+import Footer from '../components/Footer';
 
 function Register() {
- 
-    const [userRegister, setUserRegister]= useState({})
+
+    const [userRegister, setUserRegister] = useState({})
     const navigate = useNavigate()
 
     async function handleSubmit(e) {
         e.preventDefault();
-        let newUser={...userRegister,rol:"user", active:true}
-             
+        let newUser = { ...userRegister, rol: "user", active: true }
+
         await addUser(newUser);
         navigate('/login')
     }
     function handleChange(e) {
         e.preventDefault();
-        
+
         setUserRegister(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
         return userRegister
@@ -46,10 +47,13 @@ function Register() {
 
                     <label htmlFor='password'>Contraseña</label>
                     <input type='password' name='password' id='password' onChange={handleChange} />
-                                    
+
 
                     <button className='btn-registrarme' type='submit'>Registrarme</button>
                 </form>
+            </div>
+            <div>
+                <Footer />
             </div>
         </>
     )

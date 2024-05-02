@@ -31,11 +31,3 @@
     z-index: 2;
 }
 
-/* Estilo para el footer */
-footer {
-    width: 100%; /* Footer ocupa todo el ancho de la pantalla */
-    position: absolute; /* Posiciona el footer al final de la pantalla */
-    bottom: 0;
-    left: 0;
-    z-index: 1; /* Para que el footer esté por encima de la imagen */
-}
