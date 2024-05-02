@@ -9,6 +9,7 @@ import  Register  from "./pages/Register"
 import CardDescriptionProduct from './pages/CardDescriptionProduct'
 import Perfil from "./pages/Perfil"
 import Category from "./pages/Category"
+import NotFound from "./components/NotFound"
 
 function App() {
   

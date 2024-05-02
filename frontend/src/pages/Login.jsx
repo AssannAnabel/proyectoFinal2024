@@ -10,7 +10,7 @@ function Login() {
    
     const { handleLogin } = useContext(UserContext);
     const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
-    const [userLogin, setUserLogin] = useState({ email: '', password: '', active:true });
+    
     const notificacionRef = useRef(null);
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
