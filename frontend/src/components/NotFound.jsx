@@ -5,8 +5,8 @@ function NotFound(){
 
     return(
         <>
-          <main className='not-found-container'>
-            <h1 className='not-found-title'>Página no Encontrada</h1>
+          <div className='not-found-container'>
+            <h2 className='not-found-title'>Página no Encontrada</h2>
             <img src="./404-notfound.png" alt="404" className="not-found-image" />
         </main>
         

@@ -16,17 +16,15 @@ function App() {
   return (
     <>
        <Routes>  
-        <Route path="/" element={ <Home/> } />         
-        <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
-        <Route path="user-update/:id" element={<Perfil/>} />    
-        <Route path="products/:category" element={<Category/>} />           
-        <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
-        <Route path="user-update/:id" element={<Perfil/>} />    
-        <Route path="products/:category" element={<Category/>} />           
+        <Route path="/" element={ <Home/> } />        
         <Route path="about" element={ <About/> } />
         <Route path="contact" element={ <Contact/> } />
         <Route path="login" element={ <Login/> } />
         <Route path="register" element={ <Register/> } />
+        <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
+        <Route path="user-update/:id" element={<Perfil/>} />    
+        <Route path="products/:category" element={<Category/>} />    
+                
         <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>

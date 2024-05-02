@@ -1,31 +1,3 @@
-
-
-
-/* .container-carrusel{
-    display: flex;
-    width: 900px;
-    height: 730ox;
-    justify-content: center;
-}
-
-.container-carrusel img{
-    width: 0px;
-    flex-grow: 1;
-    object-fit: cover;
-    opacity: .8;
-    transition: .5s ease;
-
-}
-
-.container-carrusel img:hover {
-    cursor:crosshair;
-    width: 300px;
-    opacity: 1;
-    filter: contrast(120%);
-
-} */
-
-  
   .title-category {
     display: inline-block;
     margin-bottom: 20px; /* Espacio entre el título y las tarjetas */
