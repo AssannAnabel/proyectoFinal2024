@@ -3,6 +3,7 @@ import { updateUserById, deleteUser } from '../service/userService';
 import { useParams, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext.jsx';
 import Footer from '../components/Footer.jsx';
+import Nav from '../components/Nav.jsx';
 
 
 
@@ -46,6 +47,8 @@ function Perfil() {
 
   return (
     <>
+
+    <Nav/>
       <div>
         <h2>{user.name}</h2>
         <p>{user.email}</p>
@@ -53,24 +56,19 @@ function Perfil() {
       </div>
 
 
-
-
-
-
-
       <div className="container"> {/* Agrega la clase 'container' al div principal */}
         <h2>Editar perfil</h2>
         <form className="form" onSubmit={handleSubmit}> {/* Agrega la clase 'form' al formulario */}
 
           <label htmlFor='email'>Email</label>
-          <input type='text' name='email' id='email' onChange={handleChange} />
+          <input type='text' name='email' id='email'value={user.email} onChange={handleChange} />
 
           <label htmlFor='phone'>Telefono</label>
-          <input type='phone' name='phone' id='phone' onChange={handleChange} />
+          <input type='phone' name='phone' id='phone' value={userUpdate.phone} onChange={handleChange} />
 
 
-          <label htmlFor='password'>Contraseña</label>
-          <input type='password' name='password' id='password' onChange={handleChange} />
+          <label htmlFor='password' >Contraseña</label>
+          <input type='password' name='password' id='password' value={userUpdate.password} onChange={handleChange} />
 
 
           <button className='btn-guardar' type='submit'>Guardar</button>

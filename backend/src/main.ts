@@ -11,5 +11,12 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
   await app.listen(3001);
+
+  const appFrontend1 = await NestFactory.create(AppModule);
+  await appFrontend1.listen(5173); // Escuchar en el puerto 5173
+
+  // Crear una tercera instancia de la aplicación NestJS para el puerto 5174 (frontend)
+  const appFrontend2 = await NestFactory.create(AppModule);
+  await appFrontend2.listen(5174); // Escuchar en el puerto 5174
 }
 bootstrap();
