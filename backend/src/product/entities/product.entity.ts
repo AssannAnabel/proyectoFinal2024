@@ -1,37 +1,37 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Category } from "src/common/enums-type.enum";
+import { Category } from "src/helpers/enums-type.enum";
 import { InvoicesDetail } from "src/invoices_details/entities/invoices_detail.entity";
 
 @Entity()
 export class Product {
     @PrimaryGeneratedColumn()
-    private idProduct: number
+    idProduct: number
 
     @Column({ type: 'varchar', length: 8 })
-    private codeProduct: string
+    codeProduct: string
 
     @Column({ type: 'varchar', length: 45 })
-    private product: string
+    product: string
 
     @Column({ type: 'varchar', length: 255 })
-    private description: string
+    description: string
 
     @Column({ type: 'int' })
-    private price: number
+    price: number
 
     @Column({ type: 'enum', enum: Category })
-    private category: Category
+    category: Category
 
     @Column({ type: 'int' })
-    private amount: number
+    amount: number
 
     @Column({ type: 'varchar', length: 255 })
-    private images: string
+    images: string
 
     @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_product)
     public invoice_detail: InvoicesDetail[]
 
-    constructor(codeProduct: string, product: string, description: string, price: number, category: Category, amount: number, images: string) {
+   /*  constructor(codeProduct: string, product: string, description: string, price: number, category: Category, amount: number, images: string) {
         this.codeProduct = codeProduct;
         this.product = product;
         this.description = description;
@@ -39,9 +39,9 @@ export class Product {
         this.category = category;
         this.amount = amount;
         this.images = images
-    }
+    } */
 
-    public getIdProduct(): number { return this.idProduct }
+   /*  public getIdProduct(): number { return this.idProduct }
     public getCodeProduct(): string { return this.codeProduct }
     public getProduct(): string { return this.product }
     public getDescription(): string { return this.description }
@@ -56,5 +56,5 @@ export class Product {
     public setPrice(price: number): number { return this.price = price }
     public setCategory(category: Category): Category { return this.category = category }
     public setStock(amount: number): number { return this.amount = amount }
-    public setImages(images: string): string { return this.images = images }
+    public setImages(images: string): string { return this.images = images } */
 }

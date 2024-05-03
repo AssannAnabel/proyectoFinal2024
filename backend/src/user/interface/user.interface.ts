@@ -1,4 +1,4 @@
-import { Rol } from "src/common/enums-type.enum"
+import { Rol } from "src/helpers/enums-type.enum"
 
 export interface IUser {
     idUser: number,
