@@ -1,6 +1,6 @@
 import { IsString, IsEmail, IsEnum, IsBoolean, IsNotEmpty, IsDateString, MaxLength, MinLength } from "class-validator"
 import { Expose } from "class-transformer"
-import { Rol } from "src/common/enums-type.enum"
+import { Rol } from "src/helpers/enums-type.enum"
 
 
 export class CreateUserDto {

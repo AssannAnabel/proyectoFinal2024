@@ -1,4 +1,4 @@
-import { Rol } from "src/common/enums-type.enum";
+import { Rol } from "src/helpers/enums-type.enum";
 import { Invoice } from "src/invoice/entities/invoice.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 

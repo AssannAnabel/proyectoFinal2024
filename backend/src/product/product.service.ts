@@ -6,7 +6,11 @@ import { Product } from './entities/product.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
 import { InvoicesDetail } from 'src/invoices_details/entities/invoices_detail.entity';
-import { Category } from 'src/common/enums-type.enum';
+import { Category } from 'src/helpers/enums-type.enum';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as csv from 'fast-csv';
+import { join } from 'path';
 
 @Injectable()
 export class ProductService {
@@ -72,4 +76,33 @@ export class ProductService {
     return productFound
   }
 
+  async uploadProductsFromCsv(file: Express.Multer.File) {
+    console.log(file);
+    const filePath = path.normalize(file.path);
+    let products = [];
+
+    fs.createReadStream(filePath)
+      .pipe(csv.parse({ headers: true }))
+      .on('error', error => console.error(error))
+      .on('data', async (row: CreateProductDto) => {
+        try {
+          products.push(
+            this.productRepository.create({
+              codeProduct: row.codeProduct,
+              product: row.product,
+              description: row.description,
+              price: row.price,
+              category: row.category,
+              amount: row.amount,
+              images: row.images
+            }));
+        } catch (error) {
+          console.error('Error al guardar en la base de datos:', error);
+        }
+      })
+      .on('end', (rowCount: number) => {
+        console.log(`Se han guardado ${rowCount} filas en la base de datos`);
+        return this.productRepository.save(products)
+      });
+  }
 }
