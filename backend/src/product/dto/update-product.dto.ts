@@ -2,7 +2,7 @@ import { PartialType } from '@nestjs/mapped-types';
 import { CreateProductDto } from './create-product.dto';
 import { Expose } from 'class-transformer';
 import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
-import { Category } from 'src/common/enums-type.enum';
+import { Category } from 'src/helpers/enums-type.enum';
 
 export class UpdateProductDto extends PartialType(CreateProductDto) {
     @IsString()
