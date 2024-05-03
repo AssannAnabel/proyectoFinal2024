@@ -2,19 +2,19 @@ import React, { createContext, useState, useEffect, Children } from "react";
 import { user } from "../service/user";
 
 
-
 export const UserContext = createContext(user);
 
 export const UserProvider = ({ children }) => {
  
 
 
-  const urlProducts = 'http://localhost:3000/product'
+  const urlProducts = 'http://localhost:3001/product'
 
 
   const [user, setUser] = useState("null");
 
   const [products, setProducts]= useState([]);
+  console.log("usercontext", products);
 
   const handleLogin = (loggedInUser) => {
     setUser(loggedInUser);
@@ -30,8 +30,7 @@ export const UserProvider = ({ children }) => {
 
   const handleLogout = () => {
     setUser(null);
-    localStorage.removeItem('user');
-   
+    localStorage.removeItem('user');  
     
   };
 
