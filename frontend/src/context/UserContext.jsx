@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
  
 
 
-  const urlProducts = 'http://localhost:3001/product'
+  const urlProducts = 'http://localhost:3000/product'
 
 
   const [user, setUser] = useState("null");
