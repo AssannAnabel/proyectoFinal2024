@@ -4,27 +4,20 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { FindOneOptions, Repository } from 'typeorm';
-import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
-import { InvoicesDetail } from 'src/invoices_details/entities/invoices_detail.entity';
 import { Category } from 'src/helpers/enums-type.enum';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
-import { join } from 'path';
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectRepository(Product) private readonly productRepository: Repository<CreateProductDto>,
-    @InjectRepository(InvoicesDetail) private readonly invoicesDetailsRepository: Repository<CreateInvoicesDetailDto>) { }
+  constructor(@InjectRepository(Product) private readonly productRepository: Repository<CreateProductDto>) { }
 
   async createProduct(createProductDto: CreateProductDto): Promise<CreateProductDto> {
     const query = await this.productRepository.findOne({ where: { product: createProductDto.product } })
     if (query) throw new HttpException({
       status: HttpStatus.CONFLICT, error: `el producto ${createProductDto.product} ya esta cargado en el sistema`
     }, HttpStatus.CONFLICT)
-    if (createProductDto.codeProduct.length > 8) throw new HttpException({
-      status: HttpStatus.URI_TOO_LONG, error: `el codigo de Producto ${createProductDto.codeProduct} es demasiado largo. intente con 8 caracteres.`
-    }, HttpStatus.URI_TOO_LONG)
     const newUser = this.productRepository.create(createProductDto);
     return this.productRepository.save(newUser)
   }
@@ -48,10 +41,6 @@ export class ProductService {
     if (!productFound) throw new HttpException({
       status: HttpStatus.NOT_FOUND, error: `No existe un producto con el id ${id}`
     }, HttpStatus.NOT_FOUND)
-    /* const queryProductFound = await this.productRepository.findOne({ where: { product: updateProductDto.product } })
-    if (queryProductFound) throw new HttpException({
-      status: HttpStatus.CONFLICT, error: `el producto ${updateProductDto.product} ya esta cargado en el sistema`
-    }, HttpStatus.CONFLICT) */
     const updateUser = Object.assign(productFound, updateProductDto)
     return this.productRepository.save(updateUser)
   }
@@ -77,7 +66,6 @@ export class ProductService {
   }
 
   async uploadProductsFromCsv(file: Express.Multer.File) {
-    console.log(file);
     const filePath = path.normalize(file.path);
     let products = [];
 
@@ -88,7 +76,6 @@ export class ProductService {
         try {
           products.push(
             this.productRepository.create({
-              codeProduct: row.codeProduct,
               product: row.product,
               description: row.description,
               price: row.price,
@@ -96,13 +83,18 @@ export class ProductService {
               amount: row.amount,
               images: row.images
             }));
+          return `Carga exitosa`
         } catch (error) {
           console.error('Error al guardar en la base de datos:', error);
         }
       })
       .on('end', (rowCount: number) => {
         console.log(`Se han guardado ${rowCount} filas en la base de datos`);
-        return this.productRepository.save(products)
+        return{ 
+          msg: `Se han guardado ${rowCount} filas en la base de datos`,
+          file: this.productRepository.save(products)
+        }
       });
+    
   }
 }

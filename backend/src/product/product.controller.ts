@@ -4,7 +4,6 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Category } from 'src/helpers/enums-type.enum';
 import { FileInterceptor } from '@nestjs/platform-express';
-import path from 'path';
 import { diskStorage } from 'multer';
 import { fileFilter, renameFile } from 'src/helpers/helpers';
 
