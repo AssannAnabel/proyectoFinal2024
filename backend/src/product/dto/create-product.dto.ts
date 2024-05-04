@@ -6,12 +6,6 @@ export class CreateProductDto {
     @IsString()
     @IsNotEmpty()
     @Expose()
-    @Length(8)
-    readonly codeProduct: string
-
-    @IsString()
-    @IsNotEmpty()
-    @Expose()
     @MaxLength(45)
     readonly product: string
 

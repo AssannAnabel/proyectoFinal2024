@@ -25,3 +25,12 @@ export const fileFilter = (req, file, cb) => {
     // Si el archivo tiene la extensión .csv, llamamos a cb sin errores
     cb(null, true);
 };
+
+export const getThreeWords = (word: string): string => {
+    const extractWord = word.substring(0, 3);
+    const randomName = Array(4)
+        .fill(null)
+        .map(() => Math.round(Math.random() * 16).toString(16))
+        .join('')
+    return `${extractWord}-${randomName}`
+}
