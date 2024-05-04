@@ -4,14 +4,13 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { Category } from 'src/helpers/enums-type.enum';
 import { FileInterceptor } from '@nestjs/platform-express';
-import path from 'path';
 import { diskStorage } from 'multer';
 import { fileFilter, renameFile } from 'src/helpers/helpers';
 
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
-
+  
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createProductDto: CreateProductDto): Promise<CreateProductDto> {
@@ -34,6 +33,7 @@ export class ProductController {
   }
 
   @Patch(':id')
+  
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateProductDto: UpdateProductDto): Promise<UpdateProductDto> {
     return await this.productService.updateProduct(id, updateProductDto);
