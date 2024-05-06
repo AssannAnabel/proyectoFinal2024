@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe, UsePipes, Query, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe, UsePipes, Query, UseInterceptors, UploadedFile, BadRequestException, HttpException } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -10,7 +10,7 @@ import { fileFilter, renameFile } from 'src/helpers/helpers';
 @Controller('product')
 export class ProductController {
   constructor(private readonly productService: ProductService) { }
-  
+
   @Post()
   @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createProductDto: CreateProductDto): Promise<CreateProductDto> {
@@ -33,7 +33,7 @@ export class ProductController {
   }
 
   @Patch(':id')
-  
+
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateProductDto: UpdateProductDto): Promise<UpdateProductDto> {
     return await this.productService.updateProduct(id, updateProductDto);
@@ -53,7 +53,12 @@ export class ProductController {
     fileFilter: fileFilter
   }))
   async uploadFile(@UploadedFile() file: Express.Multer.File) {
-    // Llamar al servicio para procesar el archivo CSV
-    return await this.productService.uploadProductsFromCsv(file);
+    if (!file) {
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST, error: `No se proporcionó ningun archivo-`
+      }, HttpStatus.BAD_REQUEST)
+    }
+    
+    return await this.productService.uploadProductsFromCsv(file)
   }
 }
