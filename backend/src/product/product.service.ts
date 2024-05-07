@@ -74,44 +74,64 @@ export class ProductService {
     let products = [];
     let errorCount = 0;
 
-    fs.createReadStream(filePath)
-      .pipe(csv.parse({ headers: true }))
-      .on('error', error => console.error(error))
-      .on('data', async (row: CreateProductDto) => {
-        try {
-          if (!this.isValidProduct(row)) {
-            console.error('Registro no válido:', row);
-            errorCount++;
-            return; // Saltar al siguiente registro
-          }
+    const promise = new Promise((resolve, reject) => {
+      fs.createReadStream(filePath)
+        .pipe(csv.parse({ headers: true }))
+        .on('error', error => {
+          console.error(error);
+          reject({ status: 500, message: 'Error interno del servidor' });
+        })
+        .on('data', async (row: CreateProductDto) => {
+          try {
+            if (!this.isValidProduct(row)) {
+              console.error('Registro no válido:', row);
+              errorCount++;
+              return; // Saltar al siguiente registro
+            }
 
-          products.push(
-            this.productRepository.create({
-              product: row.product,
-              description: row.description,
-              price: row.price,
-              category: row.category,
-              amount: row.amount,
-              images: row.images
-            }));
-        } catch (error) {
-          errorCount++;
-        }
-      })
-      .on('end', (rowCount: number) => {
-        console.log(`Se han guardado ${rowCount - errorCount} filas válidas en la base de datos`);
-        if (products.length > 0) {
-          fs.unlinkSync(filePath);
-          this.productRepository.save(products);
-          return { message: `Se han guardado ${rowCount - errorCount} filas válidas en la base de datos de forma exitosa.-`}
-        } else {
-          console.log('No hay productos válidos para guardar');
-          return `Ocurrio un error en uno de los registros. Revise los campos e intente nuevamente.-`
-        }
-      });
+            products.push(
+              this.productRepository.create({
+                product: row.product,
+                description: row.description,
+                price: row.price,
+                category: row.category,
+                amount: row.amount,
+                images: row.images
+              }));
+          } catch (error) {
+            errorCount++;
+          }
+        })
+        .on('end', (rowCount: number) => {
+          console.log(`Se han guardado ${rowCount - errorCount} filas válidas en la base de datos`);
+          if (products.length > 0) {
+            fs.unlinkSync(filePath);
+            this.productRepository.save(products);
+            resolve({
+              status: HttpStatus.CREATED,
+              message: `Se han guardado ${rowCount - errorCount} filas válidas en la base de datos de forma exitosa.`
+            });
+          } else {
+            console.log('No hay productos válidos para guardar');
+            reject({
+              status: HttpStatus.BAD_REQUEST,
+              message: 'No hay productos válidos para guardar'
+            });
+          }
+        });
+    });
+
+    try {
+      return await promise;
+    } catch (error) {
+      return {
+        status: HttpStatus.BAD_REQUEST,
+        message: 'Se encontro un error en uno de los registros. Corrija el error e intente nuevamente.-'
+      };
+    }
   }
 
-  isValidProduct(row: CreateProductDto): boolean {
+  private isValidProduct(row: CreateProductDto): boolean {
     if (!row.amount
       || (row.category in Category)
       || !row.description
