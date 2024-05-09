@@ -73,3 +73,23 @@
 .container-card-description-product p {
   margin-bottom: 10px;
 }
+/* Estilos generales para el contenedor */
+.container-span {
+  display: flex; /* Usar flexbox para alinear elementos */
+  flex-direction: column; /* Organizar elementos uno debajo del otro */
+  gap: 10px; /* Espacio entre elementos */
+  margin: 10px 0; /* Margen superior e inferior */
+}
+
+/* Estilos para los spans */
+.container-span > span {
+  display: flex; /* Usar flexbox para alinear texto e icono */
+  align-items: center; /* Alinear verticalmente el contenido */
+  color: black; /* Color de texto negro */
+}
+
+/* Estilos para los íconos */
+.container-span > span > svg {
+  margin-right: 8px; /* Margen derecho para separar íconos del texto */
+  color: black; /* Color negro para los íconos */
+}

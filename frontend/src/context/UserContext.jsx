@@ -1,56 +1,65 @@
-import React, { createContext, useState, useEffect, Children } from "react";
-import { user } from "../service/user";
+import React, { createContext, useState, useEffect, useContext } from 'react';
+import { CartContext } from './CartContext';
 
-
-export const UserContext = createContext(user);
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
- 
+    const [user, setUser] = useState(null);
+    const [products, setProducts] = useState([]);
+    const { loadCart, clearCart } = useContext(CartContext);
 
+    const urlProducts = 'http://localhost:3000/product';
 
-  const urlProducts = 'http://localhost:3001/product'
+    // Cargar productos
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch(urlProducts);
+                if (response.ok) {
+                    const data = await response.json();
+                    setProducts(data);
+                } else {
+                    console.error('Error al obtener productos:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error al obtener productos:', error);
+            }
+        };
+        fetchProducts();
+    }, []);
 
+    // Cargar usuario desde localStorage y el carrito del usuario
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            // Verifica que no se esté repitiendo la asignación de `user` para evitar el bucle
+            if (!user || user.id !== parsedUser.id) {
+                setUser(parsedUser);
+                loadCart(parsedUser.id);
+            }
+        }
+    }, [user, loadCart]);
 
-  const [user, setUser] = useState("null");
+    // Manejo de inicio de sesión
+    const handleLogin = (loggedInUser) => {
+        setUser(loggedInUser);
+        localStorage.setItem('user', JSON.stringify(loggedInUser));
+        localStorage.setItem('currentUserId', loggedInUser.id);
+        loadCart(loggedInUser.id);
+    };
 
-  const [products, setProducts]= useState([]);
-  console.log("usercontext", products);
+    // Manejo de cierre de sesión
+    const handleLogout = () => {
+        setUser(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('currentUserId');
+        clearCart();
+    };
 
-  const handleLogin = (loggedInUser) => {
-    setUser(loggedInUser);
-    localStorage.setItem('user', JSON.stringify(loggedInUser));
-  };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
-
-  const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem('user');  
-    
-  };
-
-  const fetchProducts = async (urlProducts) => {
-    try {
-        const response = await fetch(urlProducts);
-        const data = await response.json();
-        setProducts(data);
-    } catch (error) {
-        console.log(error);
-    }
+    return (
+        <UserContext.Provider value={{ user, products, handleLogin, handleLogout }}>
+            {children}
+        </UserContext.Provider>
+    );
 };
-
-useEffect(() => {
-    fetchProducts(urlProducts);
-}, []);
-
-  return (
-    <UserContext.Provider value={{ user,products, handleLogin, handleLogout }}>
-      {children}
-    </UserContext.Provider>
-  )
-}
