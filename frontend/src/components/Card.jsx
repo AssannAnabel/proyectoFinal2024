@@ -25,7 +25,7 @@ function Card({ product }) {
 
                 <div className="contenido-card">
                     <h2>{product.product}</h2>
-                    <h3>stock {product.amount}</h3>
+                    <h3>Disponible {product.amount}</h3>
                     <h2>$ {product.price}</h2>
 
                 </div>

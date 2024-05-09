@@ -20,7 +20,7 @@ function Category() {
         <>
         <Nav/>
             <div className="container-card-category">
-                {productsByCategory.map(product => <Card key={product.id} product={product} />)}
+                {productsByCategory.map(product => <Card key={product.idProduct} product={product} />)}
             </div>
 
             <Footer/>
