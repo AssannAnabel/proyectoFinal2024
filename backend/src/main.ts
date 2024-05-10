@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,6 +11,18 @@ async function bootstrap() {
     //para que el objeto enviado al controlador como body solo tenga las propiedades que se han definido en el DTO.
     forbidNonWhitelisted: true,
   }));
+
+  const config = new DocumentBuilder()
+    .setTitle('AgroTech')
+    .setDescription('Documentacion de la API de Agrotech - Propietarios: Anabel Assan - Fabricio Cordoba - Emiliano Salazar')
+    .setVersion('1.0')
+    .addTag('Resources')
+    .addBearerAuth()
+    .build()
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('agrotech-api', app, document)
+
   await app.listen(3000);
 
   const appFrontend1 = await NestFactory.create(AppModule);
