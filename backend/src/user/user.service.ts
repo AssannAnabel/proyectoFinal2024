@@ -23,15 +23,13 @@ export class UserService {
   async createUser(createUserDto: CreateUserDto): Promise<IUser> {
     const userFound = await this.userRepository.findOne({ where: { email: createUserDto.email } });
 
-    // Si el usuario ya existe y está marcado como inactivo, actualizar su estado a activo
     if (userFound && userFound.active === false) {
       userFound.active = true;
       createUserDto.password = await this.hashPassword(createUserDto.password)
       await this.userRepository.save(userFound);
-      return userFound; // Devolver el usuario existente actualizado
+      return userFound;
     }
 
-    // Si el usuario ya existe y está activo, lanzar una excepción de conflicto
     if (userFound && userFound.active === true) {
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,
@@ -39,10 +37,8 @@ export class UserService {
       }, HttpStatus.BAD_REQUEST);
     }
 
-    // Si no existe un usuario con ese correo electrónico, crear uno nuevo
     createUserDto.password = await this.hashPassword(createUserDto.password)
     const newUser = this.userRepository.create(createUserDto);
-    //Quitamos el atributo password del user
     await this.userRepository.save(newUser)
     const { password, ...rest } = newUser
     return rest;
@@ -50,10 +46,7 @@ export class UserService {
 
   async findAllUser(): Promise<IUser[]> {
     const allUsers = await this.userRepository.find({ relations: ['invoice'] });
-    const filterUsers = allUsers.filter((users) => {
-      return users.active === true;
-    })
-    const aux = filterUsers.map((users) => {
+    const aux = allUsers.map((users) => {
       const { password, ...rest } = users
       return rest;
     })

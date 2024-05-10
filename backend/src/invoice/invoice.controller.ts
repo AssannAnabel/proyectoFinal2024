@@ -4,7 +4,9 @@ import { CreateInvoiceDto } from './dto/create-invoice.dto';
 import { UpdateInvoiceDto } from './dto/update-invoice.dto';
 import { CreateInvoicesDetailDto } from 'src/invoices_details/dto/create-invoices_detail.dto';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
+import { ApiNotFoundResponse, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('invoices')
 @Controller('invoices')
 export class InvoiceController {
   constructor(private readonly invoiceService: InvoiceService) { }
@@ -21,12 +23,14 @@ export class InvoiceController {
   }
 
   @Get(':id')
+  @ApiNotFoundResponse({ description: 'Invoice not found' })
   @UsePipes(new ValidationPipe({ transform: true }))
   async findOne(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<CreateInvoiceDto> {
     return await this.invoiceService.findOneInvoice(id);
   }
 
   @Patch(':id')
+  @ApiNotFoundResponse({ description: 'Invoice not found' })
   @UsePipes(new ValidationPipe({ transform: true }))
   async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateInvoiceDto: UpdateInvoiceDto): Promise<CreateInvoiceDto> {
     return await this.invoiceService.updateInvoice(id, updateInvoiceDto);
@@ -34,6 +38,7 @@ export class InvoiceController {
 
   @UseGuards(AuthGuard)
   @Delete(':id')
+  @ApiNotFoundResponse({ description: 'Invoice not found' })
   async remove(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number): Promise<CreateInvoiceDto> {
     return await this.invoiceService.removeInvoice(id);
   }
