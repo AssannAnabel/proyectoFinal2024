@@ -11,6 +11,7 @@ import { MdPriceCheck } from "react-icons/md";
 import Swal from 'sweetalert2';// importar SweetAlert2 (instalar => npm i sweetalert2 )
 
 
+
 function CardDescriptionProduct() {
     const { products, user } = useContext(UserContext);
     const { cart, addToCart } = useContext(CartContext);
@@ -70,6 +71,7 @@ function CardDescriptionProduct() {
                                 <button onClick={() => handleQuantityChange(-1)}>-</button>
                                 <p>{quantity}</p>
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
+                               
                             </div>
                             <div className='container-span'>
                             <span> <MdPriceCheck /> Precio final Iva incluido  </span>

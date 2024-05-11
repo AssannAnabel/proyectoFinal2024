@@ -18,12 +18,12 @@
 }
 
 .container-img {
-  margin-right: 20px;
-  width: 50%;
+  margin-right:100px;
+  width: 40%;/**/
 }
 
 .container-img img {
-  width: 80%;
+  width: 55%; /**/
   height: auto;
   display: flex;
  padding: 30px 30px;
@@ -90,6 +90,6 @@
 
 /* Estilos para los íconos */
 .container-span > span > svg {
-  margin-right: 8px; /* Margen derecho para separar íconos del texto */
+  margin-left: 8px; /* Margen izquierdo para separar íconos del texto */
   color: black; /* Color negro para los íconos */
 }
