@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { Logo } from '../components/Logo';
 import '../styles/Cart.css'; // Asegúrate de incluir los estilos apropiados
+import Shop from '../components/Shop'
+
 
 const Cart = () => {
     const { cart, removeProductFromCart, updateProductQuantity, clearCart } = useContext(CartContext);
@@ -13,6 +15,7 @@ const Cart = () => {
     };
 
     return (
+        
         <div className="cart-container">
             <div className="cart-header">
                 <Logo />
@@ -40,6 +43,7 @@ const Cart = () => {
                                 <button onClick={() => updateProductQuantity(item.idProduct, item.quantity + 1)}>+</button>
                                 <button onClick={() => updateProductQuantity(item.idProduct, item.quantity - 1)}>-</button>
                                 <button onClick={() => removeProductFromCart(item.idProduct)}>Eliminar</button>
+                                
                             </div>
                         </li>
                     ))}
@@ -48,10 +52,15 @@ const Cart = () => {
 
             {/* suma total del carrito */}
             <p>Total: ${calculateTotal()}</p>
-
+            {/* generar boton de compra */}
+           
+            <Shop/>
             {/* vaciar el carrito */}
             <button onClick={clearCart}>Vaciar carrito</button>
+           
+           
         </div>
+        
     );
 };
 

@@ -25,7 +25,7 @@ function Home() {
     const productsConstruccion = filterProducts("Construcción");
     const productsInfraestructura = filterProducts("Infraestructura");
     const productsEnergiasRenovables = filterProducts("Energías Renovables");
-    const productsMaquinariaAgricola = filterProducts("Maquinaria Agrícola");
+    const productsMaquinariaAgricola = filterProducts("Maquinaria agrícola");
     const productsForestacionYJardineria = filterProducts("Forestación y Jardinería");
     const productsAgriculturaDePrecision = filterProducts("Agricultura de Precisión");
 
@@ -33,6 +33,7 @@ function Home() {
         <>
             <Nav />
             <BarCategoryProducts />
+        
 
             <div className="container-card-home">
               

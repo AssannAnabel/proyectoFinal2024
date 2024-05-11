@@ -11,6 +11,7 @@ import Perfil from "./pages/Perfil"
 import Category from "./pages/Category"
 import NotFound from "./components/NotFound"
 import Cart from "./pages/Cart"
+import Shop from "./components/Shop"
 
 
 function App() {
@@ -26,7 +27,8 @@ function App() {
         <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
         <Route path="user-update/:id" element={<Perfil/>} />    
         <Route path="products/:category" element={<Category/>} />
-        <Route path="cart" element={<Cart />} />     
+        <Route path="cart" element={<Cart />} />  
+        <Route path="shop" element={<Shop/>}  />
         <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
