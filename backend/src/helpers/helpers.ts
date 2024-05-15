@@ -14,18 +14,18 @@ export const renameFile = (req, file, cb) => {
 }
 
 export const fileFilter = (req, file, cb) => {
-    // el if comprueba si la extension es .csv, de no serlo entra
-    if (!file.originalname.match(/\.csv$/)) {
-
+    // El regex comprueba si la extensión es .csv, .jpg, .jpeg, .png o .gif
+    if (!file.originalname.match(/\.(csv|jpg|jpeg|png|gif)$/i)) {
         return cb(new HttpException({
-            status: HttpStatus.BAD_REQUEST, error: `El archivo a subir debe ser de extension .csv`
+            status: HttpStatus.BAD_REQUEST, error: 'El archivo a subir debe ser de extensión .csv, .jpg, .jpeg, .png o .gif'
         }, HttpStatus.BAD_REQUEST), false);
     }
 
     cb(null, true);
 };
 
-export const getThreeWords = (word: string): string => {
+
+export const getThreeLetters = (word: string): string => {
     const extractWord = word.substring(0, 3);
     const randomName = Array(3)
         .fill(null)
