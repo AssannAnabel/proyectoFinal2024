@@ -26,7 +26,7 @@ export class UserService {
     if (userFound && userFound.active === false) {
       userFound.active = true;
       createUserDto.password = await this.hashPassword(createUserDto.password)
-      await this.userRepository.save(userFound);
+      await this.userRepository.save(userFound);      
       return userFound;
     }
 
@@ -118,5 +118,17 @@ export class UserService {
     })
     await this.invoiceRepository.save(newInvoice)
     return newInvoice
+  }
+
+  async findInvoicesFromOneUser(userId: number) {
+    const query: FindOneOptions = { where: { idUser: userId } }
+    const userFound = await this.userRepository.findOne(query)
+    if (!userFound) throw new HttpException({
+      status: HttpStatus.NOT_FOUND, error: `No existe el usuario con el id ${userId}`
+    }, HttpStatus.NOT_FOUND)
+    return await this.invoiceRepository
+      .createQueryBuilder('invoice')
+      .where('invoice.id_user = :userId', { userId })
+      .getMany();
   }
 }

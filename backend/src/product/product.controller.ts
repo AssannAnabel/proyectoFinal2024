@@ -1,4 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe, UsePipes, Query, UseInterceptors, UploadedFile, BadRequestException, HttpException } from '@nestjs/common';
+import {
+  Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe,
+  UsePipes, Query, UseInterceptors, UploadedFile, HttpException
+} from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
@@ -6,7 +9,19 @@ import { Category } from 'src/helpers/enums-type.enum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { fileFilter, renameFile } from 'src/helpers/helpers';
-import { ApiBadRequestResponse, ApiBody, ApiConflictResponse, ApiConsumes, ApiCreatedResponse, ApiNoContentResponse, ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse, ApiBody, ApiConflictResponse, ApiConsumes, ApiCreatedResponse, ApiNoContentResponse,
+  ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse
+} from '@nestjs/swagger';
+import path from 'path';
+
+const storage = diskStorage({
+  destination: './uploads-images', // Especifica el directorio de destino
+  filename: (req, file, cb) => {
+    const filename = `${Date.now()}-${file.originalname}`;
+    cb(null, filename);
+  }
+});
 
 @ApiTags('products')
 @Controller('product')
@@ -18,7 +33,11 @@ export class ProductController {
   @ApiBadRequestResponse({ description: 'Request not valid' })
   @ApiConflictResponse({ description: 'Product name already exist in the db' })
   @UsePipes(new ValidationPipe({ transform: true }))
-  async create(@Body() createProductDto: CreateProductDto): Promise<CreateProductDto> {
+  @UseInterceptors(FileInterceptor('images', { storage }))
+  async create(@Body() createProductDto: CreateProductDto, @UploadedFile() images: Express.Multer.File): Promise<CreateProductDto> {
+    console.log(images);
+    console.log('hola!');
+    createProductDto.images = images.path;
     return this.productService.createProduct(createProductDto);
   }
 
@@ -43,7 +62,15 @@ export class ProductController {
   @ApiNotFoundResponse({ description: 'Product not found' })
   @ApiBadRequestResponse({ description: 'Request not valid' })
   @UsePipes(new ValidationPipe({ transform: true }))
-  async update(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() updateProductDto: UpdateProductDto): Promise<UpdateProductDto> {
+  @UseInterceptors(FileInterceptor('images', { storage }))
+  async update(
+    @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number,
+    @Body() updateProductDto: UpdateProductDto,
+    @UploadedFile() images: Express.Multer.File
+  ): Promise<UpdateProductDto> {
+    console.log(images);
+    console.log('hola!');
+    updateProductDto.images = images.path;
     return await this.productService.updateProduct(id, updateProductDto);
   }
 
