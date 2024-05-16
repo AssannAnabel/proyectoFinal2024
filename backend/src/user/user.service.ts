@@ -93,12 +93,21 @@ export class UserService {
       }, HttpStatus.BAD_REQUEST);
     }
     // Actualizar el usuario con los datos proporcionados
-    updateUserDto.password = await this.hashPassword(updateUserDto.password)
-    const updatedUser = Object.assign(userFound, updateUserDto);
-    // Guardar los cambios en la base de datos
-    const savedUser = await this.userRepository.save(updatedUser);
-    const { password, ...rest } = savedUser
-    return rest
+    if(updateUserDto.rol ==="user"){
+      updateUserDto.password = await this.hashPassword(updateUserDto.password)
+      const updatedUser = Object.assign(userFound, updateUserDto);
+      // Guardar los cambios en la base de datos
+      const savedUser = await this.userRepository.save(updatedUser);
+      const { password, ...rest } = savedUser
+      return rest
+    }else{
+      const updatedUser = Object.assign(userFound, updateUserDto);
+      // Guardar los cambios en la base de datos
+      const savedUser = await this.userRepository.save(updatedUser);
+      const { password, ...rest } = savedUser
+      return rest
+    }
+   
   }
 
   async removeUser(id: number): Promise<IUser> {

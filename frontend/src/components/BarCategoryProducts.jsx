@@ -14,14 +14,12 @@ import { GiLaserPrecision } from "react-icons/gi";
 import { useNavigate } from 'react-router-dom';
 
 
-
-
 function BarCategoryProducts() {
     const navigate = useNavigate();
 
 
     function producsCategory(category) {
-      
+
         navigate(`/products/${category}`)
     }
 
@@ -29,22 +27,22 @@ function BarCategoryProducts() {
         <>
             <div className='container-barra-category-products'>
                 <ul className='ul-bar-category'>
-
-                    <li onClick={()=>producsCategory("Ferretería")}>Ferretería  <HiOutlineWrenchScrewdriver /></li>
-                    <li onClick={()=>producsCategory("Ropa de trabajo")}>Ropa de trabajo <GiClothes  /></li>
-                    <li onClick={()=>producsCategory("Tranqueras")}>Tranqueras <GiRanchGate /></li>
-                    <li onClick={()=>producsCategory("Repuestos agricolas")}>Repuestos agricolas <FaGears  /></li>
-                    <li onClick={()=>producsCategory("Equipamiento vehículos")}>Equipamiento vehiculos <TbCarCrane /></li>
-                    <li onClick={()=>producsCategory("Pulverizacíon")}>Pulverizacíon <TfiSpray /></li>
-                    <li onClick={()=>producsCategory("Construcción")}>Construcción <TbGardenCart /></li>
-                    <li onClick={()=>producsCategory("Infraestructura")}>Infraestrctura <GiDrawbridge /></li>
-                    <li onClick={()=>producsCategory("Energias renovables")}>Energias renovables <MdSolarPower /></li>
-                    <li onClick={()=>producsCategory("Maquinaria agrícola")}>Maquinarias Agricolas <FaTractor /></li>
-                    <li onClick={()=>producsCategory("Forestación y Jardinería")}>Forestacion y Jardinería <GiFarmer /> </li>
-                    <li onClick={()=>producsCategory("Agricultura de precision")}>Agricultura de precision <GiLaserPrecision /></li>
+                    <li onClick={() => producsCategory("Ferretería")}>Ferretería  <HiOutlineWrenchScrewdriver /></li>
+                    <li onClick={() => producsCategory("Ropa de trabajo")}>Ropa de trabajo <GiClothes /></li>
+                    <li onClick={() => producsCategory("Tranqueras")}>Tranqueras <GiRanchGate /></li>
+                    <li onClick={() => producsCategory("Repuestos agricolas")}>Repuestos agricolas <FaGears /></li>
+                    <li onClick={() => producsCategory("Equipamiento vehículos")}>Equipamiento vehiculos <TbCarCrane /></li>
+                    <li onClick={() => producsCategory("Pulverizacíon")}>Pulverizacíon <TfiSpray /></li>
+                    <li onClick={() => producsCategory("Construcción")}>Construcción <TbGardenCart /></li>
+                    <li onClick={() => producsCategory("Infraestructura")}>Infraestrctura <GiDrawbridge /></li>
+                    <li onClick={() => producsCategory("Energias renovables")}>Energias renovables <MdSolarPower /></li>
+                    <li onClick={() => producsCategory("Maquinaria agrícola")}>Maquinarias Agricolas <FaTractor /></li>
+                    <li onClick={() => producsCategory("Forestación y Jardinería")}>Forestacion y Jardinería <GiFarmer /> </li>
+                    <li onClick={() => producsCategory("Agricultura de precision")}>Agricultura de precision <GiLaserPrecision /></li>
 
                 </ul>
             </div>
+
 
         </>
 

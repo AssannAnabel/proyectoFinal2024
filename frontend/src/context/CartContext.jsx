@@ -11,28 +11,27 @@ export const CartProvider = ({ children }) => {
     };
 
     // Cargar carrito desde localStorage
-    const loadCart = () => {
-        const userId = getCurrentUserId();
-        console.log('Cargando carrito para usuario:', userId);
+   // Cargar carrito desde localStorage
+const loadCart = () => {
+    const userId = getCurrentUserId();
+    console.log('Cargando carrito para usuario:', userId);
+    
+    if (userId) {
+        const storedCart = localStorage.getItem(`cart_${userId}`);
+        console.log('Datos del carrito desde localStorage:', storedCart);
         
-        if (userId) {
-            const storedCart = localStorage.getItem(`cart_${userId}`);
-            console.log('Datos del carrito desde localStorage:', storedCart);//bien!!!
-            
-            if (storedCart) {
-                try {
-                    const parsedCart = JSON.parse(storedCart);
-                    console.log('Carrito cargado:', parsedCart);
-                    setCart(parsedCart);
-                } catch (error) {
-                    console.error('Error al analizar los datos del carrito:', error);
-                    setCart([]);
-                }
-            } else {
-                setCart([]);
+        if (storedCart) {
+            try {
+                const parsedCart = JSON.parse(storedCart);
+                console.log('Carrito cargado:', parsedCart);
+                setCart(parsedCart);
+            } catch (error) {
+                console.error('Error al analizar los datos del carrito:', error);
             }
         }
-    };
+    }
+};
+
     
     // Guardar carrito en localStorage
     const saveCart = () => {
@@ -43,6 +42,7 @@ export const CartProvider = ({ children }) => {
             localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
         }
     };
+  
 
     // Cuando el carrito cambia, guardar en localStorage
     useEffect(() => {
@@ -56,6 +56,8 @@ export const CartProvider = ({ children }) => {
         loadCart();
     }, []);
 
+
+ 
     // Añadir producto al carrito
     const addToCart = (product, quantity) => {
         const existingProductIndex = cart.findIndex((item) => item.idProduct === product.idProduct);
@@ -69,9 +71,12 @@ export const CartProvider = ({ children }) => {
                 return item;
             });
             setCart(updatedCart);
+           
         } else {
             // Si el producto no está en el carrito, agréguelo con la cantidad deseada
             setCart((prevCart) => [...prevCart, { ...product, quantity }]);
+           
+
         }
     };
 

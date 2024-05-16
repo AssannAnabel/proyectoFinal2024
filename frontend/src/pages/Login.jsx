@@ -6,6 +6,7 @@ import '../styles/Login.css'
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Footer from '../components/Footer.jsx';
+import {jwtDecode} from "jwt-decode"
 
 function Login() {
 
@@ -17,7 +18,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch('http://localhost:3001/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,7 +32,11 @@ function Login() {
 
 
             if (response.ok) {
-                if (data) {
+                const userToken = data.access_token
+                const decoded = jwtDecode(userToken);
+
+                console.log("token", decoded);
+                if (decoded.rol === "user" && decoded.active ===true) {
                     handleLogin(data);
                     navigate('/');
                 } else {

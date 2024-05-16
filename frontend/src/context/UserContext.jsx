@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const { loadCart, clearCart } = useContext(CartContext);
 
-    const urlProducts = 'http://localhost:3000/product';
+    const urlProducts = 'http://localhost:3001/product';
 
     // Cargar productos
     useEffect(() => {
@@ -47,6 +47,7 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(loggedInUser));
         localStorage.setItem('currentUserId', loggedInUser.id);
         loadCart(loggedInUser.id);
+        console.log("loadCart", loggedInUser);
     };
 
     // Manejo de cierre de sesión

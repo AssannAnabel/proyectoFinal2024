@@ -105,7 +105,7 @@ export class ProductService {
         .on('end', (rowCount: number) => {
           console.log(`Se han guardado ${rowCount - errorCount} filas válidas en la base de datos`);
           if (products.length > 0) {
-            fs.unlinkSync(filePath);
+            // fs.unlinkSync(filePath);
             this.productRepository.save(products);
             resolve({
               status: HttpStatus.CREATED,
