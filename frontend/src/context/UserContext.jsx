@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { CartContext } from './CartContext';
+import { getUserById, url_users } from '../service/userService';
+import {user} from "../service/user"
 
 export const UserContext = createContext();
 
@@ -7,6 +9,7 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [products, setProducts] = useState([]);
     const { loadCart, clearCart } = useContext(CartContext);
+   
 
     const urlProducts = 'http://localhost:3001/product';
 
@@ -40,18 +43,40 @@ export const UserProvider = ({ children }) => {
             
             }
         }
+        console.log("usuario", user);
     }, [user, loadCart]);
 
     // Manejo de inicio de sesión
     const handleLogin = (loggedInUser) => {
         console.log("usuario", loggedInUser);
+        
 
-        setUser(loggedInUser);
         localStorage.setItem('user', JSON.stringify(loggedInUser));
         localStorage.setItem('currentUserId', loggedInUser.id);
-        loadCart(loggedInUser.id);
-        console.log("loadCart", loggedInUser);
+        loadCart(user.id);
+        console.log("loadCart", user);
     };
+
+    const fetchUser = async () => {
+        try {
+            const userData = await getUserById(loggedInUser.sub);
+            setUser(userData);
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        const currentUserId = localStorage.getItem('currentUserId');
+        if (currentUserId) {
+            fetchUser(currentUserId);
+        } else {
+            setLoading(false);
+        }
+    }, []);
+    console.log("usuario21",user);
  
     // Manejo de cierre de sesión
     const handleLogout = () => {
@@ -60,6 +85,13 @@ export const UserProvider = ({ children }) => {
         localStorage.removeItem('currentUserId');
         clearCart();
     };
+
+   
+    
+        
+        
+
+    
 
     return (
         <UserContext.Provider value={{ user, products, handleLogin, handleLogout }}>

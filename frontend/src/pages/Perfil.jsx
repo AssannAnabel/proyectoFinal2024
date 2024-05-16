@@ -34,7 +34,7 @@ function Perfil() {
     e.preventDefault();
     // Lógica para enviar los datos actualizados al backend
     // Por ejemplo, podrías llamar a una función updateUser con los datos formData
-    updateUserById(user.id, userUpdate);
+    updateUserById(user.sub, userUpdate);
     console.log("id", user.id);
     navigate('/')
   };

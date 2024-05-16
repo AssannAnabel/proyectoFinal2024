@@ -21,7 +21,7 @@ export const getUsers = async (url_users) => {
 
 export const getUserById = async (id) => {
     try {
-        const res = await fetch(`${url_users}${id}`, {
+        const res = await fetch(`${url_users}/${id}`, {
             method: "GET",
             headers: { 'Content-Type': "application/json" },
             signal: controller.signal
@@ -35,6 +35,7 @@ export const getUserById = async (id) => {
 }
 
 export const addUser = async (user) => {
+    console.log(user);
     try {
         const res = await fetch(url_users, {
             method: 'POST',
