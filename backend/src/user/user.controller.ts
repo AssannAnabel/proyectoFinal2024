@@ -1,11 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UsePipes, ValidationPipe, ParseIntPipe, HttpStatus, UseGuards } from '@nestjs/common';
+import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CreateInvoiceDto } from 'src/invoice/dto/create-invoice.dto';
 import { IUser } from './interface/user.interface';
 import { AuthGuard } from 'src/auth/guard/auth.guard';
-import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
-import { UserService } from './user.service';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiForbiddenResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -56,11 +56,5 @@ export class UserController {
   @UsePipes(new ValidationPipe({ transform: true }))
   async createInvoiceForUser(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number, @Body() createinvoiceData: Partial<CreateInvoiceDto>): Promise<CreateInvoiceDto> {
     return this.userService.createInvoiceForUser(id, createinvoiceData);
-  }
-
-  @Get(':id/invoices')
-  @ApiNotFoundResponse({ description: 'User not found' })
-  async findInvoicesFromUser(@Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number) {
-    return await this.userService.findInvoicesFromOneUser(id)
   }
 }
