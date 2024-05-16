@@ -5,9 +5,11 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import { UserProvider } from "./context/UserContext.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
+import { InvoiceProvider } from "./context/InvoicesContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <InvoiceProvider>
     <CartProvider>
       <UserProvider>
         <BrowserRouter>
@@ -15,5 +17,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </UserProvider>
     </CartProvider>
+    </InvoiceProvider>
   </React.StrictMode>
 );

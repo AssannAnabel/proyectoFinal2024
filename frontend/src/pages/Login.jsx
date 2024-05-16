@@ -37,7 +37,7 @@ function Login() {
 
                 console.log("token", decoded);
                 if (decoded.rol === "user" && decoded.active ===true) {
-                    handleLogin(data);
+                    handleLogin(decoded);
                     navigate('/');
                 } else {
                     throw new Error('Usuario inactivo');

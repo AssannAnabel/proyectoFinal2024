@@ -18,8 +18,8 @@
     transform: translateY(-3%);
 }
 .container-card img{
-    width: 100%;
-    height: 210px;
+    width: 100px;
+    height:100px;
 }
 .container-card p{
     line-height: 1.5;
@@ -32,6 +32,6 @@
 }
 
 .container-card {
-    width: calc(20% - 10px); /* Ancho máximo para cada tarjeta */
+    width: calc(25% - 10px); /* Ancho máximo para cada tarjeta (contenedor negro)*/
     margin-bottom: 10px; /* Espacio entre filas */
 }

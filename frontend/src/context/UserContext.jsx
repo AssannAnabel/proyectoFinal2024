@@ -37,19 +37,22 @@ export const UserProvider = ({ children }) => {
             if (!user || user.id !== parsedUser.id) {
                 setUser(parsedUser);
                 loadCart(parsedUser.id);
+            
             }
         }
     }, [user, loadCart]);
 
     // Manejo de inicio de sesión
     const handleLogin = (loggedInUser) => {
+        console.log("usuario", loggedInUser);
+
         setUser(loggedInUser);
         localStorage.setItem('user', JSON.stringify(loggedInUser));
         localStorage.setItem('currentUserId', loggedInUser.id);
         loadCart(loggedInUser.id);
         console.log("loadCart", loggedInUser);
     };
-
+ 
     // Manejo de cierre de sesión
     const handleLogout = () => {
         setUser(null);

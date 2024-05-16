@@ -13,6 +13,8 @@ function Nav() {
     const { cart } = useContext(CartContext); 
     const navigate = useNavigate();
 
+    console.log("uer", user);
+
     function idUpdate(e) {
         e.preventDefault();
         navigate(`/user-update/${user.id}`);
