@@ -22,13 +22,7 @@ export class AuthService {
 
 
         if (userFound && await this.comparePasswords(userAuth.password, userFound.password) && userFound.active === true) {
-            const payload = {
-                sub: userFound.idUser,
-                name: userFound.name,
-                email: userFound.email,
-                rol: userFound.rol,
-                active: userFound.active
-            };
+            const payload = { sub: userFound.idUser, name: userFound.name, email: userFound.email };
             return {
                 access_token: await this.jwtService.signAsync(payload)
             }
