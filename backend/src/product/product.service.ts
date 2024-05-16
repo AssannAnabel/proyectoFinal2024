@@ -17,9 +17,9 @@ export class ProductService {
     const query = await this.productRepository.findOne({ where: { product: createProductDto.product } })
     if (query) throw new HttpException({
       status: HttpStatus.CONFLICT, error: `el producto ${createProductDto.product} ya esta cargado en el sistema`
-    }, HttpStatus.CONFLICT)        
-    const newProduct = this.productRepository.create(createProductDto);
-    return this.productRepository.save(newProduct)
+    }, HttpStatus.CONFLICT)
+    const newUser = this.productRepository.create(createProductDto);
+    return this.productRepository.save(newUser)
   }
 
   async findAllProduct(): Promise<CreateProductDto[]> {
@@ -45,8 +45,6 @@ export class ProductService {
     if (queryProductFound) throw new HttpException({
       status: HttpStatus.CONFLICT, error: `el producto ${updateProductDto.product} ya esta cargado en el sistema`
     }, HttpStatus.CONFLICT) */
-    console.log(updateProductDto);
-
     const updateUser = Object.assign(productFound, updateProductDto)
     return this.productRepository.save(updateUser)
   }

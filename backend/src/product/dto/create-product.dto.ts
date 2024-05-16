@@ -1,4 +1,3 @@
-import { ApiProperty } from '@nestjs/swagger'
 import { Expose } from 'class-transformer'
 import { IsString, IsNumber, IsEnum, IsNotEmpty, MaxLength, MinLength, Length } from 'class-validator'
 import { Category } from 'src/helpers/enums-type.enum'
@@ -34,7 +33,6 @@ export class CreateProductDto {
     @IsString()
     @Expose()
     @MaxLength(255)
-    //@ApiProperty({ type: 'string', format: 'binary' })
-    images: string
+    readonly images: string
 
 }

@@ -8,6 +8,11 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
     @IsString()
     @IsNotEmpty()
     @Expose()
+    readonly codeProduct?: string
+
+    @IsString()
+    @IsNotEmpty()
+    @Expose()
     readonly product?: string
 
     @IsString()
@@ -32,5 +37,5 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
 
     @IsString()
     @Expose()
-    images?: string
+    readonly images?: string
 }

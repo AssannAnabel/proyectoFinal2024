@@ -1,7 +1,7 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "src/helpers/enums-type.enum";
 import { InvoicesDetail } from "src/invoices_details/entities/invoices_detail.entity";
-import { getThreeLetters } from "src/helpers/helpers";
+import { getThreeWords } from "src/helpers/helpers";
 
 @Entity()
 export class Product {
@@ -32,7 +32,7 @@ export class Product {
     @BeforeInsert()
     @BeforeUpdate()
     getNameForCodeProduct() {
-        this.codeProduct = getThreeLetters(this.category)
+        this.codeProduct = getThreeWords(this.category)
     }
 
     @OneToMany(() => InvoicesDetail, invoiceDetail => invoiceDetail.id_product)
