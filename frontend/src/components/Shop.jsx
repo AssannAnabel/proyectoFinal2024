@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { UserContext } from '../context/UserContext';
 import Swal from 'sweetalert2';
-import Home from '../pages/Home';
-
 
 const Shop = () => {
     const { cart, clearCart } = useContext(CartContext);
     const { user } = useContext(UserContext);
+    const navigate = useNavigate();
 
     const handlePurchase = async () => {
         try {
@@ -18,21 +18,21 @@ const Shop = () => {
                     'Authorization': `Bearer ${user.access_token}`
                 },
                 body: JSON.stringify({
-                    
                     total_without_iva: Number(calculateTotal()) 
                 })
             });
 
             if (response.ok) {
+                const invoice = await response.json(); // Obtener la factura creada
                 clearCart();
                 Swal.fire({
                     icon: 'success',
                     title: '¡Compra realizada con éxito!',
                     showConfirmButton: false,
                     timer: 1000 
+                }).then(() => {
+                    navigate(`/invoices-details/${invoice.idInvoice}`); // Redirigir a la página de detalles de la factura
                 });
-    
-               
             } else {
                 const errorData = await response.json();
                 Swal.fire({
@@ -41,7 +41,6 @@ const Shop = () => {
                     text: errorData.message
                 });
             }
-
         } catch (error) {
             console.error('Error al realizar la compra', error);
             Swal.fire({
@@ -49,7 +48,6 @@ const Shop = () => {
                 title: 'Hubo un error al realizar la compra',
                 text: 'Por favor, inténtelo nuevamente.'
             });
-        
         }
     };
 
@@ -59,11 +57,9 @@ const Shop = () => {
     };
 
     return (
-        <>
-        <button onClick={handlePurchase}>Comprar</button>
-       
-        </>
-        
+        <div>
+            <button onClick={handlePurchase}>Comprar</button>
+        </div>
     );
 };
 

@@ -1,20 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { UserContext } from '../context/UserContext.jsx';
-import { CartContext } from '../context/CartContext.jsx';
+import { UserContext } from '../context/UserContext';
+import { CartContext } from '../context/CartContext';
 import Nav from '../components/Nav';
 import '../styles/CardDescriptionProduct.css';
 import { IoIosCard } from "react-icons/io";
 import { FaShippingFast } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
-import Swal from 'sweetalert2';// importar SweetAlert2 (instalar => npm i sweetalert2 )
-
-
+import Swal from 'sweetalert2'; // importar SweetAlert2 (instalar => npm i sweetalert2)
+import { isExcedMax } from '../service/util';
+import Shop from '../components/Shop';
 
 function CardDescriptionProduct() {
     const { products, user } = useContext(UserContext);
-    const { cart, addToCart } = useContext(CartContext);
+    const { addToCart } = useContext(CartContext);
     const { id } = useParams();
 
     // Busca el producto con el ID correspondiente
@@ -25,19 +25,44 @@ function CardDescriptionProduct() {
 
     // Maneja el cambio de cantidad
     const handleQuantityChange = (delta) => {
-        setQuantity(prevQuantity => Math.max(1, prevQuantity + delta));
+        setQuantity(prevQuantity => {
+            const newQuantity = prevQuantity + delta;
+            if (newQuantity < 1) return 1;
+            if (isExcedMax(newQuantity, product.amount)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Stock máximo alcanzado',
+                    text: `No hay suficiente stock de este producto. Máximo permitido: ${product.amount}.`,
+                });
+                return prevQuantity; // No actualizar la cantidad
+            }
+            return newQuantity;
+        });
     };
 
-    // Maneja el clic en el botón de añadir al carrito
+    //botón de añadir al carrito
     const handleAddToCart = () => {
         if (user) {
-            // Si el usuario está autenticado, agrega el producto al carrito
-            addToCart(product, quantity);
-        } else {   //sweetAlert
+            if (!isExcedMax(quantity, product.amount)) {
+                addToCart(product, quantity);
                 Swal.fire({
+                    icon: 'success',
+                    title: 'Producto añadido al carrito',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Stock máximo alcanzado',
+                    text: `No hay suficiente stock de este producto. Máximo permitido: ${product.amount}.`,
+                });
+            }
+        } else {
+            Swal.fire({
                 title: 'Inicia sesión',
                 text: 'Debes iniciar sesión para agregar productos al carrito.',
-                icon: 'warning', // Elige el ícono adecuado ('success', 'error', 'warning', 'info', 'question')
+                icon: 'warning',
                 confirmButtonText: 'Ok'
             });
         }
@@ -49,13 +74,9 @@ function CardDescriptionProduct() {
 
     return (
         <>
-        <div>
             <Nav />
-        </div>
-
             <div className="container-card-description-product">
                 <h2>{product.product}</h2>
-
                 <div className="container-img-price">
                     <div className="container-img">
                         <img src={product.images} alt={product.product} />
@@ -71,18 +92,18 @@ function CardDescriptionProduct() {
                                 <button onClick={() => handleQuantityChange(-1)}>-</button>
                                 <p>{quantity}</p>
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
-                               
                             </div>
-                            <div className='container-span'>
-                            <span> <MdPriceCheck /> Precio final Iva incluido  </span>
-                            <span><IoIosCard />Facilidad de pago </span>
-                            <span> <FaShippingFast />Envíos a todo el país</span>
-                            <span><MdEmail />Para mas información agrotech@gmail.com </span>
-                            </div>
+                            <Shop />
+                        </div>
+                        <div className='container-span'>
+                            <span><MdPriceCheck /> Precio sin Iva incluido</span>
+                            <span><IoIosCard />Facilidad de pago</span>
+                            <span><FaShippingFast />Envíos a todo el país</span>
+                            <span><MdEmail />Para más información agrotech@gmail.com</span>
                         </div>
                     </div>
                 </div>
-                <h3>Descripción del producto: </h3>
+                <h3>Descripción del producto:</h3>
                 <div>
                     <p>{product.description}</p>
                 </div>
