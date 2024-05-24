@@ -9,7 +9,7 @@ import { FaShippingFast } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
 import Swal from 'sweetalert2';
-import Shop from '../components/Shop';
+
 
 function CardDescriptionProduct() {
     const { products, user } = useContext(UserContext);
@@ -69,7 +69,7 @@ function CardDescriptionProduct() {
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
                             </div>
                            
-                            <Shop />
+                            
                         </div>
                         <div className='container-span'>
                             <span><MdPriceCheck /> Precio sin Iva incluido</span>
