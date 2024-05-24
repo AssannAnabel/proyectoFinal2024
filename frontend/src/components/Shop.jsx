@@ -18,7 +18,8 @@ const Shop = () => {
                     'Authorization': `Bearer ${user.access_token}`
                 },
                 body: JSON.stringify({
-                    total_without_iva: Number(calculateTotal()) 
+                    total_without_iva: Number(calculateTotal()),
+                    id_user:user.id,
                 })
             });
 

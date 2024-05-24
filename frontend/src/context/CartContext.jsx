@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 export const CartContext = createContext();
 
@@ -56,24 +57,28 @@ export const CartProvider = ({ children }) => {
         loadCart();
     }, []);
 
+    
     // Añadir producto al carrito
-    const addToCart = (product, quantity) => {
-        const existingProductIndex = cart.findIndex((item) => item.idProduct === product.idProduct);
+const addToCart = (product, quantity) => {
+    const existingProductIndex = cart.findIndex((item) => item.idProduct === product.idProduct);
 
-        if (existingProductIndex !== -1) {
-            // Si el producto ya está en el carrito, actualiza la cantidad
-            const updatedCart = cart.map((item, index) => {
-                if (index === existingProductIndex) {
-                    return { ...item, quantity: item.quantity + quantity };
-                }
-                return item;
-            });
-            setCart(updatedCart);
-        } else {
-            // Si el producto no está en el carrito, agréguelo con la cantidad deseada
-            setCart((prevCart) => [...prevCart, { ...product, quantity }]);
-        }
-    };
+    if (existingProductIndex !== -1) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'El producto ya fue agregado',
+            text: 'El producto ya está en el carrito. Puedes actualizar la cantidad desde el carrito.',
+        });
+    } else {
+        setCart((prevCart) => [...prevCart, { ...product, quantity }]);
+        Swal.fire({
+            icon: 'success',
+            title: 'Producto añadido al carrito',
+            showConfirmButton: false,
+            timer: 1000
+        });
+    }
+};
+
 
     // Actualizar la cantidad de un producto en el carrito
     const updateProductQuantity = (productId, newQuantity) => {

@@ -8,8 +8,7 @@ import { IoIosCard } from "react-icons/io";
 import { FaShippingFast } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
-import Swal from 'sweetalert2'; // importar SweetAlert2 (instalar => npm i sweetalert2)
-import { isExcedMax } from '../service/util';
+import Swal from 'sweetalert2';
 import Shop from '../components/Shop';
 
 function CardDescriptionProduct() {
@@ -17,47 +16,22 @@ function CardDescriptionProduct() {
     const { addToCart } = useContext(CartContext);
     const { id } = useParams();
 
-    // Busca el producto con el ID correspondiente
     const product = products.find(pro => pro.idProduct === parseInt(id));
 
-    // Estado para controlar la cantidad a agregar al carrito
     const [quantity, setQuantity] = useState(1);
 
-    // Maneja el cambio de cantidad
+   
     const handleQuantityChange = (delta) => {
         setQuantity(prevQuantity => {
             const newQuantity = prevQuantity + delta;
             if (newQuantity < 1) return 1;
-            if (isExcedMax(newQuantity, product.amount)) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Stock máximo alcanzado',
-                    text: `No hay suficiente stock de este producto. Máximo permitido: ${product.amount}.`,
-                });
-                return prevQuantity; // No actualizar la cantidad
-            }
             return newQuantity;
         });
     };
 
-    //botón de añadir al carrito
     const handleAddToCart = () => {
         if (user) {
-            if (!isExcedMax(quantity, product.amount)) {
-                addToCart(product, quantity);
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Producto añadido al carrito',
-                    showConfirmButton: false,
-                    timer: 1000
-                });
-            } else {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Stock máximo alcanzado',
-                    text: `No hay suficiente stock de este producto. Máximo permitido: ${product.amount}.`,
-                });
-            }
+            addToCart(product, quantity);
         } else {
             Swal.fire({
                 title: 'Inicia sesión',
@@ -71,6 +45,7 @@ function CardDescriptionProduct() {
     if (!product) {
         return <div>No se encontró el producto</div>;
     }
+    
 
     return (
         <>
@@ -93,6 +68,7 @@ function CardDescriptionProduct() {
                                 <p>{quantity}</p>
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
                             </div>
+                           
                             <Shop />
                         </div>
                         <div className='container-span'>
