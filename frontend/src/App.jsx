@@ -11,7 +11,7 @@ import Category from "./pages/Category"
 import NotFound from "./components/NotFound"
 import Cart from "./pages/Cart"
 import Shop from "./components/Shop"
-import InvoicesDetails from "./pages/InvoicesDetails"
+
 
 function App() {
   
@@ -28,7 +28,7 @@ function App() {
         <Route path="products/:category" element={<Category/>} />
         <Route path="cart" element={<Cart />} />  
         <Route path="shop" element={<Shop/>}  />
-        <Route path="/invoices-details/:idInvoice" element={<InvoicesDetails/>} />
+    
         <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>

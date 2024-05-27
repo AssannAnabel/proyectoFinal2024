@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { UserContext } from '../context/UserContext';
 import Swal from 'sweetalert2';
+import '../styles/Shop.css';
+import { Logo } from './Logo';
+import logo from "/agrotech-logo.png"
 
 const Shop = () => {
     const { cart, clearCart } = useContext(CartContext);
@@ -37,26 +40,37 @@ const Shop = () => {
                 setSaveCart(cart); // Save the cart before clearing
                 clearCart();
                 Swal.fire({
+                    imageUrl: logo,
+                  
                     title: '¡Compra realizada con éxito!',
                     html: `
-                        <h3>Detalles de la compra</h3>
-                        <ul>
-                            ${saveCart.map(product => `
-                                <li key=${product.idProduct}>
-                                    <p>Producto: ${product.product}</p>
-                                    <p>Cantidad: ${product.quantity}</p>
-                                    <p>Precio: ${product.price}</p>
-                                    <p>Total: ${(product.price * product.quantity).toFixed(2)}</p>
-                                </li>
-                            `).join('')}
-                        </ul>
-                        <p>Total de la compra: $${saveCart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                        <div class="purchase-details">
+                            <h3>Detalles de la compra</h3>
+                            <ul>
+                                ${saveCart.map(product => `
+                                    <li key=${product.idProduct}>
+                                        <div class="product-info">
+                                            <p><strong>Producto:</strong> ${product.product}</p>
+                                            <p><strong>Cantidad:</strong> ${product.quantity}</p>
+                                        
+                                            <p><strong>Precio:</strong> $${product.price}</p>
+                                            <p><strong>Total:</strong> $${(product.price * product.quantity).toFixed(2)}</p>
+                                        </div>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            <p class="total"><strong>Total de la compra: $${saveCart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                        </div>
                     `,
-                    icon: 'success',
+
                     confirmButtonText: 'Ok',
-                    showConfirmButton: true
-                
+                    showConfirmButton: true,
+                    customClass: {
+                        image: 'custom-image-class'
+                    }
                 });
+
+
             } else {
                 const errorData = await response.json();
                 Swal.fire({
