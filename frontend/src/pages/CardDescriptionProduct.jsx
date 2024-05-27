@@ -93,7 +93,7 @@ function CardDescriptionProduct() {
                                 <p>{quantity}</p>
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
                             </div>
-                            <Shop />
+                            <Shop/>
                         </div>
                         <div className='container-span'>
                             <span><MdPriceCheck /> Precio sin Iva incluido</span>

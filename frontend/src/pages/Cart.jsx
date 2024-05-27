@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Logo } from '../components/Logo';
 import '../styles/Cart.css';
@@ -8,10 +8,34 @@ import Swal from 'sweetalert2';
 
 const Cart = () => {
     const { cart, removeProductFromCart, updateProductQuantity, clearCart } = useContext(CartContext);
+    const [saveCart, setSaveCart] = useState(cart);
+
+    useEffect(() => {
+        setSaveCart(cart);
+    }, [cart]);
 
     // Calcula el total del carrito
     const calculateTotal = () => {
-        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+        return saveCart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+    };
+
+    const handleUpdateQuantity = (idProduct, newQuantity) => {
+        if (newQuantity < 1) {
+            Swal.fire({
+                title: 'Cantidad inválida',
+                text: 'La cantidad debe ser al menos 1.',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+            return;
+        }
+
+        const updatedCart = saveCart.map(item =>
+            item.idProduct === idProduct ? { ...item, quantity: newQuantity } : item
+        );
+
+        setSaveCart(updatedCart);
+        updateProductQuantity(idProduct, newQuantity);
     };
 
     return (
@@ -33,10 +57,9 @@ const Cart = () => {
                                 <p>Cantidad: {item.quantity}</p>
                             </div>
                             <div className="cart-item-actions">
-                                {/* Botones para modificar la cantidad del producto y eliminar */}
                                 <button onClick={() => {
                                     if (!isExcedMax(item.quantity + 1, item.amount)) {
-                                        updateProductQuantity(item.idProduct, item.quantity + 1);
+                                        handleUpdateQuantity(item.idProduct, item.quantity + 1);
                                     } else {
                                         Swal.fire({
                                             title: 'Stock insuficiente',
@@ -46,16 +69,19 @@ const Cart = () => {
                                         });
                                     }
                                 }}>+</button>
-                                <button onClick={() => updateProductQuantity(item.idProduct, item.quantity - 1)}>-</button>
+                                <button onClick={() => handleUpdateQuantity(item.idProduct, item.quantity - 1)}>-</button>
                                 <button onClick={() => removeProductFromCart(item.idProduct)}>Eliminar</button>
                             </div>
                         </li>
                     ))}
+                    <button onClick={clearCart}>Vaciar carrito</button>
+                    <p>Total de la compra: ${calculateTotal()}</p>
+
+                    <Shop />
+
                 </ul>
             )}
-            <p>Total: ${calculateTotal()}</p>
-            <Shop />
-            <button onClick={clearCart}>Vaciar carrito</button>
+            
         </div>
     );
 };

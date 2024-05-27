@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { UserContext } from '../context/UserContext';
@@ -8,30 +8,54 @@ const Shop = () => {
     const { cart, clearCart } = useContext(CartContext);
     const { user } = useContext(UserContext);
     const navigate = useNavigate();
+    const [saveCart, setSaveCart] = useState([]);
+
+    useEffect(() => {
+        setSaveCart([...cart]);
+    }, [cart]);
 
     const handlePurchase = async () => {
+        const data = cart.map((product) => ({
+            idProduct: product.idProduct,
+            amount: product.quantity
+        }));
+
         try {
-            const response = await fetch(`http://localhost:3000/user/${user.id}/invoices`, {
+            const response = await fetch(`http://localhost:3000/invoices/${user.id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${user.access_token}`
                 },
                 body: JSON.stringify({
-                    total_without_iva: Number(calculateTotal()) 
+                    products: data
                 })
             });
 
             if (response.ok) {
-                const invoice = await response.json(); // Obtener la factura creada
+                const invoiceDto = await response.json();
+                setSaveCart(cart); // Save the cart before clearing
                 clearCart();
                 Swal.fire({
-                    icon: 'success',
                     title: '¡Compra realizada con éxito!',
-                    showConfirmButton: false,
-                    timer: 1000 
-                }).then(() => {
-                    navigate(`/invoices-details/${invoice.idInvoice}`); // Redirigir a la página de detalles de la factura
+                    html: `
+                        <h3>Detalles de la compra</h3>
+                        <ul>
+                            ${saveCart.map(product => `
+                                <li key=${product.idProduct}>
+                                    <p>Producto: ${product.product}</p>
+                                    <p>Cantidad: ${product.quantity}</p>
+                                    <p>Precio: ${product.price}</p>
+                                    <p>Total: ${(product.price * product.quantity).toFixed(2)}</p>
+                                </li>
+                            `).join('')}
+                        </ul>
+                        <p>Total de la compra: $${saveCart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                    `,
+                    icon: 'success',
+                    confirmButtonText: 'Ok',
+                    showConfirmButton: true
+                
                 });
             } else {
                 const errorData = await response.json();
@@ -49,11 +73,6 @@ const Shop = () => {
                 text: 'Por favor, inténtelo nuevamente.'
             });
         }
-    };
-
-    // Función para calcular el total del carrito
-    const calculateTotal = () => {
-        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
     };
 
     return (
