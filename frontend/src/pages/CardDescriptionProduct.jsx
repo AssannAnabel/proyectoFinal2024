@@ -8,22 +8,18 @@ import { IoIosCard } from "react-icons/io";
 import { FaShippingFast } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { MdPriceCheck } from "react-icons/md";
-import Swal from 'sweetalert2'; // importar SweetAlert2 (instalar => npm i sweetalert2)
+import Swal from 'sweetalert2';
 import { isExcedMax } from '../service/util';
-import Shop from '../components/Shop';
+import { handlePurchase } from '../service/purchase';
 
 function CardDescriptionProduct() {
     const { products, user } = useContext(UserContext);
-    const { addToCart } = useContext(CartContext);
+    const { addToCart, clearCart } = useContext(CartContext);
     const { id } = useParams();
 
-    // Busca el producto con el ID correspondiente
     const product = products.find(pro => pro.idProduct === parseInt(id));
-
-    // Estado para controlar la cantidad a agregar al carrito
     const [quantity, setQuantity] = useState(1);
 
-    // Maneja el cambio de cantidad
     const handleQuantityChange = (delta) => {
         setQuantity(prevQuantity => {
             const newQuantity = prevQuantity + delta;
@@ -34,13 +30,12 @@ function CardDescriptionProduct() {
                     title: 'Stock máximo alcanzado',
                     text: `No hay suficiente stock de este producto. Máximo permitido: ${product.amount}.`,
                 });
-                return prevQuantity; // No actualizar la cantidad
+                return prevQuantity;
             }
             return newQuantity;
         });
     };
 
-    //botón de añadir al carrito
     const handleAddToCart = () => {
         if (user) {
             if (!isExcedMax(quantity, product.amount)) {
@@ -68,6 +63,21 @@ function CardDescriptionProduct() {
         }
     };
 
+    const handleDirectPurchase = () => {
+        if (user) {
+            const productForPurchase = [{ ...product, quantity }];
+            handlePurchase(user, productForPurchase, clearCart);
+            
+        } else {
+            Swal.fire({
+                title: 'Inicia sesión',
+                text: 'Debes iniciar sesión para comprar productos.',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            });
+        }
+    };
+
     if (!product) {
         return <div>No se encontró el producto</div>;
     }
@@ -88,12 +98,12 @@ function CardDescriptionProduct() {
                         </div>
                         <div className='container-button'>
                             <button onClick={handleAddToCart}>Añadir al carrito</button>
+                            <button onClick={handleDirectPurchase}>Comprar Ahora</button>
                             <div className='container-quantity-product'>
                                 <button onClick={() => handleQuantityChange(-1)}>-</button>
                                 <p>{quantity}</p>
                                 <button onClick={() => handleQuantityChange(1)}>+</button>
                             </div>
-                            <Shop/>
                         </div>
                         <div className='container-span'>
                             <span><MdPriceCheck /> Precio sin Iva incluido</span>
