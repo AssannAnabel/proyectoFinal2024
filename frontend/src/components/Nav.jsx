@@ -1,22 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext'; 
 import { Logo } from "./Logo";
 import "../styles/Nav.css";
-import { useNavigate } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import SearchResults from './SerchResult';
 
 function Nav() {
-    const { user, handleLogout } = useContext(UserContext);
+    const { user, handleLogout, products } = useContext(UserContext);
     const { cart } = useContext(CartContext); 
-    const navigate = useNavigate();
+    const [searchQuery, setSearchQuery] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
-    function idUpdate(e) {
-        e.preventDefault();
-        navigate(`/user-update/${user.id}`);
-    }
+    useEffect(() => {
+        if (searchQuery) {
+            const results = products.filter(product =>
+                product.product.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+            setSearchResults(results);
+        } else {
+            setSearchResults([]);
+        }
+    }, [searchQuery, products]);
 
     // Calcula el número total de artículos en el carrito
     const totalItemsInCart = cart.reduce((acc, item) => acc + item.quantity, 0);
@@ -26,22 +33,26 @@ function Nav() {
             <div className="container-nav">
                 <Logo />
                 <div className="container-barra-search">
-                    <input className="input-search" placeholder="Buscar producto" />
+                    <input
+                        className="input-search"
+                        placeholder="Buscar producto"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                     <GoSearch />
                 </div>
                 <nav className="container-list">
                     <ul className='navList'>
                         <Link to={"/About"}><li>Nosotros</li></Link>
                         <Link to={"/Contact"}><li>Contactos</li></Link>
-                       
                         {user && user.name ? (
                             <>
-                             <Link to={"/cart"}>
-                            <li>
-                                <FaShoppingCart style={{color:'black'}} /> ({totalItemsInCart})
-                                </li>
-                            </Link>
-                                <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>
+                                <Link to={"/cart"}>
+                                    <li>
+                                        <FaShoppingCart style={{color:'black'}} /> ({totalItemsInCart})
+                                    </li>
+                                </Link>
+                                <Link to={""} onClick={(e) => {e.preventDefault(); navigate(`/user-update/${user.id}`);}}><li>{user.name}</li></Link>
                                 <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesión</li></Link>
                             </>
                         ) : (
@@ -53,9 +64,9 @@ function Nav() {
                     </ul>
                 </nav>
             </div>
+            {searchQuery && <SearchResults results={searchResults} />}
         </>
     );
 }
 
 export default Nav;
-
