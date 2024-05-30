@@ -57,7 +57,7 @@ export const handlePurchase = async (user, cart, clearCart) => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error al realizar la compra',
-                text: errorData.message,
+                text: "No hay stock del producto seleccionado",
             });
         }
     } catch (error) {
@@ -69,3 +69,20 @@ export const handlePurchase = async (user, cart, clearCart) => {
         });
     }
 };
+
+
+
+export async function getUserPurchases(userId) {
+    try {
+      const response = await fetch(`http://localhost:3000/invoices/user/${userId}`);
+      if (!response.ok) {
+        throw new Error('Error al obtener el historial de compras');
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  

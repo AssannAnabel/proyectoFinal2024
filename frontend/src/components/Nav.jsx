@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext'; 
@@ -13,6 +13,7 @@ function Nav() {
     const { cart } = useContext(CartContext); 
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (searchQuery) {
@@ -27,7 +28,10 @@ function Nav() {
 
     // Calcula el número total de artículos en el carrito
     const totalItemsInCart = cart.reduce((acc, item) => acc + item.quantity, 0);
-
+    function idUpdate(e) {
+        e.preventDefault();
+        navigate(`/user-update/${user.id}`);
+    }
     return (
         <>
             <div className="container-nav">
@@ -52,7 +56,7 @@ function Nav() {
                                         <FaShoppingCart style={{color:'black'}} /> ({totalItemsInCart})
                                     </li>
                                 </Link>
-                                <Link to={""} onClick={(e) => {e.preventDefault(); navigate(`/user-update/${user.id}`);}}><li>{user.name}</li></Link>
+                                <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>
                                 <Link to={"/"}><li onClick={handleLogout}>Cerrar Sesión</li></Link>
                             </>
                         ) : (
