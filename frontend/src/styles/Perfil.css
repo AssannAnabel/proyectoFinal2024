@@ -1,0 +1,84 @@
+.container-purchase-history {
+    max-width: 90%;
+    /* Ajusta el ancho según sea necesario */
+    padding-left: 20px;
+}
+
+.container-purchase-history table {
+    width: 100%;
+}
+
+/* Resto de estilos CSS para la tabla y los elementos de la tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid black;
+    text-align: center;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.container-form {
+    padding-left: 20px;
+    border-radius: 5px;
+}
+
+.container-form h2 {
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input[type='text'],
+input[type='password'],
+input[type='phone'] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 500px;
+}
+
+.btn-guardar {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-guardar:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
