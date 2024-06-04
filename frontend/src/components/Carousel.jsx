@@ -1,42 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 import '../styles/Carousel.css';
-import farm from './img/farm-gate.jpg';
-import field from './img/open-field.jpg';
-import field2 from './img/open-field-2.jpg';
 
-function Carousel() {
-  const images = [farm, field, field2];
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+function Carousel({ imagenes }) {
+  // Variables y Estados
+  // Variables y Estados
+  const [imagenActual, setImagenActual] = React.useState(0);
+  const cantidad = imagenes?.length;
+
+  // Return prematuro para evitar errores
+  if (!Array.isArray(imagenes) || cantidad === 0) return;
+
+  const siguienteImagen = () => {
+    setImagenActual(imagenActual === cantidad - 1 ? 0 : imagenActual + 1);
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+  const anteriorImagen = () => {
+    setImagenActual(imagenActual === 0 ? cantidad - 1 : imagenActual - 1);
   };
 
   return (
-    <div className="slider-box">
-      <button className="prev" onClick={prevSlide}>‹</button>
-      <button className="next" onClick={nextSlide}>›</button>
-      <div className="slider">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={index === currentIndex ? 'slide active' : 'slide'}
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <div className="text">
-              <h2>{`Campo ${index + 1}`}</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias illo sunt quibusdam, blanditiis dignissimos amet delectus culpa libero ea nihil qui optio soluta veritatis distinctio architecto quam. Quo, alias ratione.</p>
-            </div>
+    <div className={Carousel.container}>
+      <div className='leftArrow' onClick={anteriorImagen}>&#10092;</div>
+      <div className='rightArrow' onClick={siguienteImagen}>&#10093;</div>
+
+      {imagenes.map((imagen, index) => {
+        return (
+          <div key={index} className={imagenActual === index ? `${Carousel.slide} ${Carousel.active}` : Carousel.slide}>
+            {imagenActual === index && (
+              <img key={index} src={imagen} alt="imagen" style={{ width: '100%' }} />
+            )}
           </div>
-        ))}
-      </div>
+        );
+      })}
+
+
     </div>
   );
 }
 
 export default Carousel;
-

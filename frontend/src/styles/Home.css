@@ -1,22 +1,27 @@
- /* Estilo general para el contenedor de tarjetas */
+/* Estilo general para el contenedor de tarjetas */
 .container-card-home {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* Cuatro columnas iguales */
-  gap: 20px; /* Espacio entre las tarjetas */
-  padding: 20px; /* Espaciado interno */
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* Cuatro columnas iguales */
+  gap: 25px; /* Espacio entre las tarjetas */
+ width: 100%;
+  background-color: #a6a6a6;
+  padding-right: 10px;
 }
 
 /* Estilos para cada tarjeta dentro del contenedor */
 .container-card-category {
-  width: 350%; /* Ancho completo de la columna */
+  width: 90%; /* Ancho completo de la columna */
 }
 
 /* Estilo general para las tarjetas */
 .container-card-category .card {
   width: 100%; /* Asegúrate de que las tarjetas ocupen el ancho completo de la columna */
-  aspect-ratio: 1/1; /* Relación de aspecto de 1:1 (cuadrada) */
-  padding: 10px; /* Espaciado interno para las tarjetas */
+  padding: 5px; /* Espaciado interno para las tarjetas */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
   border-radius: 8px; /* Bordes redondeados */
   background-color: #fff; /* Fondo blanco */
+}
+
+.container-carousel{
+  width: 100%;
 }
