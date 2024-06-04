@@ -1,28 +1,72 @@
+/* Asegurar el color de fondo del body */
+body {
+  background-color: #a6a6a6;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
 
-footer {
-background-color: #2a8b4a;  /* Color de fondo del pie de página */
-    color: white; /* Color del texto */
-    padding: 20px; /* Espaciado interno */
-    display: flex; /* Alinear los elementos en una fila */
-    justify-content: space-between; /* Distribuir los elementos a lo largo del eje principal (horizontalmente) */
-    align-items: center; /* Alinear los elementos verticalmente */
-  }
-  
-  /* Estilos para los iconos y la información de contacto */
-  .social-icons,
-  .contact-info {
-    display: flex; /* Alinear los elementos en una fila */
-    align-items: center; /* Alinear los elementos verticalmente */
-  }
-  
-  /* Espaciado entre los iconos y el texto */
-  .contact-info p {
-    margin-left: 10px; /* Espacio a la izquierda del texto */
-  }
-  
-  /* Estilos para los iconos */
-  svg {
-    width: 30px; /* Tamaño de los iconos */
-    height: 30px;
-    color: #fff; /* Color de los iconos */
-  }
+/* Estilos del contenedor del footer */
+.footer-container {
+  padding: 20px;
+  background-color: #a6a6a6; /* Fondo del footer */
+}
+
+/* Línea separadora */
+.line-separator {
+  width: 100%;
+  height: 2px; /* Grosor de la línea */
+  background-color:#080808; /* Color negro para la línea */
+  margin: 20px 0; /* Espacios arriba y abajo de la línea */
+}
+
+/* Contenido del footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.social-icons svg {
+  color: black; /* Color negro para los íconos */
+  margin-right: 10px;
+  font-size: 24px; /* Tamaño uniforme de los íconos */
+  width: 24px; /* Asegurar ancho uniforme */
+  height: 24px; /* Asegurar altura uniforme */
+}
+
+.contact-info {
+  display: flex;
+  align-items: center;
+}
+
+.contact-info svg {
+  color: black; /* Color negro para los íconos */
+  margin-right: 5px;
+  font-size: 24px; /* Tamaño uniforme del icono de correo */
+}
+
+.contact-info p {
+  margin: 0;
+  color: #333; /* Color del texto */
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+}
+
+.location-info svg {
+  color: black; /* Color negro para los íconos */
+  margin-right: 5px;
+  font-size: 24px; /* Tamaño uniforme del icono de ubicación */
+}
+
+.location-info p {
+  margin: 0;
+  color: #333; /* Color del texto */
+}
