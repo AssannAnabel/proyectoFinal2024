@@ -5,11 +5,12 @@ import Card from '../components/Card';
 import BarCategoryProducts from '../components/BarCategoryProducts';
 import { UserContext } from '../context/UserContext';
 import "../styles/Home.css";
+import Carousel from "../components/Carousel";
 
 function Home() {
-    const {products} = useContext(UserContext);
+    const { products } = useContext(UserContext);
 
-   
+
     const filterProducts = (category) => {
         if (Array.isArray(products)) {
             return products.filter(product => product.category === category).slice(0, 8);
@@ -29,15 +30,28 @@ function Home() {
     const productsForestacionYJardineria = filterProducts("Forestación y Jardinería");
     const productsAgriculturaDePrecision = filterProducts("Agricultura de Precisión");
 
+    const data = [
+        "/carrousel.jpg",
+        "/carrousel1.jpg",
+        "/carrousel2.jpg",
+        "/carrousel3.jpg",
+        "/carrousel4.jpg",
+        "/carrousel5.jpg",
+        "/carrousel6.jpg"
+    ];
     return (
         <>
             <Nav />
+            <div className="container-carousel">
+                <Carousel imagenes={data} />
+
+            </div>
             <BarCategoryProducts />
-        
+
 
             <div className="container-card-home">
-              
-            {productsFerreteria.map(product => (
+
+                {productsFerreteria.map(product => (
                     <div className="container-card-category" key={product.idProduct}>
                         <Card product={product} />
                     </div>

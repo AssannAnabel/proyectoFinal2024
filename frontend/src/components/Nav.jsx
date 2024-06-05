@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext';
-import { CartContext } from '../context/CartContext'; 
+import { CartContext } from '../context/CartContext';
 import { Logo } from "./Logo";
 import "../styles/Nav.css";
 import { FaShoppingCart } from "react-icons/fa";
@@ -10,7 +10,7 @@ import SearchResults from './SerchResult';
 
 function Nav() {
     const { user, handleLogout, products } = useContext(UserContext);
-    const { cart } = useContext(CartContext); 
+    const { cart } = useContext(CartContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
@@ -26,12 +26,13 @@ function Nav() {
         }
     }, [searchQuery, products]);
 
-    // Calcula el número total de artículos en el carrito
     const totalItemsInCart = cart.reduce((acc, item) => acc + item.quantity, 0);
+
     function idUpdate(e) {
         e.preventDefault();
         navigate(`/user-update/${user.id}`);
     }
+
     return (
         <>
             <div className="container-nav">
@@ -43,17 +44,17 @@ function Nav() {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <GoSearch />
+                 
                 </div>
                 <nav className="container-list">
                     <ul className='navList'>
                         <Link to={"/About"}><li>Nosotros</li></Link>
-                        <Link to={"/Contact"}><li>Contactos</li></Link>
+                        <Link to={"/Contact"}><li>Contacto</li></Link>
                         {user && user.name ? (
                             <>
                                 <Link to={"/cart"}>
                                     <li>
-                                        <FaShoppingCart style={{color:'black'}} /> ({totalItemsInCart})
+                                        <FaShoppingCart style={{ color: 'black' }} /> ({totalItemsInCart})
                                     </li>
                                 </Link>
                                 <Link to={""} onClick={idUpdate}><li>{user.name}</li></Link>

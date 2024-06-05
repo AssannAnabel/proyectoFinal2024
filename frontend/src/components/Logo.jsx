@@ -1,6 +1,6 @@
 import "../styles/Logo.css"
 import { Link } from "react-router-dom"
-import logo from "/agrotech-logo.png"
+import logo from "/agrotech.png"
 
 
 export function Logo() {

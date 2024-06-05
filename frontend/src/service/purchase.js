@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import logo from '/agrotech-logo.png';
+import logo from '/agrotech.png';
 
 export const handlePurchase = async (user, cart, clearCart) => {
     const data = cart.map((product) => ({
