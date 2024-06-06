@@ -72,8 +72,8 @@ function Home() {
                         </div>
                     ))}
                     
-                     {/* Agregamos el segundo carrusel aquí */}
-                     <div className="container-carousel-second">
+                    {/* Agregamos el segundo carrusel aquí */}
+                    <div className="container-carousel-second">
                         <Carousel imagenes={carousel} itemsToShow={4} className="img" />
                     </div>
 
@@ -87,8 +87,6 @@ function Home() {
                             <Card product={product} />
                         </div>
                     ))}
-
-                   
 
                     {productsRespuestosAgricolas.map(product => (
                         <div className="container-card-category" key={product.idProduct}>

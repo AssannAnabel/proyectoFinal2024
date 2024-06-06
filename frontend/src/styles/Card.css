@@ -8,6 +8,7 @@
     box-shadow: opx 1px 10px rgba(0,0,0,0.2);
     cursor: default;
     transition: all 400ms ease;
+    height: 300px;
    
 }
 
@@ -18,11 +19,13 @@
 .container-card img{
     width: 100px;
     height:100px;
+    padding-top: 5px;
 }
 .container-card p{
-    line-height: 1.5;
-    color: #6a6a6a;
-    background-color: #238491;
+  text-align: center;
+  text-decoration: none;
+ border-color: #126606;
+  border-style: solid ;
 }
 .container-card h3{
     font-weight: 400;
