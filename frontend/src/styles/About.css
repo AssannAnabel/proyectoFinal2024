@@ -1,13 +1,56 @@
 .about-container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
-.about-container p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
-   
+.text-and-images {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
 }
 
+.text-container {
+    flex: 1;
+    padding-right: 20px;
+    min-height: calc(100% - 40px); /* Ajusta la altura mínima del texto */
+}
+
+.text-container h1 {
+    text-align: center;
+    color: #126606;
+    
+}
+
+.text-container h2 {
+    text-align: left; /* Asegura que los h2 estén alineados a la izquierda */
+    color: #126606;
+    margin-left: 0; /* Asegura que no haya margen a la izquierda */
+}
+
+.vertical-line {
+    width: 1px;
+    height: 100%;
+    background-color: #a6a6a6; /* Color de la línea */
+    margin: 0 40px; /* Incrementa el margen izquierdo para mover la línea a la derecha */
+}
+
+.images-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinear las imágenes a la izquierda */
+    margin-left: 20px; /* Añade margen izquierdo para mover las imágenes a la derecha */
+}
+
+.images-container img {
+    max-width: 100%; /* Ajusta el tamaño de las imágenes al contenedor */
+    height: auto; /* Mantener la proporción de la imagen */
+    margin-bottom: 20px; /* Espacio entre las imágenes */
+}
+
+@media (min-height: 800px) {
+    .text-container {
+        min-height: 600px; /* Ajustar según la altura de las imágenes */
+    }
+}
