@@ -1,42 +1,81 @@
-
-.container {
+.carousel-container {
 	width: 100%;
-	height: 100%;
+	overflow: hidden;
+	position: relative;
+	margin-bottom: 20px; /* Agrega un margen inferior para separar los carruseles */
+  }
+  
+  .carousel-wrapper {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
-
-.slide {
-	max-width: 100%;
+	transition: transform 0.5s ease-in-out;
+	margin: 0 -10px; /* Agrega un margen negativo para compensar el margen en las diapositivas */
+  }
+  
+  .carousel-slide {
+	box-sizing: border-box;
+	text-align: center;
+	flex: 0 0 calc(50% / var(--items-to-show));
+	max-width: calc(50% / var(--items-to-show));
+	padding: 0 10px; /* Agrega un relleno para separar las imágenes */
+  }
+  
+  .carousel-slide img {
+	width: 100%;
 	height: auto;
-	opacity: 0;
-	transition: opacity 0.75s ease-in-out;
-  background-size: cover;
-}
-
-.slide.active {
-	opacity: 1;
-}
-.container-carousel {
-  position: relative;
-}
-
-.leftArrow,
-.rightArrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.5em;
-  color: white;
-  cursor: pointer;
-}
-
-.leftArrow {
-  left: 10px;
-}
-
-.rightArrow {
-  right: 10px;
-}
+  }
+  
+  .leftArrow,
+  .rightArrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 2em;
+	color: black;
+	cursor: pointer;
+	z-index: 1;
+	user-select: none;
+  }
+  
+  .leftArrow {
+	left: 10px;
+  }
+  
+  .rightArrow {
+	right: 10px;
+  }
+  ----------------------------------------
+  .carousel-container.second {
+	width: 50%; /* Ajusta el ancho del contenedor */
+	max-width: none; /* Restablece el ancho máximo */
+  }
+  
+  .carousel-wrapper.second {
+	display: flex;
+	transition: transform 0.5s ease-in-out;
+  }
+  
+  .carousel-slide.second {
+	box-sizing: border-box;
+	text-align: center;
+	flex: 0 0 50%; /* Ajusta el tamaño de cada diapositiva */
+	max-width: 50%; /* Limita el ancho máximo de cada diapositiva */
+  }
+  
+  .carousel-slide.second img {
+	width: 100%; /* Ajusta el ancho de las imágenes */
+	height: auto;
+  }
+  
+  .leftArrow.second,
+  .rightArrow.second {
+	font-size: 2em; /* Tamaño de la flecha */
+  }
+  
+  .leftArrow.second {
+	left: 10px; /* Posición de la flecha izquierda */
+  }
+  
+  .rightArrow.second {
+	right: 10px; /* Posición de la flecha derecha */
+  }
+  

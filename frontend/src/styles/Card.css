@@ -1,8 +1,6 @@
 .container-card {
     width: 100%;
     margin: 10px;
-    border-color: black;
-    border: solid;
     border-radius: 6px;
     overflow: hidden;
     text-align: center;

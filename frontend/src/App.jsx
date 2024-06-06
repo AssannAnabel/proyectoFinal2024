@@ -27,8 +27,7 @@ function App() {
         <Route path="user-update/:id" element={<Perfil/>} />    
         <Route path="products/:category" element={<Category/>} />
         <Route path="cart" element={<Cart />} />  
-        <Route path="shop" element={<Shop/>}  />
-    
+        <Route path="shop" element={<Shop/>}  />    
         <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
