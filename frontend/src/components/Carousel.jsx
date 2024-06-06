@@ -1,41 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
 import '../styles/Carousel.css';
 
+function Carousel({ imagenes, itemsToShow = 1 }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalItems = imagenes.length;
 
-function Carousel({ imagenes }) {
-  // Variables y Estados
-  // Variables y Estados
-  const [imagenActual, setImagenActual] = React.useState(0);
-  const cantidad = imagenes?.length;
-
-  // Return prematuro para evitar errores
-  if (!Array.isArray(imagenes) || cantidad === 0) return;
-
-  const siguienteImagen = () => {
-    setImagenActual(imagenActual === cantidad - 1 ? 0 : imagenActual + 1);
+  const nextImage = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = prevIndex + 1;
+      if (newIndex + itemsToShow > totalItems) {
+        return 0;
+      }
+      return newIndex;
+    });
   };
 
-  const anteriorImagen = () => {
-    setImagenActual(imagenActual === 0 ? cantidad - 1 : imagenActual - 1);
+  const prevImage = () => {
+    setCurrentIndex((prevIndex) => {
+      const newIndex = prevIndex - 1;
+      if (newIndex < 0) {
+        return totalItems - itemsToShow;
+      }
+      return newIndex;
+    });
   };
+
+  useEffect(() => {
+    const interval = setInterval(nextImage, 3000); // Cambia cada 3 segundos
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className={Carousel.container}>
-      <div className='leftArrow' onClick={anteriorImagen}>&#10092;</div>
-      <div className='rightArrow' onClick={siguienteImagen}>&#10093;</div>
+    <div className="carousel-container">
+      <div className="leftArrow" onClick={prevImage}>&#10092;</div>
+      <div className="rightArrow" onClick={nextImage}>&#10093;</div>
 
-      {imagenes.map((imagen, index) => {
-        return (
-          <div key={index} className={imagenActual === index ? `${Carousel.slide} ${Carousel.active}` : Carousel.slide}>
-            {imagenActual === index && (
-              <img key={index} src={imagen} alt="imagen" style={{ width: '100%' }} />
-            )}
+      <div className="carousel-wrapper" style={{ transform: `translateX(-${(currentIndex * 100) / itemsToShow}%)` }}>
+        {imagenes.map((imagen, index) => (
+          <div
+            key={index}
+            className="carousel-slide"
+            style={{ flex: `0 0 ${100 / itemsToShow}%` }}
+          >
+            <img src={imagen} alt={`Slide ${index}`} />
           </div>
-        );
-      })}
-
-
+        ))}
+      </div>
     </div>
   );
 }
