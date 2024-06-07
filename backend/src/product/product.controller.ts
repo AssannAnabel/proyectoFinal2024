@@ -66,9 +66,12 @@ export class ProductController {
     @Body() updateProductDto: UpdateProductDto,
     @UploadedFile() images: Express.Multer.File
   ): Promise<UpdateProductDto> {
-    console.log(images);
-    console.log('hola!');
-    updateProductDto.images = images.path;
+    if (!images) {
+      throw new HttpException(
+        { status: HttpStatus.BAD_REQUEST, error: 'Image file is required' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return await this.productService.updateProduct(id, updateProductDto);
   }
 

@@ -6,8 +6,8 @@ const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: async (req, file) => {
         return {
-            folder: './uploads-images',
-            format: 'jpg|jpeg|png|gif',
+            folder: 'Agrotech',
+            format: 'jpg',
             public_id: file.originalname
         }
     }
