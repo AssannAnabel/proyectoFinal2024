@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 import { Expose } from 'class-transformer'
-import { IsString, IsNumber, IsEnum, IsNotEmpty, MaxLength, MinLength, Length } from 'class-validator'
+import { IsString, IsNumber, IsEnum, IsNotEmpty, MaxLength, MinLength, Length, IsOptional, Matches } from 'class-validator'
 import { Category } from 'src/helpers/enums-type.enum'
 
 export class CreateProductDto {
@@ -31,10 +31,9 @@ export class CreateProductDto {
     @Expose()
     amount: number
 
+    @IsOptional()
     @IsString()
-    @Expose()
-    @MaxLength(255)
-    //@ApiProperty({ type: 'string', format: 'binary' })
+    @Matches(/\.(jpg|jpeg|png|gif)$/i, { message: 'Image must be a valid image format (jpg, jpeg, png, gif)' })
     images: string
 
 }

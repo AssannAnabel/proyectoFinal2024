@@ -8,6 +8,7 @@ import { Category } from 'src/helpers/enums-type.enum';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
+import { v2 as cloudinary } from 'cloudinary'
 
 @Injectable()
 export class ProductService {
@@ -17,7 +18,11 @@ export class ProductService {
     const query = await this.productRepository.findOne({ where: { product: createProductDto.product } })
     if (query) throw new HttpException({
       status: HttpStatus.CONFLICT, error: `el producto ${createProductDto.product} ya esta cargado en el sistema`
-    }, HttpStatus.CONFLICT)        
+    }, HttpStatus.CONFLICT)
+    const result = await cloudinary.uploader.upload(createProductDto.images, {
+      folder: './uploads-images'
+    })
+    createProductDto.images = result.secure_url;
     const newProduct = this.productRepository.create(createProductDto);
     return this.productRepository.save(newProduct)
   }
@@ -48,6 +53,10 @@ export class ProductService {
     console.log(updateProductDto);
 
     const updateUser = Object.assign(productFound, updateProductDto)
+    const result = await cloudinary.uploader.upload(updateProductDto.images, {
+      folder: './uploads-images'
+    })
+    updateProductDto.images = result.secure_url;
     return this.productRepository.save(updateUser)
   }
 
