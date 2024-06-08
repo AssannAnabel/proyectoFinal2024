@@ -32,6 +32,6 @@ export class UpdateProductDto extends PartialType(CreateProductDto) {
 
     @IsOptional()
     @IsString()
-    @Matches(/\.(jpg|jpeg|png|gif)$/i, { message: 'Image must be a valid image format (jpg, jpeg, png, gif)' })
+    //@Matches(/\.(jpg|jpeg|png|gif)$/i, { message: 'Image must be a valid image format (jpg, jpeg, png, gif)' })
     images?: string
 }

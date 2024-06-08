@@ -1,6 +1,7 @@
 import {
   Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, ParseIntPipe, ValidationPipe,
-  UsePipes, Query, UseInterceptors, UploadedFile, HttpException
+  UsePipes, Query, UseInterceptors, UploadedFile, HttpException,
+  Req
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -14,6 +15,9 @@ import {
   ApiNotFoundResponse, ApiTags, ApiUnauthorizedResponse
 } from '@nestjs/swagger';
 import { multerOptions } from 'src/multer/multer.config';
+import { v2 as cloudinary } from 'cloudinary'
+import { Request } from 'express';
+import * as path from 'path';
 
 @ApiTags('products')
 @Controller('product')
@@ -25,18 +29,56 @@ export class ProductController {
   @ApiBadRequestResponse({ description: 'Request not valid' })
   @ApiConflictResponse({ description: 'Product name already exist in the db' })
   @UsePipes(new ValidationPipe({ transform: true }))
-  @UseInterceptors(FileInterceptor('images', multerOptions))
   async create(
-    @Body() createProductDto: CreateProductDto, 
-    @UploadedFile() images: Express.Multer.File
+    @Body() createProductDto: CreateProductDto,
+    @Req() req: Request
   ): Promise<CreateProductDto> {
-    if (!images) {
+    if (!req.files || !req.files['images']) {
       throw new HttpException(
         { status: HttpStatus.BAD_REQUEST, error: 'Image file is required' },
         HttpStatus.BAD_REQUEST,
       );
     }
-    return this.productService.createProduct(createProductDto);
+
+    const file = req.files['images'];
+    const uploadPath = path.join(process.cwd(), 'uploads-images', file.name);
+
+    // Mueve el archivo a una ubicación temporal
+    await new Promise<void>((resolve, reject) => {
+      file.mv(uploadPath, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+
+    try {
+      console.log(file);
+
+      const result = await cloudinary.uploader.upload(uploadPath, {
+        public_id: `${Date.now()}`,
+        resource_type: "auto"
+      });
+      createProductDto.images = result.secure_url; // Actualiza el DTO con la URL de la imagen subida
+
+      // Elimina el archivo temporal después de la subida
+      //fs.unlinkSync(uploadPath);
+
+      return await this.productService.createProduct(createProductDto);
+
+    } catch (err) {
+      console.log("Error", err);
+      // Elimina el archivo temporal en caso de error
+      /* if (fs.existsSync(uploadPath)) {
+        fs.unlinkSync(uploadPath);
+      } */
+      throw new HttpException(
+        { status: HttpStatus.BAD_REQUEST, error: 'Failed to upload image' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   @Get()
@@ -60,20 +102,62 @@ export class ProductController {
   @ApiNotFoundResponse({ description: 'Product not found' })
   @ApiBadRequestResponse({ description: 'Request not valid' })
   @UsePipes(new ValidationPipe({ transform: true }))
-  @UseInterceptors(FileInterceptor('images', multerOptions))
   async update(
-    @Param('id', new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE })) id: number,
+    @Param('id') id: number,
     @Body() updateProductDto: UpdateProductDto,
-    @UploadedFile() images: Express.Multer.File
+    @Req() req: Request
   ): Promise<UpdateProductDto> {
-    if (!images) {
+    if (!req.files || !req.files['images']) {
       throw new HttpException(
         { status: HttpStatus.BAD_REQUEST, error: 'Image file is required' },
         HttpStatus.BAD_REQUEST,
       );
     }
-    return await this.productService.updateProduct(id, updateProductDto);
+
+    const file = req.files['images'];
+    const uploadPath = path.join(process.cwd(), 'uploads-images', file.name);
+
+    // Mueve el archivo a una ubicación temporal
+    await new Promise<void>((resolve, reject) => {
+      file.mv(uploadPath, (err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+
+    try {
+      console.log(file);
+
+      const result = await cloudinary.uploader.upload(uploadPath, {
+        public_id: `${Date.now()}`,
+        resource_type: "auto"
+      });
+
+      // Aquí puedes manejar la lógica de tu aplicación con el resultado de Cloudinary
+      updateProductDto.images = result.secure_url; // Actualiza el DTO con la URL de la imagen subida
+
+      // Elimina el archivo temporal después de la subida
+      //fs.unlinkSync(uploadPath);
+
+      return await this.productService.updateProduct(id, updateProductDto);
+
+    } catch (err) {
+      console.log("Error", err);
+      // Elimina el archivo temporal en caso de error
+      /* if (fs.existsSync(uploadPath)) {
+        fs.unlinkSync(uploadPath);
+      } */
+      throw new HttpException(
+        { status: HttpStatus.BAD_REQUEST, error: 'Failed to upload image' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
+
+
 
   @Delete(':id')
   @ApiNotFoundResponse({ description: 'Product not found' })
@@ -95,7 +179,9 @@ export class ProductController {
     }),
     fileFilter: fileFilter
   }))
-  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+  async uploadFile(
+    @UploadedFile() file: Express.Multer.File
+  ) {
     if (!file) {
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST, error: `No se proporcionó ningun archivo-`

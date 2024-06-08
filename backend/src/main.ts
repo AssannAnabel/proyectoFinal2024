@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
+import * as fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -14,6 +15,8 @@ async function bootstrap() {
     //para que el objeto enviado al controlador como body solo tenga las propiedades que se han definido en el DTO.
     forbidNonWhitelisted: true,
   }));
+
+  app.use(fileUpload({ usetempFiles: true }))
 
   const config = new DocumentBuilder()
     .setTitle('AgroTech')
