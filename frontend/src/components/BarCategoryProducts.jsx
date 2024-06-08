@@ -41,7 +41,7 @@ function BarCategoryProducts() {
                     <li onClick={()=>producsCategory("Energias renovables")}>Energias renovables <MdSolarPower /></li>
                     <li onClick={()=>producsCategory("Maquinaria agrícola")}>Maquinarias Agricolas <FaTractor /></li>
                     <li onClick={()=>producsCategory("Forestación y Jardinería")}>Forestacion y Jardinería <GiFarmer /> </li>
-                    <li onClick={()=>producsCategory("Agricultura de precision")}>Agricultura de precision <GiLaserPrecision /></li>
+                    <li onClick={()=>producsCategory("Agricultura de precision")}>Agricultura de precisión <GiLaserPrecision /></li>
 
                 </ul>
             </div>
