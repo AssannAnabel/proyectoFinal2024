@@ -1,8 +1,8 @@
 /* Asegurar el color de fondo del body */
 body {
   background-color: #a6a6a6;
-  margin: 0;
-  font-family: Arial, sans-serif;
+  margin-top: auto;
+  
 }
 
 /* Estilos del contenedor del footer */

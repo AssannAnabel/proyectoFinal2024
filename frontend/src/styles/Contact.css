@@ -1,5 +1,4 @@
 body {
-    font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     color: #333;
 }
@@ -8,9 +7,10 @@ body {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: #a6a6a6;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 4px solid #126606; 
 }
 
 .form-group {
@@ -28,6 +28,7 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+   
 }
 
 .textarea-contact {
@@ -38,7 +39,7 @@ body {
 }
 
 .btn-enviar-contacto {
-    background-color: #007bff;
+    background-color: #126606;
     color: #fff;
     border: none;
     padding: 12px 20px;
@@ -47,5 +48,5 @@ body {
 }
 
 .btn-enviar-contacto:hover {
-    background-color: #0056b3;
+    background-color: #126606;
 }
