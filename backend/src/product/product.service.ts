@@ -9,7 +9,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from 'fast-csv';
 import { v2 as cloudinary } from 'cloudinary'
-import axios from 'axios';
+import { parse } from '@fast-csv/parse';
 
 @Injectable()
 export class ProductService {
@@ -74,97 +74,7 @@ export class ProductService {
     return productFound
   }
 
-  private async uploadImage(imagePath: string): Promise<string> {
-    try {
-      const result = await cloudinary.uploader.upload(imagePath, {
-        folder: 'uploads-images',
-      });
-      return result.secure_url;
-    } catch (error) {
-      console.error(`Error uploading ${imagePath} to Cloudinary:`, error);
-      throw new Error('Failed to upload image to Cloudinary');
-    }
-  }
-
   async uploadProductsFromCsv(file: Express.Multer.File) {
-    const filePath = path.normalize(file.path);
-    let products = [];
-    let errorCount = 0;
-
-    const promise = new Promise((resolve, reject) => {
-      fs.createReadStream(filePath)
-        .pipe(csv.parse({ headers: true }))
-        .on('error', error => {
-          console.error(error);
-          reject({ status: 500, message: 'Error interno del servidor' });
-        })
-        .on('data', async (row: CreateProductDto) => {
-          try {
-            if (!this.isValidProduct(row)) {
-              console.error('Registro no válido:', row);
-              errorCount++;
-              return; // Saltar al siguiente registro
-            }
-
-            let imageUrl = row.images;
-            if (imageUrl.startsWith('')) {
-              // Descarga la imagen si es una URL
-              const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-              const tempImagePath = path.join(process.cwd(), 'uploads-images', path.basename(imageUrl));
-              fs.writeFileSync(tempImagePath, response.data);
-              imageUrl = await this.uploadImage(tempImagePath);
-              fs.unlinkSync(tempImagePath);
-            } else {
-              // Si es una ruta local, sube la imagen directamente
-              imageUrl = await this.uploadImage(path.join(process.cwd(), 'uploads-images', row.images));
-            }
-
-            products.push(
-              this.productRepository.create({
-                product: row.product,
-                description: row.description,
-                price: row.price,
-                category: row.category,
-                amount: row.amount,
-                images: imageUrl,
-              }),
-            );
-          } catch (error) {
-            console.error('Error procesando el producto:', error);
-            errorCount++;
-          }
-        })
-        .on('end', (rowCount: number) => {
-          console.log(`Se han guardado ${rowCount - errorCount} filas válidas en la base de datos`);
-          if (products.length > 0) {
-            fs.unlinkSync(filePath);
-            this.productRepository.save(products);
-            resolve({
-              status: HttpStatus.CREATED,
-              message: `Se han guardado ${rowCount - errorCount} filas válidas en la base de datos de forma exitosa.`,
-            });
-          } else {
-            console.log('No hay productos válidos para guardar');
-            reject({
-              status: HttpStatus.BAD_REQUEST,
-              message: 'No hay productos válidos para guardar',
-            });
-          }
-        });
-    });
-
-    try {
-      return await promise;
-    } catch (error) {
-      return {
-        status: HttpStatus.BAD_REQUEST,
-        message: 'Se encontró un error en uno de los registros. Corrija el error e intente nuevamente.',
-      };
-    }
-  }
-
-
-  /* async uploadProductsFromCsv(file: Express.Multer.File) {
     const filePath = path.normalize(file.path);
     let products = [];
     let errorCount = 0;
@@ -225,7 +135,6 @@ export class ProductService {
       };
     }
   }
-  */
 
   private isValidProduct(row: CreateProductDto): boolean {
     if (!row.amount

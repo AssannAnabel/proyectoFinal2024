@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as dotenv from 'dotenv';
-import * as fileUpload from 'express-fileupload';
+//import * as fileUpload from 'express-fileupload';
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
 
-  app.use(fileUpload({ usetempFiles: true }))
+  //app.use(fileUpload({ usetempFiles: true }))
 
   const config = new DocumentBuilder()
     .setTitle('AgroTech')

@@ -9,7 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { DATABASE_NAME, DB_TYPE, HOST, PORT, USER_DB_NAME, USER_DB_PASSWORD } from 'config';
 import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
-import { multerOptions } from './multer/multer.config';
+import  multerOptions  from './multer/multer.config';
 import { CloudinaryProvider } from './cloudinary/cloudinary.config';
 
 @Module({
