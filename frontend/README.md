@@ -1,8 +1,106 @@
-# React + Vite
+# Tp Final integrador 2024
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## AgroTech 
+*Insumos para el campo*
 
-Currently, two official plugins are available:
+***Integrantes:***
+ Fabricio Cordoba,
+ Emiliano Salazar, 
+ Anabel Assann
+ 
+ **Presentación:** 
+ Agrotech es un proyecto de plataforma de comercio electrónico diseñado para el sector agropecuario. Se ha desarrollado utilizando tecnologías modernas como React para frontend, NestJS para backend y MySQL como base de datos relacional. El objetivo principal de Agrotech es facilitar a los usuarios la compra de productos agropecuarios de manera eficiente y conveniente, así como brindar a los administradores herramientas para gestionar el inventario y mantener una comunicación efectiva con los clientes.
+ Realizamos este proyecto basándonos en un comercio con un nombre de fantasía, nuestra idea es poder reutilizar este proyecto y adaptarlo a cualquier otro rubro.
+ 
+ 
+ ***Proyecto realizado con:***  
+	 React,
+	 Nest.js,
+	  MySQL
+	  
+**1- Crear repositorio local. git init.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**2- iniciar proyecto en react.**
+
+    npm create vite@latest (nombre del proyecto) - -  - - template react
+
+**3- Node.js:** Entorno de ejecución para ejecutar aplicaciones Javascript.
+
+***Instalación de dependencia en Frontend:***
+
+**React-icons =>** `npm i react-icons` (Para poder utilizar los iconos de una manera visual en nuestra aplicación)
+
+**Router =>** `npm i react-router-dom` (para poder gestionar la navegación,facilitando la implementación de rutas)
+
+**SweetAlert2 =>** `npm i sweetalert2` (Libreria de javascript, para crear ventanas emergentes con un diseño más profesional)
+
+**react-tabs =>** `npm i react_tabs` (Librería para la creación de tabs, un componente de pestaña)
+
+**Utilizamos:**
+
+-   *Metodologia Agil* => **Scrum**
+    
+**Trello**=>https://trello.com/b/fRhmNjz5/tp-integrador-2024
+    
+-   *Característica: Responsive, adaptada a  dispositivos móviles.*
+    
+-   *Documentación de API con swagger.*
+ http://localhost:3000/agrotech-api
+    
+-    *Utilización de Postman.*
+
+
+
+
+## Frontend Usuarios:
+
+## 1. Navegación (Nav)
+
+ **Barra de búsqueda de los productos**
+- ***Nosotros***
+ - Qué es Agrotech
+ - Integrantes con sus datos 
+- ***Contacto***
+ - Formulario de Contacto
+  - ***Registrarse***
+ - Formulario de Registro
+ (necesario para poder realizar compras)
+- ***Iniciar Sesión***
+ - email y contraseña
+ 
+
+## 2. Página de Inicio (Home)
+- ***Categorías de Productos***
+ - Herramientas.
+ - Infraestructura.
+ - Repuestos Agrícolas.
+ - Forestación y Jardinería.
+ - Otros.
+***Foto del Producto con:***
+- Nombre.
+ - Precio.
+ - Cantidad disponible.
+ - Al hacer click en un producto, agrega descripción , poder elegir cantidad y botón Comprar.
+
+
+## 3. Carrito de Compras
+- Añadir Producto/s al Carrito.
+- Modificar Cantidad.
+- Eliminar Producto del Carrito.
+- Total a Pagar.
+- Vaciar Carrito.
+
+## 4. Proceso de Compra
+- Método de Pago.
+- Selección de Dirección de Envío.
+- Confirmación de Compra.
+- Resumen de Compra.
+
+
+## 5. Perfil de Usuario
+- Información Personal.
+- Editar sus datos.
+- Historial de Compras.
+
+
+
