@@ -1,57 +1,60 @@
-
-.container {
+.container-form-login {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height:60vh; /* Ajustar la altura del contenedor principal */
+    padding:30px;
 }
-
 
 .form {
-    width: 300px;
+    width: 100%; /* Mantiene el formulario al 100% del contenedor */
+    max-width: 300px; /* Ancho máximo del formulario */
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 20px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del formulario */
+    min-height: 300px; /* Altura mínima del formulario */
 }
-
 
 label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    width: 100%; /* Para que las etiquetas ocupen todo el ancho del formulario */
+    text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
 }
 
-
 input {
-    width: 100%;
+    width: 100%; /* Ocupa todo el ancho del formulario */
+    max-width: 250px; /* Ancho máximo de los inputs */
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-
 .error-message {
     color: red;
     margin-top: 10px;
+    text-align: center; /* Centra el texto de error */
 }
 
-
-button {
-    width: 100%;
+.button-iniciar {
+    width: 100%; /* Ocupa todo el ancho del formulario */
+    max-width: 150px; /* Ancho máximo reducido para el botón */
     padding: 10px;
-    background-color: #007bff;
+    background-color: #126606;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px; /* Añadir espacio en la parte superior */
 }
 
-
-.btn-registrarme {
-    background-color: #28a745;
+.button-iniciar:hover{
+    background-color: #218838;
 }
-
-
