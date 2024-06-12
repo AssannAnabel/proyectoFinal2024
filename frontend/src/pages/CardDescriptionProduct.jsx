@@ -91,14 +91,15 @@ function CardDescriptionProduct() {
                     <div className="container-img">
                         <img src={product.images} alt={product.product} />
                     </div>
-                    <div>
+                    <div className='container-detalles'>
+                
                         <div className='container-precio'>
                             <span>Precio: $ {product.price}</span>
                             <span>Disponible: {product.amount}</span>
                         </div>
                         <div className='container-button'>
-                            <button onClick={handleAddToCart}>Añadir al carrito</button>
-                            <button onClick={handleDirectPurchase}>Comprar Ahora</button>
+                            <button className="button-des" onClick={handleAddToCart}>Añadir al carrito</button>
+                            <button className="button-des" onClick={handleDirectPurchase}>Comprar Ahora</button>
                             <div className='container-quantity-product'>
                                 <button onClick={() => handleQuantityChange(-1)}>-</button>
                                 <p>{quantity}</p>
@@ -106,10 +107,10 @@ function CardDescriptionProduct() {
                             </div>
                         </div>
                         <div className='container-span'>
-                            <span><MdPriceCheck /> Precio sin Iva incluido</span>
-                            <span><IoIosCard />Facilidad de pago</span>
-                            <span><FaShippingFast />Envíos a todo el país</span>
-                            <span><MdEmail />Para más información somos.agrotech@gmail.com</span>
+                            <span><MdPriceCheck className='icon-det'/> Precio sin Iva incluido</span>
+                            <span><IoIosCard className='icon-det'/>Facilidad de pago</span>
+                            <span><FaShippingFast className='icon-det'/>Envíos a todo el país</span>
+                            <span><MdEmail className='icon-det'/>Para más información somos.agrotech@gmail.com</span>
                         </div>
                     </div>
                 </div>
