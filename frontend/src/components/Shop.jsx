@@ -9,9 +9,9 @@ const Shop = () => {
     const { user } = useContext(UserContext);
 
     return (
-        <div>
-            <button onClick={() => handlePurchase(user, cart, clearCart)}>Comprar</button>
-        </div>
+        <>
+            <button className="button-shop"onClick={() => handlePurchase(user, cart, clearCart)}>Comprar</button>
+        </>
     );
 };
 

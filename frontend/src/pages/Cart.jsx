@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { Logo } from '../components/Logo';
 import '../styles/Cart.css';
 import Shop from '../components/Shop';
 import { isExcedMax } from '../service/util';
 import Swal from 'sweetalert2';
+import { FaShoppingCart } from "react-icons/fa";
+import Nav from '../components/Nav';
 
 const Cart = () => {
     const { cart, removeProductFromCart, updateProductQuantity, clearCart } = useContext(CartContext);
@@ -14,7 +15,6 @@ const Cart = () => {
         setSaveCart(cart);
     }, [cart]);
 
-    // Calcula el total del carrito
     const calculateTotal = () => {
         return saveCart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
     };
@@ -39,49 +39,71 @@ const Cart = () => {
     };
 
     return (
-        <div className="cart-container">
-            <div className="cart-header">
-                <Logo />
+        <div className="cart-page">
+            <Nav />
+            <div className="cart-container">
+                <div className='contenido-cart'> 
+                    <div className="cart-title">
+                        <h1>Tu Carrito</h1>
+                        <FaShoppingCart className="cart-icon" />
+                    </div>
+                    {cart.length === 0 ? (
+                        <p>El carrito está vacío</p>
+                    ) : (
+                        <ul className="cart-list">
+                            {cart.map((item) => (
+                                <li key={item.idProduct} className="cart-item">
+                                    <div className="cart-item-info">
+                                        <p>Producto: {item.product}</p>
+                                        <img src={item.images} alt={item.product} />
+                                        <p>Precio: ${item.price}</p>
+                                        <p>Cantidad: {item.quantity}</p>
+                                    </div>
+                                    <div className="cart-item-actions">
+                                        <button 
+                                            className="quantity-button increase-quantity" 
+                                            onClick={() => {
+                                                if (!isExcedMax(item.quantity + 1, item.amount)) {
+                                                    handleUpdateQuantity(item.idProduct, item.quantity + 1);
+                                                } else {
+                                                    Swal.fire({
+                                                        title: 'Stock insuficiente',
+                                                        text: 'No hay suficiente stock de este producto.',
+                                                        icon: 'error',
+                                                        confirmButtonText: 'Ok'
+                                                    });
+                                                }
+                                            }}
+                                        >
+                                            +
+                                        </button>
+                                        <button 
+                                            className="quantity-button decrease-quantity" 
+                                            onClick={() => handleUpdateQuantity(item.idProduct, item.quantity - 1)}
+                                        >
+                                            -
+                                        </button>
+                                        <button 
+                                            className="remove-button" 
+                                            onClick={() => removeProductFromCart(item.idProduct)}
+                                        >
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                    {cart.length > 0 && (
+                        <> <div className='shop-end'>
+                            <h2 className="total">Total de la compra: ${calculateTotal()}</h2>
+                            <Shop />
+                            <button className="clear-cart-button" onClick={clearCart}>Vaciar carrito</button>
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
-            <h2>Carrito de compras</h2>
-            {cart.length === 0 ? (
-                <p>El carrito está vacío</p>
-            ) : (
-                <ul className="cart-list">
-                    {cart.map((item) => (
-                        <li key={item.idProduct} className="cart-item">
-                            <div className="cart-item-info">
-                                <p>Producto: {item.product}</p>
-                                <p><img src={item.images} alt={item.product} /></p>
-                                <p>Precio: ${item.price}</p>
-                                <p>Cantidad: {item.quantity}</p>
-                            </div>
-                            <div className="cart-item-actions">
-                                <button onClick={() => {
-                                    if (!isExcedMax(item.quantity + 1, item.amount)) {
-                                        handleUpdateQuantity(item.idProduct, item.quantity + 1);
-                                    } else {
-                                        Swal.fire({
-                                            title: 'Stock insuficiente',
-                                            text: 'No hay suficiente stock de este producto.',
-                                            icon: 'error',
-                                            confirmButtonText: 'Ok'
-                                        });
-                                    }
-                                }}>+</button>
-                                <button onClick={() => handleUpdateQuantity(item.idProduct, item.quantity - 1)}>-</button>
-                                <button onClick={() => removeProductFromCart(item.idProduct)}>Eliminar</button>
-                            </div>
-                        </li>
-                    ))}
-                    <button onClick={clearCart}>Vaciar carrito</button>
-                    <p>Total de la compra: ${calculateTotal()}</p>
-
-                    <Shop />
-
-                </ul>
-            )}
-            
         </div>
     );
 };

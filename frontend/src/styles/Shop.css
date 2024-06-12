@@ -1,30 +1,5 @@
-.purchase-details{
-    width: 100%;
-    text-align: center;
-   
-}
-
-
-
-.purchase-details ul {
-    flex-direction: row;
-    text-decoration: none;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+.button-shop{
+    background-color:#126606;
+    width: 40% ;
     
-}
-
-.purchase-details li{
-   
-    width: 30%;
-    padding-right: 30px;
-    border: solid black 1px;
-      
-}
-
-.custom-image-class {
-    width: 150px;
-   border-radius: 30%;
 }
