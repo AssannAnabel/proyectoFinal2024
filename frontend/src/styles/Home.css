@@ -1,14 +1,32 @@
 .cards-container{
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* Seis columnas para las tarjetas */
-  grid-column: span 7; /* Ocupar siete columnas */
+  grid-column: span 6; /* Ocupar siete columnas */
   gap: 20px; /* Espacio entre las tarjetas */
-  background-color: #a6a6a6;
-  padding-right: 20px;
-  margin-bottom: 5px; 
-  padding-bottom: 20px;
-  margin-left: 50px;
-  margin-right: 50px;
+  background-color: #e9ecef;
+  padding: 0px 20px 0px 0px;
+  border-radius: 8px;
+}
+
+.container-cards{
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.whith{
+  background-color: white;
+  padding: 5px;
+  border-radius: 8px;
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: o 4px 12 px rgba(0,0,0,0.1);
+  flex-grow: 1;
+}
+
+.container-card-cat{
+height: 400px;
 }
 
 

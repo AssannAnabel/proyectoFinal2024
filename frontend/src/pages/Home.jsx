@@ -84,6 +84,7 @@ function Home() {
             <BarCategoryProducts />
 
             <div className="container-cards">
+                <div className="whith">
                 <div className="cards-container">
                     {productsFerreteria.map(product => (
                         <div className="container-card-cat" key={product.idProduct}>
@@ -157,7 +158,7 @@ function Home() {
                         </div>
                     ))}
                 </div>
-                
+                </div>
                 
                
             </div>

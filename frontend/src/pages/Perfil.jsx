@@ -7,7 +7,6 @@ import Footer from '../components/Footer.jsx';
 import Nav from '../components/Nav.jsx';
 import '../styles/Perfil.css';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
 import Swal from 'sweetalert2';
 
 function Perfil() {
