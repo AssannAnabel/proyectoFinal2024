@@ -1,0 +1,23 @@
+.container-card-home {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Ocho columnas en total */
+    gap: 25px; /* Espacio entre las tarjetas */
+    width: 100%; /* Ancho completo */
+    padding: 20px; /* Espaciado interior */
+    box-sizing: border-box; /* Incluir los paddings en el cálculo del ancho */
+    background-color: white;
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+  
+
+.container-card-category{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Seis columnas para las tarjetas */
+    grid-column: span 7; /* Ocupar siete columnas */
+    gap: 20px; /* Espacio entre las tarjetas */
+    background-color: #a6a6a6;
+    padding-right: 20px;
+    margin-bottom: 5px; 
+    padding-bottom: 20px;
+}

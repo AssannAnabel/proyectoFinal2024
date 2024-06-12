@@ -1,54 +1,17 @@
-/* Estilo general para el contenedor de tarjetas */
-.container-card-home {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr); /* Ocho columnas en total */
-  gap: 25px; /* Espacio entre las tarjetas */
-  width: 100%; /* Ancho completo */
-  padding: 20px; /* Espaciado interior */
-  box-sizing: border-box; /* Incluir los paddings en el cálculo del ancho */
-  background-color: #515050;
-}
-
-/* Contenedor para las tarjetas */
-.cards-container {
+.cards-container{
   display: grid;
   grid-template-columns: repeat(6, 1fr); /* Seis columnas para las tarjetas */
   grid-column: span 7; /* Ocupar siete columnas */
   gap: 20px; /* Espacio entre las tarjetas */
   background-color: #a6a6a6;
   padding-right: 20px;
+  margin-bottom: 5px; 
+  padding-bottom: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
-/* Estilo para la columna de la publicidad */
-.ad-column {
-  grid-column: 8 / span 1; /* La publicidad ocupará la última columna */
-  position: relative; /* Posicionamiento relativo */
-  top: 0; /* Alinear la publicidad en la parte superior */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-}
 
-/* Estilos para cada tarjeta dentro del contenedor */
-.container-card-category {
-  width: 100%; /* Ancho completo de la tarjeta */
-}
-
-/* Estilo general para las tarjetas */
-.container-card-category .card {
-  width: 100%; /* Asegúrate de que las tarjetas ocupen el ancho completo */
-  padding: 10px; /* Espaciado interno para las tarjetas */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
-  border-radius: 8px; /* Bordes redondeados */
-  background-color: #fff; /* Fondo blanco */
-}
-
-/* Imagen de publicidad */
-.imge-add {
-  width: 100%;
-  height: auto;
-}
 
 /* Segundo carrusel */
 .container-carousel-second {
@@ -56,15 +19,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 99%; /* Ancho del segundo carrusel */ 
-  height: 220px; /* Altura reducida del carrusel */
-  border-color: #126606;
-  border-style: solid;
+  width: 98%; /* Ancho del segundo carrusel */
+  height: 180px; /* Altura reducida del carrusel */
   background-color: white;
-  padding-top: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 3px;
+  padding: 20px 10px;
+  margin-left: 10px;
+ 
+}
+
+/* Tercer carrusel */
+.container-carousel-ter {
+  grid-column: span 6; /* Ocupa las seis columnas de las tarjetas */
+  width: 98%; /* Ancho del segundo carrusel */
+  height: 80px; /* Altura reducida del carrusel */
+  background-color: white;
+  padding: 20px 10px;
+  margin-left: 10px;
+}
+
+.container-carousel-ter img {
+  margin-left: 50px;
+  margin-right: 20px;
 }
 
 .carousel-container {
@@ -91,7 +66,6 @@
   width: 100%;
   height: 100%; /* Ajusta el valor de altura según tus necesidades */
   object-fit: contain; /* Ajustar la imagen dentro del contenedor */
-  
 }
 
 .leftArrow, .rightArrow {
