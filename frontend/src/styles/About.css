@@ -1,56 +1,64 @@
-.about-container {
-    padding: 20px;
+.main-content {
     display: flex;
     justify-content: center;
+    padding:30px;
+}
+
+.about-container {
+    max-width: 1200px;
+    width: 100%;
 }
 
 .text-and-images {
     display: flex;
-    align-items: flex-start;
-    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: -20px;
 }
 
 .text-container {
     flex: 1;
-    padding-right: 20px;
-    min-height: calc(100% - 40px); /* Ajusta la altura mínima del texto */
+    padding: 0; /* Reduce el padding a los lados izquierdo y derecho */
+    margin-left:-20px; /* Ajustar margen derecho para separar del borde de la imagen */
 }
 
-.text-container h1 {
-    text-align: center;
-    color: #126606;
-    
+.text-container h1,
+.text-container h2,
+.text-container p {
+    margin-bottom: 20px; /*espacio entre los textos */
 }
-
-.text-container h2 {
-    text-align: left; /* Asegura que los h2 estén alineados a la izquierda */
-    color: #126606;
-    margin-left: 0; /* Asegura que no haya margen a la izquierda */
+.text-container h1,h2{
+    color:#126606;
+}
+.text-container p{
+    font-size: 20px;
+}
+.text-container p + p {
+    margin-top: 20px; /* Añade espacio entre párrafos consecutivos */
 }
 
 .vertical-line {
     width: 1px;
-    height: 100%;
-    background-color: #a6a6a6; /* Color de la línea */
-    margin: 0 40px; /* Incrementa el margen izquierdo para mover la línea a la derecha */
+    background-color: #ccc;
+    margin: 0 20px;
 }
 
 .images-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinear las imágenes a la izquierda */
-    margin-left: 20px; /* Añade margen izquierdo para mover las imágenes a la derecha */
+    align-items: center;
+    justify-content: space-around; /* Distribuye uniformemente las imágenes */
 }
 
 .images-container img {
-    max-width: 100%; /* Ajusta el tamaño de las imágenes al contenedor */
-    height: auto; /* Mantener la proporción de la imagen */
-    margin-bottom: 20px; /* Espacio entre las imágenes */
+    max-width: 100%;
+    margin-bottom: 20px; /* Añade espacio debajo de cada imagen */
 }
 
-@media (min-height: 800px) {
-    .text-container {
-        min-height: 600px; /* Ajustar según la altura de las imágenes */
-    }
+.card-emiliano,
+.card-fabricio,
+.card-anabel {
+    width: 100%; /* Ajusta el ancho de las imágenes al contenedor */
+    max-width: 300px; /* Ancho máximo de las imágenes */
 }
