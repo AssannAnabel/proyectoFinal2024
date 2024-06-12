@@ -7,6 +7,7 @@ import { UserContext } from '../context/UserContext';
 import "../styles/Home.css";
 import Carousel from "../components/Carousel";
 
+
 function Home() {
     const { products } = useContext(UserContext);
 
@@ -53,8 +54,26 @@ function Home() {
         "/Arag-marca-s.jpg",
         "/Metabo-Banner-Marca.jpg",
         "/Bahco-marca-s.jpg"
-     
     ];
+
+  
+    const carouselVertical=[
+        "/casse.png",
+        "/dewalt.png",
+        "/johndeere.png",
+        "/newholland.jpg",
+        "/skil.png",
+        "/stanley.jpg",
+        "/sthill.png",
+        "/bosh.png",
+        "/ferguson.png",
+        "/karcher.png",
+        "/lusatoff.jpg",
+        "/trimble.png",
+        "/viesa.jpg",
+        "/vigia.png"
+    ]
+    
 
     return (
         <>
@@ -64,13 +83,15 @@ function Home() {
             </div>
             <BarCategoryProducts />
 
-            <div className="container-card-home">
+            <div className="container-cards">
                 <div className="cards-container">
                     {productsFerreteria.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
+                    
+               
                     
                     {/* Agregamos el segundo carrusel aquí */}
                     <div className="container-carousel-second">
@@ -78,62 +99,66 @@ function Home() {
                     </div>
 
                     {productsRopaDeTrabajo.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsTranqueras.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
-
                     {productsRespuestosAgricolas.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsEquipamientosVehiculos.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
+                     <div className="container-carousel-ter">
+                        <Carousel imagenes={carouselVertical} itemsToShow={4} className="img" />
+                    </div>
                     {productsPulverizacion.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsConstruccion.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsInfraestructura.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsEnergiasRenovables.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsMaquinariaAgricola.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsForestacionYJardineria.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                     {productsAgriculturaDePrecision.map(product => (
-                        <div className="container-card-category" key={product.idProduct}>
+                        <div className="container-card-cat" key={product.idProduct}>
                             <Card product={product} />
                         </div>
                     ))}
                 </div>
+                
+                
                
             </div>
             <Footer />

@@ -1,38 +1,77 @@
+/* Contenedor principal de la tarjeta */
 .container-card {
-    width: 100%;
-    margin: 10px;
-    border-radius: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+    cursor: pointer;
+    width: 100%;
+    height: 100%; /* Para asegurar que todas las tarjetas tengan la misma altura */
+    box-sizing: border-box;
+    background-color: white;
+}
+
+/* Estilo para la imagen */
+.container-card figure {
+    width: 100%;
+    height: 200px; /* Altura fija para la imagen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container-card figure img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Para que la imagen cubra el área del contenedor sin deformarse */
+}
+
+/* Contenido de la tarjeta */
+.contenido-card {
     text-align: center;
-    background: #fff;
-    box-shadow: opx 1px 10px rgba(0,0,0,0.2);
-    cursor: default;
-    transition: all 400ms ease;
-    height: 300px;
-   
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    box-sizing: border-box;
 }
 
-.container-card:hover{
-    box-shadow: 5px 5px 20px rgba(0,0, 0,4);
-    transform: translateY(-3%);
-}
-.container-card img{
-    width: 100px;
-    height:100px;
-    padding-top: 5px;
-}
-.container-card p{
-  text-align: center;
-  text-decoration: none;
- border-color: #126606;
-  border-style: solid ;
-}
-.container-card h3{
-    font-weight: 400;
-    margin-bottom: 10px;
+/* Estilo para el título del producto */
+.contenido-card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
 }
 
-/* .container-card {
-    width: calc(25% - 10px); 
-    margin-bottom: 10px;
-} */
+/* Estilo para el texto de disponibilidad */
+.contenido-card h3 {
+    font-size: 1.2em;
+    color: green;
+}
+
+/* Estilo para el precio del producto */
+.contenido-card h2:nth-of-type(2) {
+    font-size: 1.5em;
+    color: black;
+}
+
+/* Estilo para el texto de envío gratuito */
+.contenido-card p {
+    font-size: 1em;
+    color:black;
+    text-align: center;
+}
+
+/* Estilo de transición cuando se hace hover en la tarjeta */
+.container-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

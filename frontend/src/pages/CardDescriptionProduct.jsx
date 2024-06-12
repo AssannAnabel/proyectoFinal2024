@@ -109,7 +109,7 @@ function CardDescriptionProduct() {
                             <span><MdPriceCheck /> Precio sin Iva incluido</span>
                             <span><IoIosCard />Facilidad de pago</span>
                             <span><FaShippingFast />Envíos a todo el país</span>
-                            <span><MdEmail />Para más información agrotech@gmail.com</span>
+                            <span><MdEmail />Para más información somos.agrotech@gmail.com</span>
                         </div>
                     </div>
                 </div>

@@ -1,45 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import '../styles/VerticalCarousel.css';
 
-class VerticalCarousel extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            currentIndex: 0
-        };
-    }
+function VerticalCarousel({ imagenes }) {
+  const [imagenActual, setImagenActual] = useState(0);
+  const cantidad = imagenes.length;
 
-    componentDidMount() {
-        this.startAutoSlide();
-    }
+  if (!Array.isArray(imagenes) || cantidad === 0) return null;
 
-    componentWillUnmount() {
-        clearInterval(this.autoSlideInterval);
-    }
+  const siguienteImagen = () => {
+    setImagenActual((prev) => (prev + 1) % cantidad);
+  };
 
-    startAutoSlide = () => {
-        this.autoSlideInterval = setInterval(() => {
-            this.setState(prevState => ({
-                currentIndex: (prevState.currentIndex + 1) % this.props.imagenes.length
-            }));
-        }, 3000); // Cambia cada 3 segundos
-    }
+  const anteriorImagen = () => {
+    setImagenActual((prev) => (prev - 1 + cantidad) % cantidad);
+  };
 
-    render() {
-        const { imagenes } = this.props;
-        const { currentIndex } = this.state;
-        
-        return (
-            <div className="vertical-carousel">
-                <img src={imagenes[currentIndex]} alt={`Carousel image ${currentIndex}`} className="carousel-image" />
-            </div>
-        );
-    }
+  useEffect(() => {
+    const intervalo = setInterval(siguienteImagen, 3000); // Cambia cada 3 segundos
+    return () => clearInterval(intervalo);
+  }, [imagenActual, cantidad]);
+
+  return (
+    <div className="vertical-carousel-container">
+      <div className="upArrow" onClick={anteriorImagen}>&#10094;</div>
+      <div className="downArrow" onClick={siguienteImagen}>&#10095;</div>
+
+      <div className="vertical-carousel-wrapper" style={{ transform: `translateY(-${imagenActual * (100 / cantidad)}%)` }}>
+
+        {imagenes.map((imagen, index) => (
+          <div key={index} className="vertical-carousel-slide">
+            <img src={imagen} alt={`Slide ${index}`} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
-
-VerticalCarousel.propTypes = {
-    imagenes: PropTypes.arrayOf(PropTypes.string).isRequired
-};
 
 export default VerticalCarousel;

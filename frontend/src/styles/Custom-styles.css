@@ -1,0 +1,67 @@
+/* Archivo: custom-styles.css */
+
+.custom-popup {
+    padding: 20px;
+    background-color: #f4f4f4; /* Color de fondo */
+    border-radius: 10px; /* Bordes redondeados */
+    max-width: 1000px; /* Ancho máximo */
+}
+
+.custom-title {
+    font-size: 24px;
+    color: #333; /* Color del título */
+    margin-bottom: 5px;
+    border-color: #126606;
+    border-style: solid;
+    padding-top: 5px;
+}
+.custom-image{
+    width: 90%;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.custom-html-container {
+    text-align: left; /* Alineación del contenido HTML */
+    font-size: 16px;
+    color: #555;
+}
+
+.custom-confirm-button {
+    background-color: #126606  !important; /* Color del botón de confirmación */
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.custom-cancel-button {
+    background-color: #a6a6a6; /* Color del botón de cancelación */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.custom-input {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc; /* Borde de los campos de entrada */
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.custom-select {
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc; /* Borde de los campos de selección */
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.purchase-details{
+    padding-top: 1px;
+}
