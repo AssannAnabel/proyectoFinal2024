@@ -43,17 +43,7 @@ input {
     text-align: center; /* Centra el texto de error */
 }
 
-.button-iniciar {
-    width: 100%; /* Ocupa todo el ancho del formulario */
-    max-width: 150px; /* Ancho máximo reducido para el botón */
-    padding: 10px;
-    background-color: #126606;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px; /* Añadir espacio en la parte superior */
-}
+
 
 .button-iniciar:hover{
     background-color: #218838;
