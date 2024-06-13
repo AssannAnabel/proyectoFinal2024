@@ -1,15 +1,12 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { UserContext } from '../context/UserContext.jsx';
 import Nav from '../components/Nav';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import Footer from '../components/Footer.jsx';
 
 function Login() {
     const { handleLogin } = useContext(UserContext);
-
     const [userLogin, setUserLogin] = useState({ email: '', password: '' });
     const notificacionRef = useRef(null);
     const navigate = useNavigate();
@@ -60,7 +57,7 @@ function Login() {
                     <label htmlFor="password">Contraseña</label>
                     <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' onChange={handleChange} />
                     <p id="notificacion" ref={notificacionRef}></p>
-                    <button type='submit'>Iniciar sesión</button>
+                    <button className="button-iniciar" type='submit'>Iniciar sesión</button>
                 </form>
             </div>
             <Footer />
