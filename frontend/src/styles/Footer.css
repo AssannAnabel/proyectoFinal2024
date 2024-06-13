@@ -1,26 +1,8 @@
-/* Asegurar el color de fondo del body */
-body {
-  background-color: #a6a6a6;
-  margin-top: auto;
-  
-}
-
-/* Estilos del contenedor del footer */
-.footer-container {
-  padding: 20px;
-  background-color: #a6a6a6; /* Fondo del footer */
-}
-
-/* Línea separadora */
-.line-separator {
-  width: 100%;
-  height: 1px; /* Grosor de la línea */
-  background-color:#080808; /* Color negro para la línea */
-  margin: 20px 0; /* Espacios arriba y abajo de la línea */
-}
-
 /* Contenido del footer */
 .footer-content {
+  padding: 20px;
+  border-top: #080808 solid 1px;
+ background-color: #a6a6a6;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -53,6 +35,7 @@ body {
 .contact-info p {
   margin: 0;
   color: #333; /* Color del texto */
+  font-size: 18px;
 }
 
 .location-info {
@@ -69,4 +52,5 @@ body {
 .location-info p {
   margin: 0;
   color: #333; /* Color del texto */
+  font-size: 18px;
 }

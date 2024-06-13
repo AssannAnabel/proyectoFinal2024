@@ -3,6 +3,7 @@ import logo from '/agrotech.png';
 import "../styles/Custom-styles.css"
 
 
+
 export const handlePurchase = async (user, cart, clearCart) => {
     const data = cart.map((product) => ({
         idProduct: product.idProduct,
@@ -128,7 +129,7 @@ export const handlePurchase = async (user, cart, clearCart) => {
                     icon: 'success',
                     confirmButtonText: 'Ok'
                 }).then(() => {
-                    window.location.reload(); // Recarga la página después de que el usuario haga clic en "Ok"
+                    window.location.href="/"; // Recarga la página después de que el usuario haga clic en "Ok"
                 });
             }
         } else {

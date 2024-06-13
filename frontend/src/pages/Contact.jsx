@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-import { FaPhone } from "react-icons/fa6";
-import { FaMapLocationDot } from "react-icons/fa6";
+
 import contact from "/contact.jpg"
 import contacto from "/contacto.jpg"
 import '../styles/Contact.css';

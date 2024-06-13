@@ -10,6 +10,36 @@
   padding: 20px;
 }
 
+/* Estilos para las pestañas */
+.react-tabs__tab-list {
+  margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  border-bottom: 1px solid #ddd;
+}
+
+.react-tabs__tab {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #f8f9fa; /* Color de fondo de las pestañas */
+  border: 1px solid #ddd;
+  border-bottom: none;
+  margin-right: 5px;
+  transition: background-color 0.3s;
+}
+
+.react-tabs__tab:hover {
+  background-color: #e9ecef; /* Color de fondo al pasar el mouse */
+}
+
+.react-tabs__tab--selected {
+  background-color: #fff;
+  border-bottom: 2px solid #007bff;
+  color: #126606;
+  font-weight: bold;
+}
+
 .user-profile, .purchase-history {
   padding: 20px;
   background-color: #fff;
@@ -26,19 +56,19 @@
 
 .user-profile button, .purchase-history button {
   margin-top: 10px;
-  padding: 8px 16px; /* Adjust button size */
-  font-size: 14px; /* Adjust font size */
+  padding: 8px 16px; /* Ajustar tamaño del botón */
+  font-size: 14px; /* Ajustar tamaño de fuente */
   cursor: pointer;
-  background-color: #126606; /* Change button color */
+  background-color: #126606; /* Cambiar color del botón */
   color: #fff;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s;
-  width: auto; /* Make button auto-width */
+  width: auto; /* Hacer que el botón tenga ancho automático */
 }
 
 .user-profile button:hover, .purchase-history button:hover {
-  background-color: #0a4404; /* Change hover color */
+  background-color: #0a4404; /* Cambiar color al pasar el mouse */
 }
 
 .form {
@@ -104,20 +134,4 @@
 .puserchase {
   width: 100%;
   overflow-x: auto;
-}
-
-.react-tabs__tab-list {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-
-.react-tabs__tab {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.react-tabs__tab--selected {
-  border-bottom: 2px solid #007bff;
-  color: #007bff;
-  font-weight: bold;
 }
