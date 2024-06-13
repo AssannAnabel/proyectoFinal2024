@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import { FaPhone } from "react-icons/fa6";
+import { FaMapLocationDot } from "react-icons/fa6";
+import contact from "/contact.jpg"
+import contacto from "/contacto.jpg"
 import '../styles/Contact.css';
 
 function Contact() {
@@ -41,62 +45,78 @@ function Contact() {
     return (
         <>
             <Nav />
-            <div className="container">
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label className='label-contact' htmlFor="name">Nombre</label>
-                        <input
-                            className='input-contact'
-                            type="text"
-                            name='name'
-                            id='name'
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
+            <div className='contact-general'>
+                <div className='contact-icons'>
+                    
+                    <div className='telefono'>
+                        <img src={contact} alt="logo" className="imgContact" />                
                     </div>
 
-                    <div className="form-group">
-                        <label className='label-contact' htmlFor="email">Email</label>
-                        <input
-                            className='input-contact'
-                            type="email"
-                            name='email'
-                            id='email'
-                            value={formData.email}
-                            onChange={handleChange}
-                            required
-                        />
+                    <div className='telefono'>
+                        <img src={contacto} alt="logo" className="imgContact" />     
                     </div>
 
-                    <div className="form-group">
-                        <label className='label-contact' htmlFor="subject">Asunto</label>
-                        <input
-                            className='input-contact'
-                            type="text"
-                            name='subject'
-                            id='subject'
-                            value={formData.subject}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
+                </div>
 
-                    <div className="form-group">
-                        <label className='label-contact' htmlFor='message'>Escriba su Mensaje</label>
-                        <textarea
-                            className='textarea-contact'
-                            name='message'
-                            id='message'
-                            rows='6'
-                            value={formData.message}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
 
-                    <button className='btn-enviar-contacto' type='submit'>Enviar</button>
-                </form>
+                <div className="container-form">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label className='label-contact' htmlFor="name">Nombre</label>
+                            <input
+                                className='input-contact'
+                                type="text"
+                                name='name'
+                                id='name'
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className='label-contact' htmlFor="email">Email</label>
+                            <input
+                                className='input-contact'
+                                type="email"
+                                name='email'
+                                id='email'
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className='label-contact' htmlFor="subject">Asunto</label>
+                            <input
+                                className='input-contact'
+                                type="text"
+                                name='subject'
+                                id='subject'
+                                value={formData.subject}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className='label-contact' htmlFor='message'>Escriba su Mensaje</label>
+                            <textarea
+                                className='textarea-contact'
+                                name='message'
+                                id='message'
+                                rows='6'
+                                maxLength='400'
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                        </div>
+
+                        <button className='btn-enviar-contacto' type='submit'>Enviar</button>
+                    </form>
+                </div>
             </div>
             <Footer />
         </>

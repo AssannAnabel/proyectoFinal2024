@@ -1,5 +1,9 @@
 .button-shop{
     background-color:#126606;
     width: 40% ;
-    
+    font-size: 16px;
+}
+
+.button-shop:hover{
+    background-color: #218838;
 }

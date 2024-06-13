@@ -10,6 +10,7 @@
 .container-card-description-product h2 {
   font-size: 36px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .container-img-price {
@@ -41,6 +42,12 @@
 
 .button-des{
   margin-bottom: 10px;
+  background-color: #126606;
+  font-size: 16px;
+}
+
+.button-des:hover{
+  background-color: #218838;
 }
 
 .container-quantity-product {

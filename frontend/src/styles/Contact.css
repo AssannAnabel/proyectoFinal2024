@@ -1,16 +1,52 @@
+/* Estilos generales */
 body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
     background-color: #f8f9fa;
-    color: #333;
+    /* Color de fondo suave */
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
+.contact-general {
+    display: flex;
+}
+
+.contact-icons {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    
+}
+.telefono{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 30px;
+    margin-top: 20px;
+}
+
+.imgContact{   
+    width: 45%;
+    border-radius: 10px;
+   margin-right: 20px;
+   margin-left: 20px;    
+}
+
+.container-form {
+    width: 30%;
+    margin-top: 10px;
     padding: 20px;
-    background-color: #a6a6a6;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 4px solid #126606; 
+    margin-bottom: 50px;
+   text-align: center;
+}
+
+/* Estilos del formulario */
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .form-group {
@@ -18,35 +54,61 @@ body {
 }
 
 .label-contact {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #333;
 }
 
-.input-contact {
-    width: 100%;
+.input-contact,
+.textarea-contact {
+    width: 80%;
     padding: 10px;
+    margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px;
+}
+
+.input-contact:focus,
+.textarea-contact:focus {
+    border-color: #126606;
+    outline: none;
+}
+
+/* Tamaño fijo del cuadro de texto */
+.textarea-contact {
+    resize: none;
+    /* Evita que el usuario cambie el tamaño del cuadro de texto */
+    height: 100px;
+    /* Altura fija adecuada para 400 caracteres */
+}
+
+/* Contador de caracteres */
+.char-count {
+    font-size: 14px;
+    color: #888;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* Estilos del botón */
+.btn-enviar-contacto {
+    width: 85%;
+    border: none;
+    background-color: #126606;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  margin-left: 25px;
+    margin-top: 5px;
+    border-radius: 4px;
+    font-size: 16px;
    
 }
 
-.textarea-contact {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.btn-enviar-contacto {
-    background-color: #126606;
-    color: #fff;
-    border: none;
-    padding: 12px 20px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
 .btn-enviar-contacto:hover {
-    background-color: #126606;
+    background-color: #218838;
 }
+
+
+
