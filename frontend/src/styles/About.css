@@ -1,19 +1,7 @@
-.main-content {
+.general {   
     display: flex;
-    justify-content: center;
-    padding:30px;
-}
-
-.about-container {
-    max-width: 1200px;
-    width: 100%;
-}
-
-.text-and-images {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-left: -20px;
+    margin-left: 60px;
+    margin-right: 50px;
 }
 
 .text-container {
@@ -62,3 +50,4 @@
     width: 100%; /* Ajusta el ancho de las imágenes al contenedor */
     max-width: 300px; /* Ancho máximo de las imágenes */
 }
+
