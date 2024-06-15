@@ -1,7 +1,6 @@
 import React from 'react';
 import Card from '../components/Card';
 
-
 function SearchResults({ results }) {
     return (
         <div className="search-results-container">

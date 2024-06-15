@@ -1,114 +1,104 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-    /* Color de fondo suave */
-}
-
 .contact-general {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2rem;
 }
 
 .contact-icons {
-    width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    
-}
-.telefono{
-    display: flex;
-    justify-content: center;
-    padding-bottom: 30px;
-    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
 }
 
-.imgContact{   
-    width: 45%;
+.telefono {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.imgContact {
+    width: 250px;
+    height: auto;
+    margin: 0 1rem;
     border-radius: 10px;
-   margin-right: 20px;
-   margin-left: 20px;    
 }
 
 .container-form {
-    width: 30%;
-    margin-top: 10px;
-    padding: 20px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    margin-bottom: 50px;
-   text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    margin-right: 40px;
+    
 }
 
-/* Estilos del formulario */
 form {
     display: flex;
     flex-direction: column;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
 }
 
 .label-contact {
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    color: #333;
+    font-size: 20px;
 }
 
-.input-contact,
-.textarea-contact {
-    width: 80%;
-    padding: 10px;
-    margin-top: 5px;
+.input-contact, .textarea-contact {
+    width: 100%;
+    padding: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
+
 }
 
-.input-contact:focus,
-.textarea-contact:focus {
+.input-contact:focus, .textarea-contact:focus {
     border-color: #126606;
     outline: none;
 }
 
-/* Tamaño fijo del cuadro de texto */
 .textarea-contact {
-    resize: none;
-    /* Evita que el usuario cambie el tamaño del cuadro de texto */
-    height: 100px;
-    /* Altura fija adecuada para 400 caracteres */
+    resize: vertical;
 }
 
-/* Contador de caracteres */
-.char-count {
-    font-size: 14px;
-    color: #888;
-    text-align: right;
-    margin-top: 5px;
-}
-
-/* Estilos del botón */
 .btn-enviar-contacto {
-    width: 85%;
-    border: none;
+    width: 100%;
+    padding: 10px;
     background-color: #126606;
     color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  margin-left: 25px;
-    margin-top: 5px;
-    border-radius: 4px;
     font-size: 16px;
-   
 }
 
 .btn-enviar-contacto:hover {
     background-color: #218838;
 }
 
+/* Estilos para el Footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: white;
+}
 
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
 
+footer a:hover {
+    text-decoration: underline;
+}

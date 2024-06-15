@@ -1,50 +1,80 @@
-.container-form-login {
+
+.main-content {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height:60vh; /* Ajustar la altura del contenedor principal */
-    padding:30px;
+    align-items: center;
+    min-height: 70vh;
 }
 
-.form {
-    width: 100%; /* Mantiene el formulario al 100% del contenedor */
-    max-width: 300px; /* Ancho máximo del formulario */
-    padding: 20px;
-    border: 20px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container-form-login {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin: 1rem;
+}
+
+.form-login {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra los elementos dentro del formulario */
-    min-height: 300px; /* Altura mínima del formulario */
+    
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+.label-login {
+    margin-bottom: 0.5rem;
     font-weight: bold;
-    width: 100%; /* Para que las etiquetas ocupen todo el ancho del formulario */
-    text-align: left; /* Alinea el texto de las etiquetas a la izquierda */
+    font-size: 20px;
 }
 
-input {
-    width: 100%; /* Ocupa todo el ancho del formulario */
-    max-width: 250px; /* Ancho máximo de los inputs */
-    padding: 10px;
-    margin-bottom: 10px;
+.input-login {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
-.error-message {
-    color: red;
-    margin-top: 10px;
-    text-align: center; /* Centra el texto de error */
+.input-login:focus {
+    border-color: #126606;
+    outline: none;
 }
 
+.button-iniciar {
+    width: 100%;
+    padding: 10px;
+    background-color: #126606;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-
-.button-iniciar:hover{
+.button-iniciar:hover {
     background-color: #218838;
+}
+
+#notificacion {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* Estilos para el Footer */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: white;
+}
+
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
