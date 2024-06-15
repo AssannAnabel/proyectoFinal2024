@@ -3,13 +3,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    margin-bottom: 4%;
+    margin-top: 30px;
 }
 
 
-.form {
-    width: 300px;
+.form-register {
+    width: 400px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -17,28 +17,35 @@
 }
 
 
-label {
+.label-register {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    font-size: 20px;
 }
 
 
-input {
-    width: 100%;
-    padding: 10px;
+.input-register {
+    width: 90%;
+    padding: 10px;  
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 
-button {
-    width: 100%;
+.btn-registrarme {
+    width: 95%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #126606;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-registrarme:hover{
+    background-color: #218838;
 }

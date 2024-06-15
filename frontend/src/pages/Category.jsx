@@ -5,7 +5,7 @@ import Nav from '../components/Nav.jsx';
 import { UserContext } from '../context/UserContext.jsx';
 import Footer from '../components/Footer.jsx';
 import "../styles/Category.css";
-
+import BarCategoryProducts from '../components/BarCategoryProducts.jsx';
 
 function Category() {
     const { products } = useContext(UserContext);
@@ -20,20 +20,21 @@ function Category() {
 
     return (
         <>
-        <Nav/>
-
-        <div className='container-card-home'>
-
-        <div className="container-card-category">
-                {productsByCategory.map(product => <Card key={product.idProduct} product={product} />)}
+            <Nav />
+            <BarCategoryProducts />
+            <div className="container-cards-category">
+                <div className="whith-category">
+                    <div className="cards-container-category">
+                        {productsByCategory.map(product => (
+                            <div key={product.idProduct} className="container-card-category">
+                                <Card product={product} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
-           
-
-            <Footer/>
+            <Footer />
         </>
-
-
     );
 }
 

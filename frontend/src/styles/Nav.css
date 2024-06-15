@@ -29,6 +29,7 @@
   padding: 2px; /* Reducido el padding */
   font-size: 16px; /* Reducido el tamaño de fuente */
   height: 100%; /* Asegura que el input ocupe toda la altura */
+  border-radius: 4px;
 }
 
 .search-icon {

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { GoSearch } from "react-icons/go";
 import { UserContext } from '../context/UserContext';
 import { CartContext } from '../context/CartContext';
@@ -14,6 +14,7 @@ function Nav() {
     const [searchQuery, setSearchQuery] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         if (searchQuery) {
@@ -33,19 +34,23 @@ function Nav() {
         navigate(`/user-update/${user.id}`);
     }
 
+    // Define las rutas donde no quieres que se muestre la barra de búsqueda
+    const hideSearchBarRoutes = ['/about', '/contact', '/login', '/register','/cart'];
+
     return (
         <>
             <div className="container-nav">
                 <Logo />
-                <div className="container-barra-search">
-                    <input
-                        className="input-search"
-                        placeholder="Buscar producto"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                 
-                </div>
+                {!hideSearchBarRoutes.includes(location.pathname) && (
+                    <div className="container-barra-search">
+                        <input
+                            className="input-search"
+                            placeholder="Buscar producto"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                )}
                 <nav className="container-list">
                     <ul className='navList'>
                         <Link to={"/About"}><li>Nosotros</li></Link>

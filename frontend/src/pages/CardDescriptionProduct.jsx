@@ -101,9 +101,9 @@ function CardDescriptionProduct() {
                             <button className="button-des" onClick={handleAddToCart}>Añadir al carrito</button>
                             <button className="button-des" onClick={handleDirectPurchase}>Comprar Ahora</button>
                             <div className='container-quantity-product'>
-                                <button onClick={() => handleQuantityChange(-1)}>-</button>
+                                <button className="buttonAdd"onClick={() => handleQuantityChange(-1)}>-</button>
                                 <p>{quantity}</p>
-                                <button onClick={() => handleQuantityChange(1)}>+</button>
+                                <button  className="buttonAdd"onClick={() => handleQuantityChange(1)}>+</button>
                             </div>
                         </div>
                         <div className='container-span'>

@@ -29,24 +29,25 @@ function Register() {
         <>
             <Nav />
             <div className="container"> {/* Agrega la clase 'container' al div principal */}
-                <form className="form" onSubmit={handleSubmit}> {/* Agrega la clase 'form' al formulario */}
-                    <label htmlFor='name'>Nombre</label>
-                    <input type='text' name='name' id='name' onChange={handleChange} />
+                <form className="form-register" onSubmit={handleSubmit}> {/* Agrega la clase 'form' al formulario */}
+                    <label htmlFor='name' className='label-register'>Nombre</label>
+                    <input type='text' name='name' id='name' className='input-register'  placeholder='Nombre' onChange={handleChange} />
 
-                    <label htmlFor='lastname'>Apellido</label>
-                    <input type='text' name='lastname' id='lastname' onChange={handleChange} />
+                    <label htmlFor='lastname'className='label-register'>Apellido</label>
+                    <input type='text' name='lastname' id='lastname' className='input-register' placeholder='Apellido' onChange={handleChange} />
 
-                    <label htmlFor='email'>Email</label>
-                    <input type='text' name='email' id='email' onChange={handleChange} />
+                    <label htmlFor='email'className='label-register'>Email</label>
+                    <input type='text' name='email' id='email' placeholder='Email' className='input-register'
+                    onChange={handleChange} />
 
-                    <label htmlFor='phone'>Telefono</label>
-                    <input type='phone' name='phone' id='phone' onChange={handleChange} />
+                    <label htmlFor='phone'className='label-register'>Telefono</label>
+                    <input type='phone' name='phone' id='phone' placeholder='Telefono' className='input-register' onChange={handleChange} />
 
-                    <label htmlFor='birthDate'>Fecha de nacimiento</label>
-                    <input type='birthDate' name='birthDate' placeholder='año-mes-dia' id='birthDate' onChange={handleChange} />
+                    <label htmlFor='birthDate'className='label-register'>Fecha de nacimiento</label>
+                    <input type='birthDate' name='birthDate' placeholder='año-mes-dia' id='birthDate' className='input-register' onChange={handleChange} />
 
-                    <label htmlFor='password'>Contraseña</label>
-                    <input type='password' name='password' id='password' onChange={handleChange} />
+                    <label htmlFor='password'className='label-register'>Contraseña</label>
+                    <input type='password' name='password' id='password' placeholder='Contraseña' className='input-register' onChange={handleChange} />
 
 
                     <button className='btn-registrarme' type='submit'>Registrarme</button>

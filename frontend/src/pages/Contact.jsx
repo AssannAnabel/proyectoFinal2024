@@ -68,6 +68,7 @@ function Contact() {
                                 name='name'
                                 id='name'
                                 value={formData.name}
+                                placeholder='Nombre'
                                 onChange={handleChange}
                                 required
                             />
@@ -81,6 +82,7 @@ function Contact() {
                                 name='email'
                                 id='email'
                                 value={formData.email}
+                                placeholder='Email'
                                 onChange={handleChange}
                                 required
                             />
@@ -94,6 +96,7 @@ function Contact() {
                                 name='subject'
                                 id='subject'
                                 value={formData.subject}
+                                placeholder='Asunto'
                                 onChange={handleChange}
                                 required
                             />
@@ -108,6 +111,7 @@ function Contact() {
                                 rows='6'
                                 maxLength='400'
                                 value={formData.message}
+                                placeholder='Escriba su mensaje'
                                 onChange={handleChange}
                                 required
                             ></textarea>

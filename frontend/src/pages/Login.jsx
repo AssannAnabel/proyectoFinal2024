@@ -50,15 +50,17 @@ function Login() {
     return (
         <>
             <Nav />
-            <div className="container-form-login">
-                <form className="form" onSubmit={handleSubmit}>
-                    <label htmlFor="email">Email</label>
-                    <input type="text" name='email' id='email' placeholder='Ingrese su Email' onChange={handleChange} />
-                    <label htmlFor="password">Contraseña</label>
-                    <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' onChange={handleChange} />
-                    <p id="notificacion" ref={notificacionRef}></p>
-                    <button className="button-iniciar" type='submit'>Iniciar sesión</button>
-                </form>
+            <div className="main-content">
+                <div className="container-form-login">
+                    <form className="form-login" onSubmit={handleSubmit}>
+                        <label htmlFor="email" className='label-login'>Email</label>
+                        <input type="text" name='email' id='email' placeholder='Ingrese su Email' className='input-login' onChange={handleChange} />
+                        <label htmlFor="password" className='label-login'>Contraseña</label>
+                        <input type="password" name='password' id='password' placeholder='Ingrese su Contraseña' className='input-login'onChange={handleChange} />
+                        <p id="notificacion" ref={notificacionRef}></p>
+                        <button className="button-iniciar" type='submit'>Iniciar sesión</button>
+                    </form>
+                </div>
             </div>
             <Footer />
         </>

@@ -13,7 +13,7 @@
     transition: transform 0.3s;
     cursor: pointer;
     width: 100%;
-    height: 80%; /* Para asegurar que todas las tarjetas tengan la misma altura */
+    height: 100%; /* Para asegurar que todas las tarjetas tengan la misma altura */
     box-sizing: border-box;
     background-color: white;
 }
@@ -49,6 +49,7 @@
 .contenido-card h2 {
     font-size: 1.5em;
     margin: 10px 0;
+    color: black;
 }
 
 /* Estilo para el texto de disponibilidad */
