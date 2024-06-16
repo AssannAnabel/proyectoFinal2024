@@ -10,6 +10,7 @@ import Nav from '../components/Nav';
 const Cart = () => {
     const { cart, removeProductFromCart, updateProductQuantity, clearCart } = useContext(CartContext);
     const [saveCart, setSaveCart] = useState(cart);
+    
 
     useEffect(() => {
         setSaveCart(cart);
@@ -42,7 +43,7 @@ const Cart = () => {
         <div className="cart-page">
             <Nav />
             <div className="cart-container">
-                <div className='contenido-cart'> 
+                <div className='contenido-cart'>
                     <div className="cart-title">
                         <h1>Tu Carrito</h1>
                         <FaShoppingCart className="cart-icon" />
@@ -60,8 +61,8 @@ const Cart = () => {
                                         <p>Cantidad: {item.quantity}</p>
                                     </div>
                                     <div className="cart-item-actions">
-                                        <button 
-                                            className="quantity-button increase-quantity" 
+                                        <button
+                                            className="quantity-button increase-quantity"
                                             onClick={() => {
                                                 if (!isExcedMax(item.quantity + 1, item.amount)) {
                                                     handleUpdateQuantity(item.idProduct, item.quantity + 1);
@@ -77,14 +78,14 @@ const Cart = () => {
                                         >
                                             +
                                         </button>
-                                        <button 
-                                            className="quantity-button decrease-quantity" 
+                                        <button
+                                            className="quantity-button decrease-quantity"
                                             onClick={() => handleUpdateQuantity(item.idProduct, item.quantity - 1)}
                                         >
                                             -
                                         </button>
-                                        <button 
-                                            className="remove-button" 
+                                        <button
+                                            className="remove-button"
                                             onClick={() => removeProductFromCart(item.idProduct)}
                                         >
                                             Eliminar
@@ -99,7 +100,7 @@ const Cart = () => {
                             <h2 className="total">Total de la compra: ${calculateTotal()}</h2>
                             <Shop />
                             <button className="clear-cart-button" onClick={clearCart}>Vaciar carrito</button>
-                            </div>
+                        </div>
                         </>
                     )}
                 </div>
