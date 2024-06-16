@@ -1,9 +1,132 @@
-.button-shop{
-    background-color:#126606;
-    width: 40% ;
+/* Archivo: Shop.css */
+
+.button-shop {
+    width: 40%;
+    padding: 10px;
+    background-color: #126606;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
     font-size: 16px;
+    margin-top: 30px;
 }
 
-.button-shop:hover{
-    background-color: #218838;
+.logo-image {
+    width: 90%;
+    height: 150px;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 25px;
+}
+
+.purchase-details {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.purchase-details ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.purchase-details li {
+    margin-bottom: 20px;
+}
+
+.purchase-details .total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.purchase-details .product-info {
+    font-size: 16px;
+    color: #555;
+}
+
+/* estilos de modal */
+
+.product-info{
+text-align: left;
+margin-top: 20px;
+border-bottom: black solid 1px ;
+}
+.form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.custom-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+} 
+.confirm-button {
+    width: 40%;
+    padding: 10px;
+    background-color: #126606;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+.confirm-button:hover{
+background-color: #218838;
+
+}
+
+.cancel-button {
+    width: 40%;
+    padding: 10px;
+    margin-left: 20px;
+    background-color: #a6a6a6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.cancel-button:hover{
+background-color: #760303;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Asegura que esté por encima del contenido principal */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%; /* Ancho máximo del modal */
+    max-height: 100vh; /* Altura máxima del modal (80% del viewport height) */
+    overflow-y: auto; /* Permite desplazamiento vertical si el contenido excede la altura máxima */
 }

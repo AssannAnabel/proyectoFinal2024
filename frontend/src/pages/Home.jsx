@@ -21,7 +21,7 @@ function Home() {
     const productsFerreteria = filterProducts("Ferretería");
     const productsRopaDeTrabajo = filterProducts("Ropa de trabajo");
     const productsTranqueras = filterProducts("Tranqueras");
-    const productsRespuestosAgricolas = filterProducts("Respuestos Agrícolas");
+    const productsRespuestosAgricolas = filterProducts("Repuestos agricolas");
     const productsEquipamientosVehiculos = filterProducts("Equipamientos Vehículos");
     const productsPulverizacion = filterProducts("Pulverizacíon");
     const productsConstruccion = filterProducts("Construcción");
