@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
-
-import contact from "/contact.jpg"
-import contacto from "/contacto.jpg"
+import Swal from 'sweetalert2';
+import contact from "/contact.jpg";
+import contacto from "/contacto.jpg";
 import '../styles/Contact.css';
 
 function Contact() {
@@ -24,8 +24,9 @@ function Contact() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(formData);   
 
-        const response = await fetch('http://localhost:3000/contact', {
+        const response = await fetch('http://localhost:3000/mail/contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,10 +35,20 @@ function Contact() {
         });
 
         if (response.ok) {
-            alert('Mensaje enviado con éxito');
+            Swal.fire({
+                title: '¡Gracias por contactarnos!',
+                text: 'Su mensaje fue enviado, responderemos a la brevedad',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
             setFormData({ name: '', email: '', subject: '', message: '' });
         } else {
-            alert('Error al enviar el mensaje');
+            Swal.fire({
+                title: 'Error',
+                text: 'Error al enviar el mensaje',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
         }
     };
 
@@ -56,7 +67,6 @@ function Contact() {
                     </div>
 
                 </div>
-
 
                 <div className="container-form">
                     <form onSubmit={handleSubmit}>

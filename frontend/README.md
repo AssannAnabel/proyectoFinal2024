@@ -1,4 +1,4 @@
-# Tp Final integrador 2024
+# Tp Final integrador
 
 ## AgroTech 
 *Insumos para el campo*
@@ -11,6 +11,10 @@
  **Presentación:** 
  Agrotech es un proyecto de plataforma de comercio electrónico diseñado para el sector agropecuario. Se ha desarrollado utilizando tecnologías modernas como React para frontend, NestJS para backend y MySQL como base de datos relacional. El objetivo principal de Agrotech es facilitar a los usuarios la compra de productos agropecuarios de manera eficiente y conveniente, así como brindar a los administradores herramientas para gestionar el inventario y mantener una comunicación efectiva con los clientes.
  Realizamos este proyecto basándonos en un comercio con un nombre de fantasía, nuestra idea es poder reutilizar este proyecto y adaptarlo a cualquier otro rubro.
+ **Este Proyecto integrdor tiene 3 Repositorios:**
+ 1-Frontend Usuarios.
+ 2-Frontend Administrador.
+ 3-Backend.
  
  
  ***Proyecto realizado con:***  
@@ -19,6 +23,9 @@
 	  MySQL
 	  
 **1- Crear repositorio local. git init.**
+Repositorio Frontend Usuario: https://github.com/AssannAnabel/proyectoFinal2024.git
+**carpeta: cd frontend
+Ejecutar proyecto => npm run dev**
 
 **2- iniciar proyecto en react.**
 
@@ -42,7 +49,7 @@
     
 **Trello**=>https://trello.com/b/fRhmNjz5/tp-integrador-2024
     
--   *Característica: Responsive, adaptada a  dispositivos móviles.*
+-   *Característica: Responsive*
     
 -   *Documentación de API con swagger.*
  http://localhost:3000/agrotech-api
@@ -102,5 +109,12 @@
 - Editar sus datos.
 - Historial de Compras.
 
-
+***Repositorios:*** 
+Administrador=>https://github.com/FabricioCordoba/agrotechAdmin.git
+**carpeta: cd front-agrotech-admin
+ejecutar el proyecto: npm run dev**
+**email admin:** fabricio.cbe@gmail.com
+**contraseña:** 123456
+**Repositorio** **Backend**=>https://github.com/eSalazar84/Agrotech-Backend
+**Ejecutar=> npm run start:dev**
 
