@@ -35,13 +35,19 @@ function Nav() {
     }
 
     // Define las rutas donde no quieres que se muestre la barra de búsqueda
-    const hideSearchBarRoutes = ['/about', '/contact', '/login', '/register','/cart'];
+    const hideSearchBarRoutes = ['/About', '/Contact', '/login', '/Register', '/cart'];
+    if (user && user.id) {
+        hideSearchBarRoutes.push(`/user-update/${user.id}`);
+    }
+
+    // Función para verificar si se debe mostrar la barra de búsqueda
+    const shouldShowSearchBar = !hideSearchBarRoutes.includes(location.pathname);
 
     return (
         <>
             <div className="container-nav">
                 <Logo />
-                {!hideSearchBarRoutes.includes(location.pathname) && (
+                {shouldShowSearchBar && (
                     <div className="container-barra-search">
                         <input
                             className="input-search"

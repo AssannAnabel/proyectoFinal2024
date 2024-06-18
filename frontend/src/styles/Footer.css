@@ -1,8 +1,9 @@
-/* Contenido del footer */
+
+/* Estilos base */
 .footer-content {
   padding: 20px;
   border-top: #080808 solid 1px;
- background-color: #a6a6a6;
+  background-color: #a6a6a6;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,36 +22,56 @@
   height: 24px; /* Asegurar altura uniforme */
 }
 
-.contact-info {
-  display: flex;
-  align-items: center;
-}
-
-.contact-info svg {
-  color: black; /* Color negro para los íconos */
-  margin-right: 5px;
-  font-size: 24px; /* Tamaño uniforme del icono de correo */
-}
-
-.contact-info p {
-  margin: 0;
-  color: #333; /* Color del texto */
-  font-size: 18px;
-}
-
+.contact-info,
 .location-info {
   display: flex;
   align-items: center;
 }
 
+.contact-info svg,
 .location-info svg {
   color: black; /* Color negro para los íconos */
   margin-right: 5px;
-  font-size: 24px; /* Tamaño uniforme del icono de ubicación */
+  font-size: 24px; /* Tamaño uniforme de los íconos */
 }
 
+.contact-info p,
 .location-info p {
   margin: 0;
   color: #333; /* Color del texto */
   font-size: 18px;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Cambia a una disposición en columna */
+    text-align: center; /* Centra el contenido en dispositivos móviles */
+  }
+
+  .social-icons {
+    margin-bottom: 10px; /* Espacio entre íconos y el resto del contenido */
+  }
+
+  .contact-info,
+  .location-info {
+    margin-top: 10px; /* Espacio entre bloques de información */
+  }
+}
+
+/* Media queries para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+  .social-icons {
+    justify-content: center; /* Centra los íconos sociales */
+  }
+
+  .contact-info svg,
+  .location-info svg {
+    font-size: 20px; /* Reduce el tamaño de los íconos */
+  }
+
+  .contact-info p,
+  .location-info p {
+    font-size: 16px; /* Reduce el tamaño del texto */
+  }
 }

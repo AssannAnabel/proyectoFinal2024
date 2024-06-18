@@ -20,20 +20,27 @@ function Category() {
 
     return (
         <>
-            <Nav />
-            <BarCategoryProducts />
-            <div className="container-cards-category">
-                <div className="whith-category">
-                    <div className="cards-container-category">
-                        {productsByCategory.map(product => (
-                            <div key={product.idProduct} className="container-card-category">
-                                <Card product={product} />
-                            </div>
-                        ))}
+            <div className='general-category'>
+                <div className='nav-category'>
+                    <Nav />
+                </div>
+                <div className='barCategoria-category'>
+                    <BarCategoryProducts />
+                </div>
+                <div className="container-cards-category">
+                    <div className="whith-category">
+                        <div className="cards-container-category">
+                            {productsByCategory.map(product => (
+                                <div key={product.idProduct} className="container-card-category">
+                                    <Card product={product} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
+                <Footer />
             </div>
-            <Footer />
+
         </>
     );
 }
