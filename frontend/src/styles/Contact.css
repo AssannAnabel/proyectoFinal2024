@@ -3,6 +3,7 @@
     flex-direction: row;
     align-items: center;
     padding: 2rem;
+    gap: 2rem; /* Añadido para un mejor espaciado entre los elementos principales */
 }
 
 .contact-icons {
@@ -35,7 +36,6 @@
     width: 100%;
     max-width: 500px;
     margin-right: 40px;
-    
 }
 
 form {
@@ -59,7 +59,6 @@ form {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-
 }
 
 .input-contact:focus, .textarea-contact:focus {
@@ -86,19 +85,50 @@ form {
     background-color: #218838;
 }
 
-/* Estilos para el Footer */
-footer {
-    text-align: center;
-    padding: 1rem 0;
-    background-color: #333;
-    color: white;
+
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .contact-general {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+    }
+
+    .container-form {
+        margin-right: 0;
+    }
+
+    .imgContact {
+        width: 200px;
+        margin: 1rem 0;
+    }
+
+    .btn-enviar-contacto {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
 
-footer a {
-    color: #007bff;
-    text-decoration: none;
-}
+@media (max-width: 480px) {
+    .label-contact {
+        font-size: 18px;
+    }
 
-footer a:hover {
-    text-decoration: underline;
+    .input-contact, .textarea-contact {
+        font-size: 14px;
+    }
+
+    .btn-enviar-contacto {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    .contact-general {
+        padding: 0.5rem;
+    }
+
+    .container-form {
+        padding: 1rem;
+    }
 }

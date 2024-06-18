@@ -1,44 +1,45 @@
+/* Estilo base para el contenedor principal */
 .container-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #a6a6a6; /* Fondo gris claro */
-  padding: 5px 50px; /* Reducido el padding para disminuir la altura */
-  padding-bottom: 30px;
-  margin-bottom: 20px;
+  padding: 5px 20px; /* Reducir el padding horizontal */
+  padding-bottom: 10px; /* Reducir el padding inferior */
+  margin-bottom: 10px; /* Reducir el margen inferior */
   border-bottom: 1px solid #ccc;
-  height: 50px; /* Ajusta este valor según sea necesario */
-  margin-top: 20px;
+  height: 60px; /* Ajustar la altura */
 }
 
+/* Estilo para la barra de búsqueda */
 .container-barra-search {
   display: flex;
   align-items: center;
   border-radius: 4px;
-  padding: 2px 5px; /* Reducido el padding */
-  padding-top: 50px;
+  padding: 2px 5px; /* Reducir el padding */
   flex: 1;
-  margin: 0 10px; /* Reducido el margen */
-  height: 30px; /* Ajusta este valor según sea necesario */
+  margin: 0 10px; /* Reducir el margen */
+  height: 40px; /* Ajustar la altura */
 }
 
 .input-search {
   border: none;
   outline: none;
   flex: 1;
-  padding: 2px; /* Reducido el padding */
-  font-size: 16px; /* Reducido el tamaño de fuente */
-  height: 100%; /* Asegura que el input ocupe toda la altura */
+  padding: 5px; /* Aumentar el padding para mayor espacio */
+  font-size: 14px; /* Reducir el tamaño de fuente */
+  height: 100%; /* Asegurar que el input ocupe toda la altura */
   border-radius: 4px;
 }
 
 .search-icon {
   color: #888;
-  font-size: 18px; /* Reducido el tamaño de la fuente */
+  font-size: 18px; /* Mantener el tamaño de la fuente */
 }
 
+/* Estilo para la lista de navegación */
 .container-list {
-  padding-top: 40px;
+  padding-top: 10px; /* Reducir el padding superior */
   display: flex;
   align-items: center;
 }
@@ -46,7 +47,7 @@
 .navList {
   list-style: none;
   display: flex;
-  gap: 10px; /* Reducido el espacio entre elementos */
+  gap: 10px; /* Reducir el espacio entre elementos */
   padding: 0;
   margin: 0;
 }
@@ -59,19 +60,18 @@
 .navList a li {
   cursor: pointer;
   transition: color 0.3s;
- padding-left: 5px;
- padding-right: 5px;
-  height: 100%; /* Asegura que los elementos de la lista ocupen toda la altura */
+  padding: 5px 10px; /* Ajustar el padding */
+  height: 100%; /* Asegurar que los elementos de la lista ocupen toda la altura */
   display: flex;
-  align-items: center; /* Centra verticalmente el texto */
+  align-items: center; /* Centrar verticalmente el texto */
   border-radius: 5px;
-  font-size: 20px;  
- 
- }
+  font-size: 16px; /* Reducir el tamaño de fuente */
+}
 
 .navList a li:hover {
   color: white;
-  box-shadow: 5px 5px 20px rgba(0,0, 0,4);
+  background-color: #126603; /* Cambiar el color de fondo al hacer hover */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
   transform: translateY(-3%);
 }
 
@@ -79,24 +79,60 @@
   margin-right: 5px;
 }
 
-img.logo{
-  width: 250px;
-  height: 80px;
-  padding-top: 30px;
+img.logo {
+  width: 200px; /* Reducir el ancho del logo */
+  height: auto; /* Mantener la proporción */
+  padding-top: 10px; /* Reducir el padding superior del logo */
 }
 
+/* Media queries para dispositivos móviles */
 @media (max-width: 768px) {
   .container-nav {
-      flex-direction: column;
-      height: auto; /* Permite que el contenedor se ajuste en pantallas más pequeñas */
+    flex-direction: column; /* Cambiar a dirección de columna */
+    height: auto; /* Altura automática */
+    padding: 10px; /* Aumentar el padding */
   }
 
   .container-barra-search {
-      margin: 10px 0;
+    margin: 10px 0; /* Reducir el margen */
+  }
+
+  .input-search {
+    font-size: 14px; /* Reducir el tamaño de fuente */
   }
 
   .navList {
-      flex-direction: column;
-      gap: 10px;
+    justify-content: center; /* Centrar los elementos */
+    margin-top: 10px; /* Aumentar el margen superior */
+  }
+
+  .navList a li {
+    font-size: 14px; /* Reducir el tamaño de fuente */
+  }
+
+  img.logo {
+    width: 150px; /* Reducir el tamaño del logo */
+    padding-top: 10px; /* Reducir el padding superior del logo */
+  }
+}
+
+/* Media queries para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+  .container-nav {
+    padding: 5px; /* Reducir el padding */
+  }
+
+  .input-search {
+    padding: 3px; /* Reducir el padding del input */
+    font-size: 12px; /* Reducir el tamaño de fuente */
+  }
+
+  .navList a li {
+    padding: 3px 6px; /* Ajustar el padding */
+    font-size: 12px; /* Reducir el tamaño de fuente */
+  }
+
+  img.logo {
+    width: 120px; /* Reducir aún más el tamaño del logo */
   }
 }

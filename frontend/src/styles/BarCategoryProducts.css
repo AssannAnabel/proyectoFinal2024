@@ -1,14 +1,22 @@
-/* Estilo para la contenedor de la barra de categoría de productos */
 .container-barra-category-products {
   background-color: white;
   margin: 0 auto; /* Centra el contenedor en la página */
   width: 100%; /* Establece un ancho fijo para acomodar 6 elementos por fila */
   height: 150px;
- 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
 }
-  
 
-/* Estilo para la lista no ordenada */
+.menu-icon {
+  display: none; /* Ocultar el ícono del menú por defecto */
+  font-size: 24px;
+  cursor: pointer;
+  margin: 10px; /* Espacio entre el ícono del menú y el primer elemento de la lista */
+}
+
 .ul-bar-category {
   list-style-type: none;
   padding: 0;
@@ -16,38 +24,61 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color:white;
+  background-color: white;
 }
-
 
 /* Estilo para los elementos de la lista */
 .ul-bar-category li {
-    color:#126603; /* Color del texto */
-    font-size: 16px; /* Tamaño de la fuente */
-    margin: 8px; /* Espacio entre elementos */
-    border-radius: 10px;
-    display: flex; /* Usa flexbox para alinear el ícono y el texto */
-    flex-direction: column; /* Coloca el ícono y el texto en columna */
-    align-items: center; /* Centra el ícono y el texto */
-    justify-content: center; /* Centra verticalmente los elementos */
-    text-align: center; /* Centra el texto horizontalmente */
-    width:10%;
-    border:#126603 solid 2px;
+  color: #126603; /* Color del texto */
+  font-size: 16px; /* Tamaño de la fuente */
+  margin: 8px; /* Espacio entre elementos */
+  border-radius: 10px;
+  display: flex; /* Usa flexbox para alinear el ícono y el texto */
+  flex-direction: column; /* Coloca el ícono y el texto en columna */
+  align-items: center; /* Centra el ícono y el texto */
+  justify-content: center; /* Centra verticalmente los elementos */
+  text-align: center; /* Centra el texto horizontalmente */
+  width: 10%;
+  border: #126603 solid 2px;
 }
 
-
-
-.ul-bar-category li:hover{
-  box-shadow: 5px 5px 20px rgba(0,0, 0,4);
+.ul-bar-category li:hover {
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
   transform: translateY(-3%);
 }
 
-.ul-bar-category li svg{
-  color:#126603;
+.ul-bar-category li svg {
+  color: #126603;
 }
 
-/* Estilo para el hover en los elementos de la lista */
-.ul-bar-category li:hover {
- cursor: pointer;
- 
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block; /* Mostrar el ícono del menú en dispositivos móviles */
+  }
+
+  .ul-bar-category {
+    display: none; /* Ocultar la lista por defecto en dispositivos móviles */
+    flex-direction: column; /* Alinear los elementos del menú en columna */
+    align-items: center; /* Centrar horizontalmente los elementos del menú */
+    justify-content: flex-start; /* Alinear el menú desde arriba */
+    width: 100%;
+    position: absolute;
+    top: 50px; /* Posicionar el menú debajo de la barra */
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegurar que el menú esté por encima de otros contenidos */
+  }
+
+  .ul-bar-category.active {
+    display: flex; /* Mostrar la lista cuando la clase active está presente */
+  }
+
+  .ul-bar-category li {
+    width: 100%; /* Ajustar el ancho al 100% para ocupar todo el espacio disponible */
+    margin: 8px 0; /* Espacio entre elementos */
+    padding: 10px; /* Añadir un poco de espacio interior a los elementos del menú */
+    text-align: center; /* Centrar el texto */
+    border: none; /* Eliminar el borde en dispositivos móviles */
+  }
 }

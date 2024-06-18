@@ -1,33 +1,40 @@
 /* Estilo para el contenedor principal */
 .not-found-container {
     display: flex;
-    flex-direction: column;
+ 
+    width: 100%;
+    align-items: center; /* Centra verticalmente en la pantalla */
+    justify-content: center; /* Centra horizontalmente en la pantalla */
     height: 100vh; /* Altura de la ventana completa */
     background-color: #f0f0f0;
-    position: relative; /* Necesario para posicionar el título en la imagen */
+    position: relative;
 }
 
 /* Estilo para la imagen */
 .not-found-image {
-    width: 100%; /* Imagen ocupa todo el ancho de la pantalla */
-    height: 100%; /* Imagen ocupa todo el alto de la pantalla */
-    object-fit: cover; /* La imagen se ajusta para cubrir el contenedor */
-    position: absolute; /* Permite posicionar el título sobre la imagen */
-    top: 0;
-    left: 0;
+   max-height: 150vh;
+    width: 100%;
+    
+
 }
 
 /* Estilo para el título */
 .not-found-title {
-    position: absolute; /* Permite posicionar el título sobre la imagen */
-    top: 5%; /* Centra el título verticalmente */
-    left: 60%; /* Centra el título horizontalmente */
-    transform: translate(-80%, -20%); /* Ajusta la posición para centrarlo */
-    font-size: 3rem;
-    color: rgb(207, 37, 37); /* Color blanco para contraste */
-    background-color: rgba(218, 228, 222, 0.5); /* Fondo semitransparente para resaltar el título */
-    padding: 10px 20px; /* Espacio alrededor del título */
-    border-radius: 5px; /* Esquinas redondeadas */
-    z-index: 2;
+  text-align: center;
+
 }
 
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .not-found-title {
+        font-size: 2rem; /* Reduce el tamaño del título en dispositivos móviles */
+        padding: 8px 16px; /* Ajusta el padding del título */
+    }
+}
+
+/* Media query para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .not-found-title {
+        font-size: 1.5rem; /* Reduce aún más el tamaño del título en dispositivos pequeños */
+    }
+}

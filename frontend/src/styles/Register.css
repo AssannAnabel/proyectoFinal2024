@@ -1,4 +1,3 @@
-
 .container {
     display: flex;
     flex-direction: column;
@@ -6,7 +5,6 @@
     margin-bottom: 4%;
     margin-top: 30px;
 }
-
 
 .form-register {
     width: 400px;
@@ -16,7 +14,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .label-register {
     display: block;
     margin-bottom: 5px;
@@ -24,16 +21,14 @@
     font-size: 20px;
 }
 
-
 .input-register {
     width: 90%;
-    padding: 10px;  
+    padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
-
 
 .btn-registrarme {
     width: 95%;
@@ -46,6 +41,21 @@
     font-size: 16px;
 }
 
-.btn-registrarme:hover{
+.btn-registrarme:hover {
     background-color: #218838;
+}
+
+/* Media Queries para hacer el formulario responsivo */
+
+@media (max-width: 768px) {
+    .form-register {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .input-register,
+    .btn-registrarme {
+        width: 100%;
+    }
 }

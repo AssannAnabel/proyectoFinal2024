@@ -74,7 +74,18 @@ function CardDescriptionProduct() {
     };
 
     const openPurchaseModal = () => {
+        if (user) {
         setModalOpen(true);
+            
+            
+        } else {
+            Swal.fire({
+                title: 'Inicia sesión',
+                text: 'Debes iniciar sesión para comprar productos.',
+                icon: 'warning',
+                confirmButtonText: 'Ok'
+            });
+        }
     };
 
     const closePurchaseModal = () => {

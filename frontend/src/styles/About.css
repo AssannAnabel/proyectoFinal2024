@@ -8,6 +8,7 @@
     flex: 1;
     padding: 0; /* Reduce el padding a los lados izquierdo y derecho */
     margin-left:-20px; /* Ajustar margen derecho para separar del borde de la imagen */
+    width: 60%;
 }
 
 .text-container h1,
@@ -32,11 +33,11 @@
 }
 
 .images-container {
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around; /* Distribuye uniformemente las imágenes */
+    width: 40%;
 }
 
 .images-container img {
@@ -51,3 +52,27 @@
     max-width: 300px; /* Ancho máximo de las imágenes */
 }
 
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .general {
+        margin-left: 20px;
+        margin-right: 20px;
+        display: block;
+    }
+    .text-container{
+        margin-left:4px ;
+        width: 100%;
+    }
+
+    .images-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-emiliano,
+    .card-fabricio,
+    .card-anabel {
+        max-width: 100%;
+    }
+}

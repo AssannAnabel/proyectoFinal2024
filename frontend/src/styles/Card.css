@@ -1,4 +1,4 @@
-/* Contenedor principal de la tarjeta */
+/* Estilo base para el contenedor principal */
 .container-card {
     margin-top: 10px;
     margin-left: 10px;
@@ -67,7 +67,7 @@
 /* Estilo para el texto de envío gratuito */
 .contenido-card p {
     font-size: 1em;
-    color:black;
+    color: black;
     text-align: center;
 }
 
@@ -75,4 +75,60 @@
 .container-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .container-card {
+        flex-direction: column;
+        height: auto; /* Ajustar la altura automáticamente */
+        margin: 10px 0; /* Reducir el margen */
+    }
+
+    .container-card figure {
+        height: 150px; /* Reducir la altura de la imagen en dispositivos móviles */
+    }
+
+    .contenido-card {
+        padding: 10px; /* Añadir padding al contenido */
+    }
+
+    .contenido-card h2 {
+        font-size: 1.2em; /* Reducir el tamaño del título */
+    }
+
+    .contenido-card h3 {
+        font-size: 1em; /* Reducir el tamaño del texto de disponibilidad */
+    }
+
+    .contenido-card h2:nth-of-type(2) {
+        font-size: 1.2em; /* Reducir el tamaño del precio */
+    }
+
+    .contenido-card p {
+        font-size: 0.9em; /* Reducir el tamaño del texto de envío gratuito */
+    }
+}
+
+/* Media queries para pantallas aún más pequeñas */
+@media (max-width: 480px) {
+    .container-card figure {
+        height: 120px; /* Reducir aún más la altura de la imagen */
+    }
+
+    .contenido-card h2 {
+        font-size: 1em; /* Reducir más el tamaño del título */
+    }
+
+    .contenido-card h3 {
+        font-size: 0.9em; /* Reducir más el tamaño del texto de disponibilidad */
+    }
+
+    .contenido-card h2:nth-of-type(2) {
+        font-size: 1em; /* Reducir más el tamaño del precio */
+    }
+
+    .contenido-card p {
+        font-size: 0.8em; /* Reducir más el tamaño del texto de envío gratuito */
+    }
 }
