@@ -8,6 +8,7 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
+  cursor:pointer;
 }
 
 .menu-icon {

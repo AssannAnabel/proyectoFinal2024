@@ -11,27 +11,33 @@
  **Presentación:** 
  Agrotech es un proyecto de plataforma de comercio electrónico diseñado para el sector agropecuario. Se ha desarrollado utilizando tecnologías modernas como React para frontend, NestJS para backend y MySQL como base de datos relacional. El objetivo principal de Agrotech es facilitar a los usuarios la compra de productos agropecuarios de manera eficiente y conveniente, así como brindar a los administradores herramientas para gestionar el inventario y mantener una comunicación efectiva con los clientes.
  Realizamos este proyecto basándonos en un comercio con un nombre de fantasía, nuestra idea es poder reutilizar este proyecto y adaptarlo a cualquier otro rubro.
- **Este Proyecto integrdor tiene 3 Repositorios:**
+ 
+ **Este Proyecto integrador tiene 3 Repositorios:**
  1-Frontend Usuarios.
  2-Frontend Administrador.
  3-Backend.
  
- 
- ***Proyecto realizado con:***  
-	 React,
-	 Nest.js,
-	  MySQL
-	  
-**1- Crear repositorio local. git init.**
-Repositorio Frontend Usuario: https://github.com/AssannAnabel/proyectoFinal2024.git
-**carpeta: cd frontend
-Ejecutar proyecto => npm run dev**
+  ***Proyecto realizado con:***  
+	React,
+	Nest.js,
+	MySQL
+**Repositorio Frontend Usuario:** https://github.com/AssannAnabel/proyectoFinal2024.git
 
-**2- iniciar proyecto en react.**
+1- Clonar repositorio:=> git clone (repositorio)
+
+ 2- cd nombre de repositorio.(para entrar al directorio del proyecto)
+
+3- npm i (para instalar las dependencias)
+
+4- Archivo .env para saber qué variables de entorno se necesitan.
+
+5-ejecutar el proyecto=> npm run dev (Frontend) / npm run start:dev (backend)
+
+** Como iniciar un proyecto en react.**
 
     npm create vite@latest (nombre del proyecto) - -  - - template react
 
-**3- Node.js:** Entorno de ejecución para ejecutar aplicaciones Javascript.
+** Node.js:** Entorno de ejecución para ejecutar aplicaciones Javascript.
 
 ***Instalación de dependencia en Frontend:***
 
@@ -49,14 +55,13 @@ Ejecutar proyecto => npm run dev**
     
 **Trello**=>https://trello.com/b/fRhmNjz5/tp-integrador-2024
     
--   *Característica: Responsive*
+-   *Característica: Responsive, adaptada a diferentes dispositivos.*
     
 -   *Documentación de API con swagger.*
  http://localhost:3000/agrotech-api
     
 -    *Utilización de Postman.*
-
-
+- *Nuestro E-mail* : somos.agrotech@gmail.com
 
 
 ## Frontend Usuarios:
@@ -109,12 +114,11 @@ Ejecutar proyecto => npm run dev**
 - Editar sus datos.
 - Historial de Compras.
 
-***Repositorios:*** 
-Administrador=>https://github.com/FabricioCordoba/agrotechAdmin.git
+***Repositorios*** 
+**Frontend Administrador**=>https://github.com/FabricioCordoba/agrotechAdmin.git
 **carpeta: cd front-agrotech-admin
 ejecutar el proyecto: npm run dev**
-**email admin:** fabricio.cbe@gmail.com
-**contraseña:** 123456
+
 **Repositorio** **Backend**=>https://github.com/eSalazar84/Agrotech-Backend
 **Ejecutar=> npm run start:dev**
 
