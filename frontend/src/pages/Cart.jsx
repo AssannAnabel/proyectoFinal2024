@@ -99,7 +99,7 @@ const Cart = () => {
                         <> <div className='shop-end'>
                             <h2 className="total">Total de la compra: ${calculateTotal()}</h2>
                             <Shop />
-                            <button className="clear-cart-button" onClick={clearCart}>Vaciar carrito</button>
+                           <button className="clear-cart-button" onClick={clearCart}>Vaciar carrito</button>
                         </div>
                         </>
                     )}

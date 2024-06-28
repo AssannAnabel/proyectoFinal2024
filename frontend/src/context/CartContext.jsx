@@ -4,6 +4,18 @@ export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
+    useEffect(() => {
+        // console.log('Cargando el carrito al montar el componente');
+         loadCart();
+         
+    }, []);
+
+    // Cuando el carrito cambia, guardar en localStorage
+    // useEffect(() => {
+    //     // console.log('El carrito ha cambiado:', cart);
+    //   // saveCart(cart);
+    //     // console.log("q hay aca", cart);
+    // }, [cart]);
 
     // Obtener el userId actual
     const getCurrentUserId = () => {
@@ -12,30 +24,33 @@ export const CartProvider = ({ children }) => {
 
     // Cargar carrito desde localStorage
     const loadCart = () => {
+       
         const userId = getCurrentUserId();
         console.log('Cargando carrito para usuario:', userId);
-        
+        console.log("aqui loasdCart");
+
         if (userId) {
             const storedCart = localStorage.getItem(`cart_${userId}`);
             console.log('Datos del carrito desde localStorage:', storedCart);//bien!!!
-            
+
             if (storedCart) {
-                try {
-                    const parsedCart = JSON.parse(storedCart);
-                    console.log('Carrito cargado:', parsedCart);
-                    setCart(parsedCart);
-                } catch (error) {
-                    console.error('Error al analizar los datos del carrito:', error);
-                    setCart([]);
-                }
-            } else {
-                setCart([]);
+                // try {
+                const parsedCart = JSON.parse(storedCart);
+                console.log( parsedCart);
+                setCart(parsedCart);
+                debugger
+                console.log(cart);
+                // } catch (error) {
+                //     console.error('Error al analizar los datos del carrito:', error);
+                //     // setCart([]);
+                // }
             }
         }
     };
-    
+
     // Guardar carrito en localStorage
-    const saveCart = () => {
+    const saveCart = (cart) => {
+        
         const userId = getCurrentUserId();
         console.log('Guardando carrito para usuario:', userId);
         if (userId) {
@@ -44,22 +59,15 @@ export const CartProvider = ({ children }) => {
         }
     };
 
-    // Cuando el carrito cambia, guardar en localStorage
-    useEffect(() => {
-        console.log('El carrito ha cambiado:', cart);
-        saveCart();
-    }, [cart]);
+   
 
     // Cargar carrito cuando se monta el componente
-    useEffect(() => {
-        console.log('Cargando el carrito al montar el componente');
-        loadCart();
-    }, []);
-
+   
     // Añadir producto al carrito
     const addToCart = (product, quantity) => {
+       
         const existingProductIndex = cart.findIndex((item) => item.idProduct === product.idProduct);
-
+        let c = null
         if (existingProductIndex !== -1) {
             // Si el producto ya está en el carrito, actualiza la cantidad
             const updatedCart = cart.map((item, index) => {
@@ -68,15 +76,21 @@ export const CartProvider = ({ children }) => {
                 }
                 return item;
             });
-            setCart(updatedCart);
+            
+           c= updatedCart;
         } else {
             // Si el producto no está en el carrito, agréguelo con la cantidad deseada
-            setCart((prevCart) => [...prevCart, { ...product, quantity }]);
+           c=[...cart, { ...product, quantity }];
         }
+        console.log(c);
+        setCart(c)
+        // console.log(cart);
+        saveCart(c)
     };
 
     // Actualizar la cantidad de un producto en el carrito
     const updateProductQuantity = (productId, newQuantity) => {
+        
         setCart((prevCart) => {
             return prevCart.map((item) => {
                 if (item.idProduct === productId) {
@@ -91,16 +105,21 @@ export const CartProvider = ({ children }) => {
                 return item;
             }).filter((item) => item !== null);
         });
+      //  saveCart(cart)
+
     };
 
     // Eliminar producto del carrito
     const removeProductFromCart = (productId) => {
+       
         setCart((prevCart) => prevCart.filter((product) => product.idProduct !== productId));
+       // saveCart(cart)
+
     };
 
     // Vaciar el carrito
     const clearCart = () => {
-        setCart([]);
+        //    setCart([]);
     };
 
     return (
