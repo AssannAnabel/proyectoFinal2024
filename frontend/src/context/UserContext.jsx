@@ -36,17 +36,17 @@ export const UserProvider = ({ children }) => {
             // Verifica que no se esté repitiendo la asignación de `user` para evitar el bucle
             if (!user || user.id !== parsedUser.id) {
                 setUser(parsedUser);
-                loadCart(parsedUser.id);
+              //  loadCart(parsedUser.id);
             }
         }
-    }, [user, loadCart]);
+    }, [user]);
 
     // Manejo de inicio de sesión
     const handleLogin = (loggedInUser) => {
         setUser(loggedInUser);
         localStorage.setItem('user', JSON.stringify(loggedInUser));
         localStorage.setItem('currentUserId', loggedInUser.id);
-        loadCart(loggedInUser.id);
+      //  loadCart(loggedInUser.id);
     };
 
     // Manejo de cierre de sesión
@@ -54,7 +54,7 @@ export const UserProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem('user');
         localStorage.removeItem('currentUserId');
-        clearCart();
+        //clearCart();
     };
 
     return (

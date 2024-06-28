@@ -105,15 +105,15 @@ function Perfil() {
                 }
               </button>
               {showForm && (
-                <form className="form" onSubmit={handleSubmit}>
-                  <label htmlFor='email'>Email</label>
-                  <input type='text' name='email' id='email' value={userUpdate.email || ''} onChange={handleChange} />
-                  <label htmlFor='phone'>Teléfono</label>
-                  <input type='phone' name='phone' id='phone' value={userUpdate.phone || ''} onChange={handleChange} />
-                  <label htmlFor='password'>Contraseña</label>
-                  <input type='password' name='password' id='password' value={userUpdate.password || ''} onChange={handleChange} />
-                  <button className='btn-guardar' type='submit'>Guardar</button>
-                  <button className='btn-delete' type='button' onClick={handleDeleteProfile}>Eliminar perfil</button>
+                <form className="form-perfil" onSubmit={handleSubmit}>
+                  <label htmlFor='email' className='label-perfil'>Email</label>
+                  <input type='text' name='email' id='email' className='input-perfil' value={userUpdate.email || ''} onChange={handleChange} />
+                  <label htmlFor='phone'className='label-perfil'>Teléfono</label>
+                  <input type='phone' name='phone' id='phone'className='input-perfil' value={userUpdate.phone || ''} onChange={handleChange} />
+                  <label htmlFor='password'className='label-perfil'>Contraseña</label>
+                  <input type='password' name='password' id='password'className='input-perfil' value={userUpdate.password || ''} onChange={handleChange} />
+                  <button className='btn-guardar-perfil' type='submit'>Guardar</button>
+                  <button className='btn-delete-perfil' type='button' onClick={handleDeleteProfile}>Eliminar perfil</button>
                 </form>
               )}
             </div>
