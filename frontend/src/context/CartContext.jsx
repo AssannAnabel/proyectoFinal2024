@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
                 const parsedCart = JSON.parse(storedCart);
                 console.log( parsedCart);
                 setCart(parsedCart);
-                debugger
+              
                 console.log(cart);
                 // } catch (error) {
                 //     console.error('Error al analizar los datos del carrito:', error);
@@ -119,7 +119,10 @@ export const CartProvider = ({ children }) => {
 
     // Vaciar el carrito
     const clearCart = () => {
-        //    setCart([]);
+        const userId = getCurrentUserId();
+        localStorage.removeItem(`cart_${userId}`);
+
+           setCart([]);
     };
 
     return (
