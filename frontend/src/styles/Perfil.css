@@ -59,24 +59,6 @@
   text-align: center;
 }
 
-.user-profile button,
-.purchase-history button {
-  margin-top: 10px;
-  padding: 8px 16px; /* Ajustar tamaño del botón */
-  font-size: 14px; /* Ajustar tamaño de fuente */
-  cursor: pointer;
-  background-color: #126606; /* Cambiar color del botón */
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-  width: auto; /* Hacer que el botón tenga ancho automático */
-}
-
-.user-profile button:hover,
-.purchase-history button:hover {
-  background-color: #0a4404; /* Cambiar color al pasar el mouse */
-}
 
 .form {
   width: 100%;
@@ -92,30 +74,43 @@
   padding: 8px;
   margin-bottom: 10px;
 }
+.input-perfil {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 100%;
+}
 
-.btn-guardar,
-.btn-delete {
+.input-perfil:focus {
+  border-color: #126606;
+  outline: none;
+}
+.btn-mostrar,
+.btn-guardar-perfil,
+.btn-delete-perfil {
   display: block;
   margin: 10px 0;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #28a745;
+  background-color: #126606;
   color: #fff;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
-
-.btn-guardar:hover {
+.btn-mostrar:hover,
+.btn-guardar-perfil:hover {
   background-color: #218838;
 }
 
-.btn-delete {
+.btn-delete-perfil {
   background-color: #dc3545;
 }
 
-.btn-delete:hover {
+.btn-delete-perfil:hover {
   background-color: #c82333;
 }
 
