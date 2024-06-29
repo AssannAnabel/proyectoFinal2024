@@ -17,13 +17,18 @@ function Perfil() {
   const [userUpdate, setUserUpdate] = useState({
     phone: user ? user.telefono : '',
     email: user ? user.email : '',
-    password: user ? user.password : '',
+    currentPassword: '',
+    newPassword: '',
   });
+
 
   const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [showForm, setShowForm] = useState(false);
+  const [showFormEditPerfil, setShowFormEditPerfil] = useState(false);
+  const [showFormEditContraseña, setShowFormEditContraseña] = useState(false);
+
+
 
   useEffect(() => {
     if (user) {
@@ -53,11 +58,44 @@ function Perfil() {
     setUserUpdate(prev => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    updateUserById(user.id, userUpdate);
+
+    if (showFormEditContraseña) {
+      // Simulación de la lógica de validación de contraseña en el frontend
+
+      // Actualización de la nueva contraseña
+      try {
+        const response = await updateUserById(user.id, {
+          email: userUpdate.email,
+          phone: userUpdate.phone,
+          password: userUpdate.newPassword,  // Enviar la nueva contraseña al servidor
+        });
+
+        if (response) {
+          Swal.fire('¡Contraseña actualizada!', 'Su contraseña ha sido cambiada exitosamente.', 'success');
+        } else {
+          Swal.fire('Error', response.message, 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error', 'Hubo un error al cambiar la contraseña.', 'error');
+      }
+    } else {
+      // Lógica para actualizar otros datos del perfil
+      try {
+        await updateUserById(user.id, {
+          email: userUpdate.email,
+          phone: userUpdate.phone,
+        });
+        Swal.fire('¡Perfil actualizado!', 'Su perfil ha sido actualizado exitosamente.', 'success');
+      } catch (error) {
+        Swal.fire('Error', 'Hubo un error al actualizar su perfil.', 'error');
+      }
+    }
     navigate('/');
   };
+
+
 
   const handleDeleteProfile = () => {
     Swal.fire({
@@ -90,7 +128,7 @@ function Perfil() {
     <>
       <div className='container-perfil'>
         <Nav />
-         <Tabs className='content'>
+        <Tabs className='content'>
           <TabList>
             <Tab>Perfil</Tab>
             <Tab>Historial de Compras</Tab>
@@ -100,27 +138,50 @@ function Perfil() {
             <div className='user-profile'>
               <h2>Bienvenido/a {user.name}</h2>
               <p>Su cuenta: {user.email}</p>
-              <button className='btn-mostrar' onClick={() => setShowForm(!showForm)}>
-                {showForm ? 'Ocultar perfil' : 'Mostrar perfil'
+              <button className='btn-mostrar' onClick={() => setShowFormEditPerfil(!showFormEditPerfil)}>
+                {showFormEditPerfil ? 'Ocultar perfil para editar' : 'Editar perfil'
                 }
               </button>
-              {showForm && (
+              {showFormEditPerfil && (
                 <form className="form-perfil" onSubmit={handleSubmit}>
                   <label htmlFor='email' className='label-perfil'>Email</label>
-                  <input type='text' name='email' id='email' className='input-perfil' value={userUpdate.email || ''} onChange={handleChange} />
-                  
-                  <label htmlFor='phone'className='label-perfil'>Teléfono</label>
-                  <input type='phone' name='phone' id='phone'className='input-perfil' value={userUpdate.phone || ''} onChange={handleChange} />
-                 
+                  <input type='text' name='email' id='email' className='input-perfil' placeholder='Email' value={userUpdate.email || ''} onChange={handleChange} />
+
+                  <label htmlFor='phone' className='label-perfil'>Teléfono</label>
+                  <input type='phone' name='phone' id='phone' className='input-perfil' placeholder='Teléfono' value={userUpdate.phone || ''} onChange={handleChange} />
+
                   <label htmlFor='address' className='label-perfil'>Dirección</label>
-                  <input type='text' name='address' id='address' className='input-perfil' value={userUpdate.address || ''} onChange={handleChange} />
-                  <label htmlFor='password'className='label-perfil'>Contraseña</label>
-                  <input type='password' name='password' id='password'className='input-perfil' value={userUpdate.password || ''} onChange={handleChange} />
-                 
+                  <input type='text' name='address' id='address' className='input-perfil' placeholder='Dirección' value={userUpdate.address || ''} onChange={handleChange} />
+
+
                   <button className='btn-guardar-perfil' type='submit'>Guardar</button>
-                  <button className='btn-delete-perfil' type='button' onClick={handleDeleteProfile}>Eliminar perfil</button>
+                 
                 </form>
               )}
+              <button className='btn-mostrar' onClick={() => setShowFormEditContraseña(!showFormEditContraseña)}>
+                {showFormEditContraseña ? 'Ocultar editar contraseña' : 'Editar contraseña'
+                }
+              </button>
+              {showFormEditContraseña && (
+                <form className="form-perfil" onSubmit={handleSubmit}>
+
+                  <label htmlFor='newPassword' className='label-perfil'>Contraseña nueva</label>
+                  <input
+                    type='password'
+                    name='newPassword'
+                    id='newPassword'
+                    className='input-perfil'
+                    placeholder='Contraseña nueva'
+                    value={userUpdate.newPassword}
+                    onChange={handleChange}
+                  />
+
+                  <button className='btn-guardar-perfil' type='submit'>Guardar</button>
+
+                </form>
+              )}
+               <button className='btn-delete-perfil' type='button' onClick={handleDeleteProfile}>Eliminar perfil</button>
+
             </div>
           </TabPanel>
 
