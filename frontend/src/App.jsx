@@ -11,9 +11,13 @@ import Category from "./pages/Category"
 import NotFound from "./components/NotFound"
 import Cart from "./pages/Cart"
 import Shop from "./components/Shop"
+import { RutasProtegidas } from "./components/RutasProtegidas"
+import { useContext } from "react"
+import { UserContext } from "./context/UserContext"
 
 
 function App() {
+  const{isLoggedIn}= useContext(UserContext);
   
   return (
     <>
@@ -26,8 +30,9 @@ function App() {
         <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
         <Route path="user-update/:id" element={<Perfil/>} />    
         <Route path="products/:category" element={<Category/>} />
+       <Route element={<RutasProtegidas isAllowed={isLoggedIn}/>}>
         <Route path="cart" element={<Cart />} />  
-        <Route path="shop" element={<Shop/>}  />    
+        </Route>        
         <Route exact path='*' element={<NotFound />} />
       </Routes>
     </>
