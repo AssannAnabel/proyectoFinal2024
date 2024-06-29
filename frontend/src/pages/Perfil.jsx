@@ -73,7 +73,8 @@ function Perfil() {
         });
 
         if (response) {
-          Swal.fire('¡Contraseña actualizada!', 'Su contraseña ha sido cambiada exitosamente.', 'success');
+        Swal.fire('¡Contraseña actualizada!', 'Su contraseña ha sido cambiada exitosamente.', 'success');
+         
         } else {
           Swal.fire('Error', response.message, 'error');
         }
@@ -88,6 +89,7 @@ function Perfil() {
           phone: userUpdate.phone,
         });
         Swal.fire('¡Perfil actualizado!', 'Su perfil ha sido actualizado exitosamente.', 'success');
+
       } catch (error) {
         Swal.fire('Error', 'Hubo un error al actualizar su perfil.', 'error');
       }
