@@ -6,6 +6,7 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [products, setProducts] = useState([]);
+    const [isLoggedIn, setIsloggenIn]= useState(false)
     const { loadCart, clearCart } = useContext(CartContext);
 
     const urlProducts = 'http://localhost:3000/product';
@@ -36,6 +37,7 @@ export const UserProvider = ({ children }) => {
             // Verifica que no se esté repitiendo la asignación de `user` para evitar el bucle
             if (!user || user.id !== parsedUser.id) {
                 setUser(parsedUser);
+                setIsloggenIn(true);
               //  loadCart(parsedUser.id);
             }
         }
@@ -58,7 +60,7 @@ export const UserProvider = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ user, products, handleLogin, handleLogout }}>
+        <UserContext.Provider value={{ user, products, handleLogin, handleLogout,isLoggedIn, setIsloggenIn}}>
             {children}
         </UserContext.Provider>
     );
