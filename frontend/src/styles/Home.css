@@ -15,8 +15,8 @@
 }
 .cards-container{
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Seis columnas para las tarjetas */
-  grid-column: span 6; /* Ocupar siete columnas */
+  grid-template-columns: repeat(5, 1fr); /* Seis columnas para las tarjetas */
+  grid-column: span 5; /* Ocupar siete columnas */
   gap: 20px; /* Espacio entre las tarjetas */
   background-color: #e9ecef;
   padding: 0px 20px 0px 0px;
@@ -30,7 +30,7 @@ height: 300px;
 
 /* Segundo carrusel */
 .container-carousel-second {
-  grid-column: span 6; /* Ocupa las seis columnas de las tarjetas */
+  grid-column: span 5; /* Ocupa las seis columnas de las tarjetas */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +44,7 @@ height: 300px;
 
 /* Tercer carrusel */
 .container-carousel-ter {
-  grid-column: span 6; /* Ocupa las seis columnas de las tarjetas */
+  grid-column: span 5; /* Ocupa las seis columnas de las tarjetas */
   width: 98%; /* Ancho del segundo carrusel */
   height: 80px; /* Altura reducida del carrusel */
   background-color: white;

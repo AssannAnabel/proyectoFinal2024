@@ -26,7 +26,7 @@ function Card({ product }) {
                 <div className="contenido-card">
                     <h2>{product.product}</h2>
                     <h3>Disponible {product.amount}</h3>
-                    <h2>$ {product.price}</h2>
+                    <h2>{Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(product.price)}</h2>
                     <p>Envio gratis</p>
             
                 </div>

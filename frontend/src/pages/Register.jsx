@@ -40,11 +40,14 @@ function Register() {
                     <input type='text' name='email' id='email' placeholder='Email' className='input-register'
                     onChange={handleChange} />
 
-                    <label htmlFor='phone'className='label-register'>Telefono</label>
+                    <label htmlFor='phone'className='label-register'>Teléfono</label>
                     <input type='phone' name='phone' id='phone' placeholder='Telefono' className='input-register' onChange={handleChange} />
 
                     <label htmlFor='birthDate'className='label-register'>Fecha de nacimiento</label>
-                    <input type='birthDate' name='birthDate' placeholder='año-mes-dia' id='birthDate' className='input-register' onChange={handleChange} />
+                    <input type='date' name='birthDate' placeholder='año-mes-dia' id='birthDate' className='input-register' onChange={handleChange} />
+
+                    <label htmlFor='address'className='label-register'>Dirección</label>
+                    <input type='address' name='address' placeholder='direccion' id='address' className='input-register' onChange={handleChange} />
 
                     <label htmlFor='password'className='label-register'>Contraseña</label>
                     <input type='password' name='password' id='password' placeholder='Contraseña' className='input-register' onChange={handleChange} />

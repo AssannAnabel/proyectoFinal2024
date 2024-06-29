@@ -100,7 +100,7 @@ function Perfil() {
             <div className='user-profile'>
               <h2>Bienvenido/a {user.name}</h2>
               <p>Su cuenta: {user.email}</p>
-              <button onClick={() => setShowForm(!showForm)}>
+              <button className='btn-mostrar' onClick={() => setShowForm(!showForm)}>
                 {showForm ? 'Ocultar perfil' : 'Mostrar perfil'
                 }
               </button>
@@ -108,10 +108,15 @@ function Perfil() {
                 <form className="form-perfil" onSubmit={handleSubmit}>
                   <label htmlFor='email' className='label-perfil'>Email</label>
                   <input type='text' name='email' id='email' className='input-perfil' value={userUpdate.email || ''} onChange={handleChange} />
+                  
                   <label htmlFor='phone'className='label-perfil'>Teléfono</label>
                   <input type='phone' name='phone' id='phone'className='input-perfil' value={userUpdate.phone || ''} onChange={handleChange} />
+                 
+                  <label htmlFor='address' className='label-perfil'>Dirección</label>
+                  <input type='text' name='address' id='address' className='input-perfil' value={userUpdate.address || ''} onChange={handleChange} />
                   <label htmlFor='password'className='label-perfil'>Contraseña</label>
                   <input type='password' name='password' id='password'className='input-perfil' value={userUpdate.password || ''} onChange={handleChange} />
+                 
                   <button className='btn-guardar-perfil' type='submit'>Guardar</button>
                   <button className='btn-delete-perfil' type='button' onClick={handleDeleteProfile}>Eliminar perfil</button>
                 </form>
