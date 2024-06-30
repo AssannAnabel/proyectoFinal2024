@@ -12,16 +12,24 @@
 }
 
 /* Estilo para la barra de búsqueda */
-.container-barra-search {
+.container-busqueda-barra  {
   display: flex;
-  align-items: center;
   border-radius: 4px;
-  padding: 2px 5px; /* Reducir el padding */
+  padding: 2px 5px;
   flex: 1;
-  margin: 0 10px; /* Reducir el margen */
-  height: 40px; /* Ajustar la altura */
+  margin: 0 10px;
+  height: 40px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 10px;
 }
 
+.form-busqueda{
+  display: flex;
+  width: 70%;
+}
 .input-search {
   border: none;
   outline: none;
@@ -32,9 +40,20 @@
   border-radius: 4px;
 }
 
-.search-icon {
-  color: #888;
-  font-size: 18px; /* Mantener el tamaño de la fuente */
+.btn-buscar {
+cursor: pointer;
+  color: white;
+  background-color: transparent;
+  border: transparent;
+}
+
+.icon-buscar{
+  color: white;
+  font-size: 25px;
+}
+
+.icon-buscar:hover{
+  color: #126606;
 }
 
 /* Estilo para la lista de navegación */
