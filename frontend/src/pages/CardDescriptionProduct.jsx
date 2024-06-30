@@ -12,6 +12,7 @@ import { isExcedMax } from '../service/util';
 import { handlePurchase } from '../service/purchase';
 import logo from "/agrotech.png"; // Importa el logo
 import '../styles/Shop.css'; // Importa los estilos del modal
+import Footer from "../components/Footer"
 
 function CardDescriptionProduct() {
     const { products, user } = useContext(UserContext);
@@ -288,6 +289,7 @@ function CardDescriptionProduct() {
                     </div>
                 </div>
             )}
+            <Footer/>
         </>
     );
 }
