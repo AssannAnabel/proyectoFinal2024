@@ -209,8 +209,8 @@ function Perfil() {
                     {purchaseHistory.map((invoice) => (
                       <tr key={invoice.idInvoice}>
                         <td>{new Date(invoice.invoiceDate).toLocaleDateString()}</td>
-                        <td>${invoice.total_without_iva}</td>
-                        <td>${invoice.total_with_iva}</td>
+                        <td>{Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(invoice.total_without_iva)}</td>
+                        <td>{Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(invoice.total_with_iva)}</td>
                         <td>
                           {invoice.invoiceDetails.map((detail) => (
                             <p key={detail.id}>{detail.product.product}</p>
@@ -223,7 +223,7 @@ function Perfil() {
                         </td>
                         <td>
                           {invoice.invoiceDetails.map((detail) => (
-                            <p key={detail.id}>${detail.product.price}</p>
+                            <p key={detail.id}>{Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(detail.product.price)}</p>
                           ))}
                         </td>
                         <td>
