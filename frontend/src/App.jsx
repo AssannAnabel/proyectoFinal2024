@@ -14,6 +14,7 @@ import Shop from "./components/Shop"
 import { RutasProtegidas } from "./components/RutasProtegidas"
 import { useContext } from "react"
 import { UserContext } from "./context/UserContext"
+import Search from "./pages/Search"
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path="product-detail/:id" element={<CardDescriptionProduct/>} />     
         <Route path="user-update/:id" element={<Perfil/>} />    
         <Route path="products/:category" element={<Category/>} />
+        <Route path="search" element={<Search/>}/>
        <Route element={<RutasProtegidas isAllowed={isLoggedIn}/>}>
         <Route path="cart" element={<Cart />} />  
         </Route>        

@@ -10,3 +10,4 @@ export const getProductByItem = async (item) => {
     if (!items.length) throw new Error(`No hay ${item} en stock`)
     return items;
 }
+

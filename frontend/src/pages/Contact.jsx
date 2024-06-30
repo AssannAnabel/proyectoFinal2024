@@ -69,7 +69,7 @@ function Contact() {
                 </div>
 
                 <div className="container-form">
-                    <form onSubmit={handleSubmit}>
+                    <form className='form-contact' onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label className='label-contact' htmlFor="name">Nombre</label>
                             <input
