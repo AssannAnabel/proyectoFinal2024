@@ -4,13 +4,13 @@
   flex-direction: column;
   min-height: 100vh;
 }
-.whith{
+.whith {
   background-color: white;
   padding: 5px;
   border-radius: 8px;
-  width: 80%;
-  margin: 20px auto;
-  box-shadow: o 4px 12 px rgba(0,0,0,0.1);
+  width: 90%;
+  margin: 10px auto;
+  box-shadow: o 4px 12 px rgba(0, 0, 0, 0.1);
   flex-grow: 1;
 }
 .cards-container{

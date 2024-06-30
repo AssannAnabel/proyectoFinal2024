@@ -109,6 +109,7 @@ function Home() {
                                 <Card product={product} />
                             </div>
                         ))}
+                       
                         {productsRespuestosAgricolas.map(product => (
                             <div className="container-card-cat" key={product.idProduct}>
                                 <Card product={product} />
