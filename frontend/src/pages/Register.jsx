@@ -14,8 +14,22 @@ function Register() {
         e.preventDefault();
         let newUser = { ...userRegister, rol: "user", active: true };
 
-        await addUser(newUser);
-        navigate('/login');
+        try {
+            await addUser(newUser);
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro exitoso',
+                text: 'Te has registrado con éxito.',
+            }).then(() => {
+                navigate('/login');
+            });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Hubo un problema al registrarse. Por favor, inténtalo de nuevo.',
+            });
+        }
     }
 
     function handleChange(e) {
