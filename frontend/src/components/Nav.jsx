@@ -55,18 +55,18 @@ function Nav() {
             )}
             <nav className="container-list">
                 <ul className='navList'>
-                    <li><Link to={"/About"}>Nosotros</Link></li>
-                    <li><Link to={"/Contact"}>Contacto</Link></li>
+                    <li className='navLi'><Link to={"/About"}>Nosotros</Link></li>
+                    <li className='navLi'><Link to={"/Contact"}>Contacto</Link></li>
                     {user && user.name ? (
                         <>
-                            <li><Link to={"/cart"}><FaShoppingCart style={{ color: 'black' }} /> ({totalItemsInCart})</Link></li>
-                            <li><Link to={""} onClick={idUpdate}>{user.name}</Link></li>
-                            <li><Link to={"/"} onClick={handleLogout}>Cerrar Sesión</Link></li>
+                            <li className='navLi'><Link to={"/cart"}><FaShoppingCart style={{ color: 'black' }} /> ({totalItemsInCart})</Link></li>
+                            <li className='navLi'><Link to={""} onClick={idUpdate}>{user.name}</Link></li>
+                            <li className='navLi'><Link to={"/"} onClick={handleLogout}>Cerrar Sesión</Link></li>
                         </>
                     ) : (
                         <>
-                            <li><Link to={"/login"}>Iniciar sesión</Link></li>
-                            <li><Link to={"/Register"}>Registrarme</Link></li>
+                            <li className='navLi'><Link to={"/login"}>Iniciar sesión</Link></li>
+                            <li className='navLi'><Link to={"/Register"}>Registrarme</Link></li>
                         </>
                     )}
                 </ul>

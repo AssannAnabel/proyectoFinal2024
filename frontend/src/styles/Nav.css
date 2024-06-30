@@ -76,7 +76,7 @@ cursor: pointer;
   color: #333;
 }
 
-.navList a li {
+.navLi {
   cursor: pointer;
   transition: color 0.3s;
   padding: 5px 10px; /* Ajustar el padding */
@@ -87,7 +87,7 @@ cursor: pointer;
   font-size: 16px; /* Reducir el tamaño de fuente */
 }
 
-.navList a li:hover {
+.navLi:hover {
   color: white;
   background-color: #126603; /* Cambiar el color de fondo al hacer hover */
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);

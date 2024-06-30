@@ -8,7 +8,7 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  cursor:pointer;
+ 
 }
 
 .menu-icon {
@@ -41,6 +41,7 @@
   text-align: center; /* Centra el texto horizontalmente */
   width: 10%;
   border: #126603 solid 2px;
+  cursor:pointer;
 }
 
 .ul-bar-category li:hover {

@@ -151,7 +151,7 @@ function CardDescriptionProduct() {
                     </div>
                     <div className='container-detalles'>
                         <div className='container-precio'>
-                            <span>Precio: $ {product.price}</span>
+                            <span>Precio: {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(product.price)}</span>
                             <span>Disponible: {product.amount}</span>
                         </div>
                         <div className='container-button'>
@@ -186,12 +186,12 @@ function CardDescriptionProduct() {
                                 <div className="product-info">
                                     <p><strong>Producto:</strong> {product.product}</p>
                                     <p><strong>Cantidad:</strong> {quantity}</p>
-                                    <p><strong>Precio:</strong> ${product.price}</p>
-                                    <p><strong>Total:</strong> ${(product.price * quantity).toFixed(2)}</p>
+                                    <p><strong>Precio:</strong> {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(product.price)}</p>
+                                    <p><strong>Total:</strong> {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format((product.price * quantity).toFixed(2))}</p>
                                 </div>
                             </li>
                         </ul>
-                        <p className="total">Total de la compra: ${(product.price * quantity).toFixed(2)}</p>
+                        <p className="total">Total de la compra: {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format((product.price * quantity).toFixed(2))}</p>
 
                         <div className="form-group">
                             <label htmlFor="paymentMethod">Método de Pago</label>

@@ -84,13 +84,13 @@ const Shop = () => {
                                     <div className="product-info">
                                         <p><strong>Producto:</strong> {product.product}</p>
                                         <p><strong>Cantidad:</strong> {product.quantity}</p>
-                                        <p><strong>Precio:</strong> ${product.price}</p>
-                                        <p><strong>Total:</strong> ${(product.price * product.quantity).toFixed(2)}</p>
+                                        <p><strong>Precio:</strong> {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(product.price)}</p>
+                                        <p><strong>Total:</strong> {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format((product.price * product.quantity).toFixed(2))}</p>
                                     </div>
                                 </li>
                             ))}
                         </ul>
-                        <p className="total">Total de la compra: ${cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</p>
+                        <p className="total">Total de la compra:{Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2))} </p>
 
                         <div className="form-group">
                             <label htmlFor="paymentMethod">Método de Pago</label>

@@ -6,6 +6,7 @@ import { isExcedMax } from '../service/util';
 import Swal from 'sweetalert2';
 import { FaShoppingCart } from "react-icons/fa";
 import Nav from '../components/Nav';
+import Footer from '../components/Footer';
 
 const Cart = () => {
     const { cart, removeProductFromCart, updateProductQuantity, clearCart } = useContext(CartContext);
@@ -57,7 +58,7 @@ const Cart = () => {
                                     <div className="cart-item-info">
                                         <p>Producto: {item.product}</p>
                                         <img src={item.images} alt={item.product} />
-                                        <p>Precio: ${item.price}</p>
+                                        <p>Precio: {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(item.price)}</p>
                                         <p>Cantidad: {item.quantity}</p>
                                     </div>
                                     <div className="cart-item-actions">
@@ -97,7 +98,7 @@ const Cart = () => {
                     )}
                     {cart.length > 0 && (
                         <> <div className='shop-end'>
-                            <h2 className="total">Total de la compra: ${calculateTotal()}</h2>
+                            <h2 className="total">Total de la compra: {Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(calculateTotal())}</h2>
                             <Shop />
                            <button className="clear-cart-button" onClick={clearCart}>Vaciar carrito</button>
                         </div>
@@ -105,7 +106,10 @@ const Cart = () => {
                     )}
                 </div>
             </div>
+            <Footer />
+
         </div>
+
     );
 };
 
