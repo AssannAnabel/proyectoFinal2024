@@ -68,7 +68,11 @@
   display: block;
   margin: 10px 0 5px;
 }
-
+.form-perfil{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
 .form input {
   width: 100%;
   padding: 8px;
@@ -80,15 +84,28 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  width: 100%;
+  width: 95%;
 }
 
 .input-perfil:focus {
   border-color: #126606;
   outline: none;
 }
+
+.btn-guardar-perfil{
+  display: block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #126606;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  width: 100%;
+}
 .btn-mostrar,
-.btn-guardar-perfil,
 .btn-delete-perfil {
   display: block;
   margin: 10px 0;
@@ -100,6 +117,7 @@
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s;
+  width: 50%;
 }
 .btn-mostrar:hover,
 .btn-guardar-perfil:hover {
