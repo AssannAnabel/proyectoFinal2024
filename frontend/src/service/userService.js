@@ -43,7 +43,7 @@ export const addUser = async (user) => {
         });
         if (!res.ok) throw new Error(`Response not OK`)
         const parsed = res.json()
-        console.log("user",user);
+        
 
         return parsed;
     } catch (err) {
@@ -77,7 +77,7 @@ export const updateUserById = async (id, updatedUser) => {
             },
             body: JSON.stringify(updatedUser),
         });
-        console.log("USUARIO NUEVO", updatedUser);
+        
         const parsed = await res.json();
         return parsed;
     } catch (err) {

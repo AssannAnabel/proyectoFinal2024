@@ -5,16 +5,16 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
     const [cart, setCart] = useState([]);
     useEffect(() => {
-        // console.log('Cargando el carrito al montar el componente');
+        
          loadCart();
          
     }, []);
 
     // Cuando el carrito cambia, guardar en localStorage
     // useEffect(() => {
-    //     // console.log('El carrito ha cambiado:', cart);
+    //     
     //   // saveCart(cart);
-    //     // console.log("q hay aca", cart);
+    //     
     // }, [cart]);
 
     // Obtener el userId actual
@@ -26,22 +26,21 @@ export const CartProvider = ({ children }) => {
     const loadCart = () => {
        
         const userId = getCurrentUserId();
-        console.log('Cargando carrito para usuario:', userId);
-        console.log("aqui loasdCart");
+       
 
         if (userId) {
             const storedCart = localStorage.getItem(`cart_${userId}`);
-            console.log('Datos del carrito desde localStorage:', storedCart);//bien!!!
+            
 
             if (storedCart) {
                 // try {
                 const parsedCart = JSON.parse(storedCart);
-                console.log( parsedCart);
+                
                 setCart(parsedCart);
               
-                console.log(cart);
+                
                 // } catch (error) {
-                //     console.error('Error al analizar los datos del carrito:', error);
+                //    
                 //     // setCart([]);
                 // }
             }
@@ -52,9 +51,9 @@ export const CartProvider = ({ children }) => {
     const saveCart = (cart) => {
         
         const userId = getCurrentUserId();
-        console.log('Guardando carrito para usuario:', userId);
+        
         if (userId) {
-            console.log('Datos del carrito para guardar:', cart);
+           
             localStorage.setItem(`cart_${userId}`, JSON.stringify(cart));
         }
     };
@@ -82,9 +81,9 @@ export const CartProvider = ({ children }) => {
             // Si el producto no está en el carrito, agréguelo con la cantidad deseada
            c=[...cart, { ...product, quantity }];
         }
-        console.log(c);
+        
         setCart(c)
-        // console.log(cart);
+        
         saveCart(c)
     };
 
