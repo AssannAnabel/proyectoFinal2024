@@ -23,7 +23,7 @@ function Login() {
             });
 
             const data = await response.json();
-            console.log("Received data:", data); // Agrega un log para verificar la respuesta
+            
 
             if (response.ok) {
                 if (data.active && data.rol === 'user') {
