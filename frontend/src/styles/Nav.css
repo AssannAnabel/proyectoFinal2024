@@ -94,9 +94,25 @@ cursor: pointer;
   transform: translateY(-3%);
 }
 
-.navList a li .FaShoppingCart {
+/* .navList a li .FaShoppingCart {
   margin-right: 5px;
+} */
+.cart-icon {
+  position: relative;
+   color: rgb(24, 22, 22); /*se agrego (cart-icon y cart count) */
 }
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color:#126606;
+  color: white; 
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px; 
+}
+
 
 img.logo {
   width: 200px; /* Reducir el ancho del logo */
