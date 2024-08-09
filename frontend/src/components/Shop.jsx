@@ -39,6 +39,7 @@ const Shop = () => {
         }
         
         try {
+            console.log('Iniciando compra...'); // Para verificar que el flujo llega aquí
             await handlePurchase(user, cart, clearCart, {
                 paymentMethod,
                 cardNumber,
@@ -47,12 +48,17 @@ const Shop = () => {
                 deliveryMethod,
                 address
             });
+            
+            console.log('Compra realizada, mostrando Swal...'); // Para verificar que llega hasta aquí
             Swal.fire({
                 title: 'Compra Confirmada',
                 text: 'Gracias por tu compra. Recibirás un correo con los detalles.',
                 icon: 'success',
                 confirmButtonText: 'Ok'
             }).then(() => {
+                console.log('Swal confirmado, limpiando carrito...'); // Para verificar que se ejecuta este bloque
+                clearCart(); // Vacía el carrito después de que el usuario presiona OK
+
                 closePurchaseModal();
                 window.location.href = '/'; // Redirige a la página de inicio
             });

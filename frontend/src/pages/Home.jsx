@@ -13,7 +13,7 @@ function Home() {
 
     const filterProducts = (category) => {
         if (Array.isArray(products)) {
-            return products.filter(product => product.category === category).slice(0, 8);
+            return products.filter(product => product.category === category).slice(0, 10);
         }
         return [];
     };
