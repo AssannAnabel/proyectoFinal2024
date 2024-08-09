@@ -4,7 +4,7 @@ import "../styles/Custom-styles.css"
 
 
 
-export const handlePurchase = async (user, cart, clearCart) => {
+export const handlePurchase = async (user, cart) => {
     const data = cart.map((product) => ({
         idProduct: product.idProduct,
         amount: product.quantity,
@@ -21,7 +21,7 @@ export const handlePurchase = async (user, cart, clearCart) => {
         });
 
         if (response.ok) {
-            clearCart();
+           
 
             
         } else {

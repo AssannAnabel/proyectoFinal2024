@@ -108,7 +108,7 @@ function CardDescriptionProduct() {
         }
     
         try {
-            await handlePurchase(user, productForPurchase, clearCart, {
+            await handlePurchase(user, productForPurchase, {
                 paymentMethod,
                 cardNumber,
                 cardExpiry,
